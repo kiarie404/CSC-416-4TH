@@ -10,7 +10,7 @@ default-theme = "Ayu"
 preferred-dark-theme = "Ayu"
 git-repository-url = "https://github.com/kiarie404/CSC-416-4TH"
 git-repository-icon = "fa-github"
-edit-url-template = "https://github.com/kiarie404/CSC-416-4TH/tree/main/main_site/Documentation_books/Journal/{path}"
+edit-url-template = "https://github.com/kiarie404/CSC-416-4TH/edit/main/main_site/Documentation_books/Journal/{path}"
 
 [output.html.print]
 enable = true    # include support for printable output
