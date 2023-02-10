@@ -8,6 +8,10 @@ title = "Development Journal"
 [output.html]
 default-theme = "Ayu"
 preferred-dark-theme = "Ayu"
-git-repository-url = "https://github.com/kiarie404/CSC-416-4TH/tree/main/main_site/Documentation_books/Journal"
+git-repository-url = "https://github.com/kiarie404/CSC-416-4TH"
 git-repository-icon = "fa-github"
 edit-url-template = "https://github.com/kiarie404/CSC-416-4TH/tree/main/main_site/Documentation_books/Journal/{path}"
+
+[output.html.print]
+enable = true    # include support for printable output
+page-break = true # insert page-break after each chapter
