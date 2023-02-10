@@ -4,3 +4,10 @@ language = "en"
 multilingual = false
 src = "src"
 title = "Development Journal"
+
+[output.html]
+default-theme = "Ayu"
+preferred-dark-theme = "Ayu"
+git-repository-url = "https://github.com/kiarie404/CSC-416-4TH/tree/main/main_site/Documentation_books/Journal"
+git-repository-icon = "fa-github"
+edit-url-template = "https://github.com/kiarie404/CSC-416-4TH/tree/main/main_site/Documentation_books/Journal/{path}"
