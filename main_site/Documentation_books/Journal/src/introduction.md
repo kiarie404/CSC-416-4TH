@@ -9,3 +9,5 @@ The Supervisor can comment on the progress by editing the Page.
 
 
 This journal covers the period from Fri 10th February 2023 upto May 10th 2023
+<script defer src="https://cdn.commento.io/js/commento.js"></script>
+<div id="commento"></div>
