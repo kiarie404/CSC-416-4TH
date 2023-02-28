@@ -19,14 +19,16 @@ Now I have finished the Philip-OS blog ... time to venture into RISC-v bit.
 - [ ] Set up the commenting section in the software documentation using [giscuss](https://giscus.app/)
 - [ ] Learn how to draw schematic diagrams in markdown ---> use mermaid plugin or [this](https://support.typora.io/Draw-Diagrams-With-Markdown/) and maybe this [medium guide](https://medium.com/technical-writing-is-easy/diagrams-in-documentation-markdown-guide-4e78419e8d2f)
 - [ ] Start writing documentation for good. Little by little kid... we are in this for the long game, getting a degree is out of the picture.
-<!-- 
+
+
+<!-- comment section -->
 <script src="https://giscus.app/client.js"
         data-repo="kiarie404/CSC-416-4TH"
         data-repo-id="R_kgDOI8MqRg"
-        data-category="Comments"
-        data-category-id="DIC_kwDOI8MqRs4CUjQH"
+        data-category="Comments_for_development_journal_book"
+        data-category-id="DIC_kwDOI8MqRs4CUjea"
         data-mapping="pathname"
-        data-strict="0"
+        data-strict="1"
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="bottom"
@@ -37,7 +39,7 @@ Now I have finished the Philip-OS blog ... time to venture into RISC-v bit.
 </script>
 <section class="giscus">
 	Write comments here :  
-</section> -->
+</section>
 
 
 
