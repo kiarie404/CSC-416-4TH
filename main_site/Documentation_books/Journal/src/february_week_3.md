@@ -12,12 +12,15 @@
 
 ### Feb 27th
 Now I have finished the Philip-OS blog ... time to venture into RISC-v bit.
-- [x] Understand "Why RISC-v will be the target architecture for the OS and not x86 cpus?"
+- [x] Understand "Why RISC-v will be the target architecture for the OS and not x86 cpus"
 
 ### Feb 28th
 - [ ] Overview the rcore tutorial and stephens tutorial. Make concrete decisions
-- [ ] Set up the commenting section in the software documentation using [giscuss](https://giscus.app/)
-- [ ] Learn how to draw schematic diagrams in markdown ---> use mermaid plugin or [this](https://support.typora.io/Draw-Diagrams-With-Markdown/) and maybe this [medium guide](https://medium.com/technical-writing-is-easy/diagrams-in-documentation-markdown-guide-4e78419e8d2f)
+- [x] Set up the commenting section in the software documentation using [giscuss](https://giscus.app/)
+- [x] Learn how to draw schematic diagrams in markdown ---> use [mermaid plugin](https://mermaid.js.org/syntax/flowchart.html) or [this](https://support.typora.io/Draw-Diagrams-With-Markdown/) and maybe this [medium guide](https://medium.com/technical-writing-is-easy/diagrams-in-documentation-markdown-guide-4e78419e8d2f)
+  - [x] build a [complete flow diagram with markdown](https://mermaid.js.org/syntax/flowchart.html)
+  - [x] build a [sequence diagram](https://mermaid.js.org/syntax/sequenceDiagram.html)
+  - [x] build a [state diagram](https://mermaid.js.org/syntax/stateDiagram.html) with markdown  
 - [ ] Start writing documentation for good. Little by little kid... we are in this for the long game, getting a degree is out of the picture.
 
 

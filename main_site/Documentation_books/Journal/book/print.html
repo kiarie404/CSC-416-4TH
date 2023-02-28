@@ -328,16 +328,25 @@ Read up on how to setup paging</li>
 <p>Now I have finished the Philip-OS blog ... time to venture into RISC-v bit.</p>
 <ul>
 <li><input disabled="" type="checkbox" checked=""/>
-Understand &quot;Why RISC-v will be the target architecture for the OS and not x86 cpus?&quot;</li>
+Understand &quot;Why RISC-v will be the target architecture for the OS and not x86 cpus&quot;</li>
 </ul>
 <h3 id="feb-28th"><a class="header" href="#feb-28th">Feb 28th</a></h3>
 <ul>
 <li><input disabled="" type="checkbox"/>
 Overview the rcore tutorial and stephens tutorial. Make concrete decisions</li>
-<li><input disabled="" type="checkbox"/>
+<li><input disabled="" type="checkbox" checked=""/>
 Set up the commenting section in the software documentation using <a href="https://giscus.app/">giscuss</a></li>
-<li><input disabled="" type="checkbox"/>
-Learn how to draw schematic diagrams in markdown ---&gt; use mermaid plugin or <a href="https://support.typora.io/Draw-Diagrams-With-Markdown/">this</a> and maybe this <a href="https://medium.com/technical-writing-is-easy/diagrams-in-documentation-markdown-guide-4e78419e8d2f">medium guide</a></li>
+<li><input disabled="" type="checkbox" checked=""/>
+Learn how to draw schematic diagrams in markdown ---&gt; use <a href="https://mermaid.js.org/syntax/flowchart.html">mermaid plugin</a> or <a href="https://support.typora.io/Draw-Diagrams-With-Markdown/">this</a> and maybe this <a href="https://medium.com/technical-writing-is-easy/diagrams-in-documentation-markdown-guide-4e78419e8d2f">medium guide</a>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+build a <a href="https://mermaid.js.org/syntax/flowchart.html">complete flow diagram with markdown</a></li>
+<li><input disabled="" type="checkbox" checked=""/>
+build a <a href="https://mermaid.js.org/syntax/sequenceDiagram.html">sequence diagram</a></li>
+<li><input disabled="" type="checkbox" checked=""/>
+build a <a href="https://mermaid.js.org/syntax/stateDiagram.html">state diagram</a> with markdown</li>
+</ul>
+</li>
 <li><input disabled="" type="checkbox"/>
 Start writing documentation for good. Little by little kid... we are in this for the long game, getting a degree is out of the picture.</li>
 </ul>
@@ -378,6 +387,22 @@ Start writing documentation for good. Little by little kid... we are in this for
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
