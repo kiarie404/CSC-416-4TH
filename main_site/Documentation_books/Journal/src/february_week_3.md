@@ -24,6 +24,8 @@ Now I have finished the Philip-OS blog ... time to venture into RISC-v bit.
 - [ ] Start writing documentation for good. Little by little kid... we are in this for the long game, getting a degree is out of the picture.
 
 
+
+
 <!-- comment section -->
 <script src="https://giscus.app/client.js"
         data-repo="kiarie404/CSC-416-4TH"
