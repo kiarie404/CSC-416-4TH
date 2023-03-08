@@ -1,0 +1,4 @@
+- https://gist.github.com/cb372/5f6bf16ca0682541260ae52fc11ea3bb
+- https://github.com/AshTS/Qor
+- https://betrusted.io/xous-book/
+- 

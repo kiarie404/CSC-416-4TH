@@ -21,3 +21,8 @@
 ##### Risc v
 - [Why adding extensions to x86 is a headache](https://www.anandtech.com/show/3593)
 - [Risc V official specifications](https://riscv.org/technical/specifications/)
+- [Simple down to earth Blog](https://danielmangum.com/categories/risc-v-bytes/)
+- [Riscv down to earth Tutorial](https://smist08.wordpress.com/2019/09/06/introducing-risc-v/)
+
+##### General
+- [How to write Linker scripts](https://sourceware.org/binutils/docs/ld/Scripts.html)

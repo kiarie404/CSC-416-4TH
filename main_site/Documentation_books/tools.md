@@ -11,3 +11,12 @@
 - Rust Stable
 - Rust Nightly
 - Cargo Binutils
+
+#### standalone software
+- Qemu
+- VS code
+- nushell
+- GNU Make
+- [Riscv Intepreter](https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter/#)
+- [Risc V emulator](https://github.com/TheThirdOne/rars)
+
