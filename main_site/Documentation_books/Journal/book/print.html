@@ -401,8 +401,22 @@ Start reading on how to compile a rust program to run on bare metal riscv CPU (t
 <ul>
 <li><input disabled="" type="checkbox" checked=""/>
 Read up on the <a href="https://www.qemu.org/docs/master/system/target-riscv.html">Qemu Risc V Emulator</a>; Specifically the <a href="https://www.qemu.org/docs/master/system/riscv/virt.html">Risc v virtual board</a>.</li>
-<li><input disabled="" type="checkbox"/>
+<li><input disabled="" type="checkbox" checked=""/>
 Wrap my head around all this completely unnecessary and backwards Makefiles jargon. By following <a href="https://makefiletutorial.com/">this blog's tutorial</a></li>
+</ul>
+<h3 id="7th-mar"><a class="header" href="#7th-mar">7th Mar</a></h3>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+Set up Qemu and Rust(no_std) for riscv</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Learn basic riscv Assembly {code structure, common directives} </li>
+</ul>
+<h3 id="8th-mar"><a class="header" href="#8th-mar">8th Mar</a></h3>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+Learn Rust Metaprogramming from <a href="https://doc.rust-lang.org/book/ch19-06-macros.html">here</a></li>
+<li><input disabled="" type="checkbox" checked=""/>
+Learn how to write the UART driver in Rust for the RISCV (emulated by Qemu)  </li>
 </ul>
 
                     </main>
@@ -422,22 +436,6 @@ Wrap my head around all this completely unnecessary and backwards Makefiles jarg
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

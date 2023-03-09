@@ -20,4 +20,4 @@
     - x86 had a hard learning curve
     - the philosophy of riscv was appealing
     - Riscv has scarce resources {tutorials, too formal documentation, halfmade-compilers(not as plug n play as those of x86)}
-- xx
+- Impossible Timelines ; Go at my own pace, the goal is not a degree. The goal is to lear and finish the project. My own pace. In systems programming... slow is fast. Fast is slow
