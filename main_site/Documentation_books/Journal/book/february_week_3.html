@@ -80,7 +80,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="how_to_navigate.html"><strong aria-hidden="true">1.1.</strong> How to Navigate this Documentation</a></li></ol></li><li class="chapter-item expanded "><a href="february.html"><strong aria-hidden="true">2.</strong> February</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="february_week_1.html"><strong aria-hidden="true">2.1.</strong> Week 1</a></li><li class="chapter-item expanded "><a href="february_week_3.html" class="active"><strong aria-hidden="true">2.2.</strong> Week 3</a></li></ol></li><li class="chapter-item expanded "><a href="march.html"><strong aria-hidden="true">3.</strong> March</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="march_week_1.html"><strong aria-hidden="true">3.1.</strong> Week 1</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> April</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> May</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="how_to_navigate.html"><strong aria-hidden="true">1.1.</strong> How to Navigate this Documentation</a></li></ol></li><li class="chapter-item expanded "><a href="february.html"><strong aria-hidden="true">2.</strong> February</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="february_week_1.html"><strong aria-hidden="true">2.1.</strong> Week 1</a></li><li class="chapter-item expanded "><a href="february_week_3.html" class="active"><strong aria-hidden="true">2.2.</strong> Week 3</a></li></ol></li><li class="chapter-item expanded "><a href="march.html"><strong aria-hidden="true">3.</strong> March</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="march_week_1.html"><strong aria-hidden="true">3.1.</strong> Week 1</a></li></ol></li><li class="chapter-item expanded "><a href="april.html"><strong aria-hidden="true">4.</strong> April</a></li><li class="chapter-item expanded "><a href="may.html"><strong aria-hidden="true">5.</strong> May</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -171,7 +171,7 @@ Understand &quot;Why RISC-v will be the target architecture for the OS and not x
 </ul>
 <h3 id="feb-28th"><a class="header" href="#feb-28th">Feb 28th</a></h3>
 <ul>
-<li><input disabled="" type="checkbox"/>
+<li><input disabled="" type="checkbox" checked=""/>
 Overview the rcore tutorial and stephens tutorial. Make concrete decisions</li>
 <li><input disabled="" type="checkbox" checked=""/>
 Set up the commenting section in the software documentation using <a href="https://giscus.app/">giscuss</a></li>
@@ -238,6 +238,22 @@ Start writing documentation for good. Little by little kid... we are in this for
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

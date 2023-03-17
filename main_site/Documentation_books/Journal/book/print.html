@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="how_to_navigate.html"><strong aria-hidden="true">1.1.</strong> How to Navigate this Documentation</a></li></ol></li><li class="chapter-item expanded "><a href="february.html"><strong aria-hidden="true">2.</strong> February</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="february_week_1.html"><strong aria-hidden="true">2.1.</strong> Week 1</a></li><li class="chapter-item expanded "><a href="february_week_3.html"><strong aria-hidden="true">2.2.</strong> Week 3</a></li></ol></li><li class="chapter-item expanded "><a href="march.html"><strong aria-hidden="true">3.</strong> March</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="march_week_1.html"><strong aria-hidden="true">3.1.</strong> Week 1</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> April</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> May</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="how_to_navigate.html"><strong aria-hidden="true">1.1.</strong> How to Navigate this Documentation</a></li></ol></li><li class="chapter-item expanded "><a href="february.html"><strong aria-hidden="true">2.</strong> February</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="february_week_1.html"><strong aria-hidden="true">2.1.</strong> Week 1</a></li><li class="chapter-item expanded "><a href="february_week_3.html"><strong aria-hidden="true">2.2.</strong> Week 3</a></li></ol></li><li class="chapter-item expanded "><a href="march.html"><strong aria-hidden="true">3.</strong> March</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="march_week_1.html"><strong aria-hidden="true">3.1.</strong> Week 1</a></li></ol></li><li class="chapter-item expanded "><a href="april.html"><strong aria-hidden="true">4.</strong> April</a></li><li class="chapter-item expanded "><a href="may.html"><strong aria-hidden="true">5.</strong> May</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -228,7 +228,7 @@ Code blocks may contain several different icons for interacting with them:</p>
 <ul>
 <li><input disabled="" type="checkbox" checked=""/>
 I should have set up a website for the project.</li>
-<li><input disabled="" type="checkbox"/>
+<li><input disabled="" type="checkbox" checked=""/>
 I should have prepared the documentation software and the documentation plan for the project.</li>
 <li><input disabled="" type="checkbox" checked=""/>
 I should have set up the commenting system within the documen</li>
@@ -266,7 +266,7 @@ Define the problem I am trying to solve.</li>
 Update the Documentation concerning the theory behind the OS</li>
 <li><input disabled="" type="checkbox"/>
 Come up with a full architecture of the OS</li>
-<li><input disabled="" type="checkbox"/>
+<li><input disabled="" type="checkbox" checked=""/>
 For the sake of having a Minimal Viable Product, create a WASI compliant program that runs in a No-std environment</li>
 <li><input disabled="" type="checkbox"/>
 Contact Supervisor ; Monday as deadline</li>
@@ -287,7 +287,7 @@ Try to re-define the problem I am trying to solve... really.  ---&gt; Half-done<
 </ul>
 <h3 id="12th-feb"><a class="header" href="#12th-feb">12th Feb</a></h3>
 <ul>
-<li><input disabled="" type="checkbox"/>
+<li><input disabled="" type="checkbox" checked=""/>
 Go through Hoffmans Book on WASM, Create a no-std WASM program.  --&gt; UNFINISHED</li>
 </ul>
 <!-- comment section -->
@@ -332,7 +332,7 @@ Understand &quot;Why RISC-v will be the target architecture for the OS and not x
 </ul>
 <h3 id="feb-28th"><a class="header" href="#feb-28th">Feb 28th</a></h3>
 <ul>
-<li><input disabled="" type="checkbox"/>
+<li><input disabled="" type="checkbox" checked=""/>
 Overview the rcore tutorial and stephens tutorial. Make concrete decisions</li>
 <li><input disabled="" type="checkbox" checked=""/>
 Set up the commenting section in the software documentation using <a href="https://giscus.app/">giscuss</a></li>
@@ -372,14 +372,23 @@ Start writing documentation for good. Little by little kid... we are in this for
 <div style="break-before: page; page-break-before: always;"></div><h1 id="march"><a class="header" href="#march">March</a></h1>
 <p>The tasks for march :</p>
 <ul>
-<li><input disabled="" type="checkbox"/>
+<li><input disabled="" type="checkbox" checked=""/>
 Setup a RISC-V environment on Qemu</li>
-<li><input disabled="" type="checkbox"/>
+<li><input disabled="" type="checkbox" checked=""/>
 Mess around with a little RISCV code</li>
 <li><input disabled="" type="checkbox"/>
 Get the OS designs on the documentation</li>
 <li><input disabled="" type="checkbox"/>
-Get a full OS prototype that does not implement a WASM interface</li>
+Get a full OS prototype that does not implement a WASM interface
+<ul>
+<li><input disabled="" type="checkbox"/>
+File system</li>
+<li><input disabled="" type="checkbox"/>
+Limited system calls</li>
+<li><input disabled="" type="checkbox"/>
+</li>
+</ul>
+</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="week-1-1"><a class="header" href="#week-1-1">Week 1</a></h1>
 <h3 id="1st-mar"><a class="header" href="#1st-mar">1st Mar</a></h3>
@@ -418,6 +427,8 @@ Learn Rust Metaprogramming from <a href="https://doc.rust-lang.org/book/ch19-06-
 <li><input disabled="" type="checkbox" checked=""/>
 Learn how to write the UART driver in Rust for the RISCV (emulated by Qemu)  </li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="april"><a class="header" href="#april">April</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="may"><a class="header" href="#may">May</a></h1>
 
                     </main>
 
@@ -436,6 +447,22 @@ Learn how to write the UART driver in Rust for the RISCV (emulated by Qemu)  </l
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

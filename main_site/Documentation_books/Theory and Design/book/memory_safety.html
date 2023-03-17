@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js ayu">
+<html lang="en" class="sidebar-visible no-js light">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>February - Development Journal</title>
+        <title>memory_safety - Theory and Design</title>
 
 
         <!-- Custom HTML head -->
@@ -32,10 +32,11 @@
 
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "ayu";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -61,7 +62,7 @@
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
             html.classList.remove('no-js')
-            html.classList.remove('ayu')
+            html.classList.remove('light')
             html.classList.add(theme);
             html.classList.add('js');
         </script>
@@ -69,10 +70,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -80,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="how_to_navigate.html"><strong aria-hidden="true">1.1.</strong> How to Navigate this Documentation</a></li></ol></li><li class="chapter-item expanded "><a href="february.html" class="active"><strong aria-hidden="true">2.</strong> February</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="february_week_1.html"><strong aria-hidden="true">2.1.</strong> Week 1</a></li><li class="chapter-item expanded "><a href="february_week_3.html"><strong aria-hidden="true">2.2.</strong> Week 3</a></li></ol></li><li class="chapter-item expanded "><a href="march.html"><strong aria-hidden="true">3.</strong> March</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="march_week_1.html"><strong aria-hidden="true">3.1.</strong> Week 1</a></li></ol></li><li class="chapter-item expanded "><a href="april.html"><strong aria-hidden="true">4.</strong> April</a></li><li class="chapter-item expanded "><a href="may.html"><strong aria-hidden="true">5.</strong> May</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Introduction </a></li><li class="chapter-item expanded "><a href="memory_safety.html" class="active"><strong aria-hidden="true">2.</strong> memory_safety</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -109,17 +112,11 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Development Journal</h1>
+                    <h1 class="menu-title">Theory and Design</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
-                        </a>
-                        <a href="https://github.com/kiarie404/CSC-416-4TH" title="Git repository" aria-label="Git repository">
-                            <i id="git-repository-button" class="fa fa-github"></i>
-                        </a>
-                        <a href="https://github.com/kiarie404/CSC-416-4TH/edit/main/main_site/Documentation_books/Journal/src/february.md" title="Suggest an edit" aria-label="Suggest an edit">
-                            <i id="git-edit-button" class="fa fa-edit"></i>
                         </a>
 
                     </div>
@@ -147,50 +144,18 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="february"><a class="header" href="#february">February</a></h1>
-<p>The tasks that are expected to be completed by the end of February are :</p>
-<ul>
-<li><input disabled="" type="checkbox" checked=""/>
-I should have set up a website for the project.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-I should have prepared the documentation software and the documentation plan for the project.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-I should have set up the commenting system within the documen</li>
-<li><input disabled="" type="checkbox"/>
-I should have clearly explained the problem and solution in the documentation. (using cartoons like Clark)</li>
-<li><input disabled="" type="checkbox"/>
-I should have the schematic designs for the whole project ready</li>
-</ul>
-<!-- comment section -->
-<script src="https://giscus.app/client.js"
-        data-repo="kiarie404/CSC-416-4TH"
-        data-repo-id="R_kgDOI8MqRg"
-        data-category="Comments_for_development_journal_book"
-        data-category-id="DIC_kwDOI8MqRs4CUjea"
-        data-mapping="pathname"
-        data-strict="1"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-<section class="giscus">
-	Write comments here :  
-</section>
+                        <h1 id="memory_safety"><a class="header" href="#memory_safety">memory_safety</a></h1>
+<p>What is memory safety in the software world?</p>
+<p>At the heart of every computer is a CPU. The CPU is an indiscriminate piece of hardware, from the moment it is turned on it constantly repeats the execution cycle. The execution cycle involves : Fetching the instruction addressed in the Program counter register, incrementing that counter and finally executing that instruction.</p>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="how_to_navigate.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="chapter_1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="february_week_1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -198,13 +163,10 @@ I should have the schematic designs for the whole project ready</li>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="how_to_navigate.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="chapter_1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="february_week_1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
@@ -244,5 +206,6 @@ I should have the schematic designs for the whole project ready</li>
         <!-- Custom JS scripts -->
 
 
+    </div>
     </body>
 </html>

@@ -1,0 +1,2 @@
+- what about the unsafe keyword in Rust, James? Rust is not 100% safe. How are you dealing with this? (reference this [Redox article](https://doc.redox-os.org/book/ch01-06-why-rust.html#unsafes))
+- 

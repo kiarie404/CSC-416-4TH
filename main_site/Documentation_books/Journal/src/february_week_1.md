@@ -4,7 +4,7 @@ General Objectives :
 - [ ] Define the problem I am trying to solve.
 - [ ] Update the Documentation concerning the theory behind the OS
 - [ ] Come up with a full architecture of the OS
-- [ ] For the sake of having a Minimal Viable Product, create a WASI compliant program that runs in a No-std environment
+- [x] For the sake of having a Minimal Viable Product, create a WASI compliant program that runs in a No-std environment
 - [ ] Contact Supervisor ; Monday as deadline
 
 ### 10th Feb
@@ -16,7 +16,7 @@ General Objectives :
 - [x] Try to re-define the problem I am trying to solve... really.  ---> Half-done
 
 ### 12th Feb
-- [ ] Go through Hoffmans Book on WASM, Create a no-std WASM program.  --> UNFINISHED
+- [x] Go through Hoffmans Book on WASM, Create a no-std WASM program.  --> UNFINISHED
 
 
 <!-- comment section -->

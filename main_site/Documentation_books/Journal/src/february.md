@@ -2,7 +2,7 @@
 
 The tasks that are expected to be completed by the end of February are :
 - [x] I should have set up a website for the project.
-- [ ] I should have prepared the documentation software and the documentation plan for the project.
+- [x] I should have prepared the documentation software and the documentation plan for the project.
 - [x] I should have set up the commenting system within the documen
 - [ ] I should have clearly explained the problem and solution in the documentation. (using cartoons like Clark)
 - [ ] I should have the schematic designs for the whole project ready
