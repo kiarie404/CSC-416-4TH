@@ -1,2 +1,5 @@
 - what about the unsafe keyword in Rust, James? Rust is not 100% safe. How are you dealing with this? (reference this [Redox article](https://doc.redox-os.org/book/ch01-06-why-rust.html#unsafes))
+- this [paper](https://www.usenix.org/system/files/osdi20-boos.pdf) on topic 2
+- type system
+- crate module system
 - 

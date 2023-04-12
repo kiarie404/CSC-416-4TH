@@ -1,0 +1,2 @@
+- Theseus used the reason of abandoning hardware Isolation based on --> It is difficult if not impossible to verify the true behavior of closed-source hardware (CPU architectures), so we turn to open-source software instead. Especially when speculative execution exploits like Meltdown and Spectre have shown that hardware-ensured isolation does not protect kernel data from untrusted user space applications to the extent we once thought.
+- 

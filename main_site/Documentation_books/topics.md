@@ -1,0 +1,20 @@
+- Memory safety
+- Rust
+- C and C++ problems
+- Kernel Design and their different tradeoffs
+- Theseus {design, tradeoffs}
+- Tock Os
+- Sel4
+- Hardware protection in general and then in Embedded systems 
+- Hardware protection deficiencies
+- Control flow Integrity
+- sandboxing Apps
+- [Thread safety](https://hacks.mozilla.org/2019/02/fearless-security-thread-safety/) 
+- Modern C++ won't save us
+- Unsafe Rust
+- Sandboxing and Isolation
+- POsix
+- Bringing IOT up to speed.pdf
+- Conatiners in Embedded Systems
+- Virtual Machines in Embedded devices
+- Cloud compiting in embedded devices

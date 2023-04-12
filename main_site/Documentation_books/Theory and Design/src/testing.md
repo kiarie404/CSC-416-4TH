@@ -1,0 +1,14 @@
+- Run a server?
+- Run a game? (doom, tetris, tic tac toe)
+- Run Redis?
+- Run an IOT AI application?
+- Should we have a GUI
+- Shoult we be POSIX compliant ; Find a tool to test if the OS is POSIX compliant
+- Should I use the [Redox File system](https://gitlab.redox-os.org/redox-os/redoxfs)? Instead of building my own inferior File system?
+- You need to write the Usecases of your Operating system... like this [redox guys ](https://doc.redox-os.org/book/ch01-04-redox-use-cases.html)
+- You also need to write the comparisons to other Oses... like these [redox guys](https://doc.redox-os.org/book/ch01-05-how-redox-compares.html)
+- Should I use relibc?
+- Should I adopt the micro-kernel architecture?
+- Explain what Hobo OS is not
+- Show the Hobo OS roadmap
+- Discuss Hardware defined protection

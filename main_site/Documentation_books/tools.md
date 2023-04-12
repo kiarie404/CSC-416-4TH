@@ -19,4 +19,7 @@
 - GNU Make
 - [Riscv Intepreter](https://www.cs.cornell.edu/courses/cs3410/2019sp/riscv/interpreter/#)
 - [Risc V emulator](https://github.com/TheThirdOne/rars)
+- ChatGPT
+- losetup
+- readelf
 

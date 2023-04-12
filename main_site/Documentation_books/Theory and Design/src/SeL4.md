@@ -1,0 +1,2 @@
+-  meant to be an operating-system kernel for building safe and safety-critical systems: eg medical robots
+-  

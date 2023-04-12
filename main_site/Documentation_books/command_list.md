@@ -1,14 +1,14 @@
 ### Rust configs
 
 #### Installing, updating and switching between the rust toolchains : {compiler versions, compiler targets}
-A toolchain is a group of software development tools that help you write, debug, compile source code on a host machine for target machines. Each host needs a toolchain.\
+A toolchain is a group software development tools that help you write, debug, compile source code on a host machine for target machines. Each host sof needs a toolchain.\
 Toolchains have components\
 Components such as : compiler, debugger, linker\
 check the components at : ls ~/.rustup/toolchains/toolchain_name/bin
 
 A toolchain will be able to make binary files for a target device because it has access to "supporting libraries" that were specificaly made for that specific target.\
-To view the supporting targets, navigate to : ls ~/.rustup/toolchains/toolchain_name/lib/rustlib\
-If you add a new target, a new set of supportin libraries will get added
+To view the supporting targets, navigate to : ls ~/.rustup/toolchains/toolchain_name/lib/rustlib/
+If you add a new target, a new set of supporting libraries will get added
 
 
 - rustc --print target-list
@@ -18,9 +18,16 @@ If you add a new target, a new set of supportin libraries will get added
 - rustup toolchain install nightly / 1.8.0 / stable  Install or update a given toolchain
 - rustup default nightly        set default toolchain
 - rustup target add riscv64gc-unknown-none-elf
+- cargo install cargo-binutils
+- rustup component add llvm-tools-preview
+- rustup component add rust-src
+- riscv64-unknown-elf-gdb --version
 
 
 #### setting up Qemu commands
+qemu-riscv64 --version
+sudo apt install qemu-user
+
 
 
 

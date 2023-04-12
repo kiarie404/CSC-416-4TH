@@ -1,8 +1,11 @@
-1. Lin Clarks blogs :
+#### Web assembly 
+1. 
+2. Lin Clarks blogs :
    - [Standardizing WASI: A system interface to run WebAssembly outside the web](https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/)
    - [Announcing the Bytecode Alliance: Building a secure by default, composable future for WebAssembly](https://hacks.mozilla.org/2019/11/announcing-the-bytecode-alliance/)
    - [WebAssembly Interface Types: Interoperate with All the Things!](https://hacks.mozilla.org/2019/08/webassembly-interface-types/)
-2. [Philip Opperman' blog on building an OS with Rust on x86 cpu](https://os.phil-opp.com/)
+3. [Philip Opperman' blog on building an OS with Rust on x86 cpu](https://os.phil-opp.com/)
+4. [Web Assembly paper on security](https://www.usenix.org/system/files/sec20-lehmann.pdf)
 
 
 
@@ -26,3 +29,38 @@
 
 ##### General
 - [How to write Linker scripts](https://sourceware.org/binutils/docs/ld/Scripts.html)
+
+##### Redox
+- [Redox Official Book](https://doc.redox-os.org/book/ch00-00-introduction.html) 
+- [Redox Official Website](https://www.redox-os.org/)
+
+
+##### Sel4
+- [proving things](https://twanvl.nl/blog/agda/sorting)
+- [Sel4 Official Website](https://sel4.systems/)
+
+#### Tock OS
+- [Official website design description](https://www.tockos.org/documentation/design)
+- [why Rust Tock Papers](http://www.amitlevy.com/papers/tock-plos2015.pdf)
+
+#### Theseus
+- [THeseus Book](https://www.theseus-os.com/Theseus/book/index.html)
+
+#### Why Rust
+- [Video by Kevin Boos](https://youtu.be/mmJiwscpB4o)
+- [Slides by Kevin Boos](https://docs.google.com/presentation/d/e/2PACX-1vQYomAnfTNucuCqYgNkPaxpIdrhPxil9Qzle_6-xd7TYfdEBlgML0B3vztdNC2odwc25dLzW3XsithZ/pub?start=false&loop=false)
+- [Report on using Rust to write an OS](https://scialex.github.io/reenix.pdf)
+
+#### Memory safety
+- What is memory safety? - [Mozilla Hacks](https://hacks.mozilla.org/2019/01/fearless-security-memory-safety/)
+- What is memory safety? and why is it important? - [Prossimo](https://www.memorysafety.org/docs/memory-safety/#fn:1)
+
+
+#### OS reads
+- [Processes](https://web.eecs.utk.edu/~smarz1/courses/cosc361/notes/processes/)
+
+
+
+love over fear
+innovation over practicality'
+authenticity over professionalism 
