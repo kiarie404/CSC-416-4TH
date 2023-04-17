@@ -21,3 +21,21 @@
     - the philosophy of riscv was appealing
     - Riscv has scarce resources {tutorials, too formal documentation, halfmade-compilers(not as plug n play as those of x86)}
 - Impossible Timelines ; Go at my own pace, the goal is not a degree. The goal is to lear and finish the project. My own pace. In systems programming... slow is fast. Fast is slow
+
+
+- unable to log in the Qemu monitor
+- Rust Macros are hard.
+
+
+
+#### Tutorial worthy
+- linking files problems... {
+    "rust-analyzer.linkedProjects": [
+        "./Cargo.toml"
+    ]
+}
+
+- native cargo file doesn't work
+- native build.rs doesn't work
+- Should I use vga?
+- Exporting macros is hard

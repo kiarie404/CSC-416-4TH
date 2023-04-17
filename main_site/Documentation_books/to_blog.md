@@ -5,3 +5,9 @@
 - riscv course {a comrehensive course}
 - cross commpiling, target triples
 - Linker scripting
+
+
+#### Practice
+- Unsafe Rust
+- Bitmasking
+- Macro programming

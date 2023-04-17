@@ -14,6 +14,8 @@
 
 #### standalone software
 - Qemu
+  - Runner
+  - Debugging with Qemu Monitor
 - VS code
 - nushell
 - GNU Make
