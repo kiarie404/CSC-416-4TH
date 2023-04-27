@@ -21,10 +21,13 @@
     - the philosophy of riscv was appealing
     - Riscv has scarce resources {tutorials, too formal documentation, halfmade-compilers(not as plug n play as those of x86)}
 - Impossible Timelines ; Go at my own pace, the goal is not a degree. The goal is to lear and finish the project. My own pace. In systems programming... slow is fast. Fast is slow
+- Reading someonelse's codebase
+- Designing a huge project that you have no clear way to handle.
 
 
 - unable to log in the Qemu monitor
 - Rust Macros are hard.
+- How will I measure performances of Applications? I do not know how?
 
 
 

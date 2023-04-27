@@ -3,3 +3,4 @@
 3. Linker scripting 
 4. [Rust Macros](https://blog.logrocket.com/macros-in-rust-a-tutorial-with-examples/)
 5. Documenting with Mermaid and Mdbook
+6. Bitmasking exercise : https://rustic-chess.org/appendix/bitwise_operations.html

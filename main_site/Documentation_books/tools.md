@@ -11,6 +11,8 @@
 - Rust Stable
 - Rust Nightly
 - Cargo Binutils
+- Anyhow
+- Wasmtime Crate
 
 #### standalone software
 - Qemu

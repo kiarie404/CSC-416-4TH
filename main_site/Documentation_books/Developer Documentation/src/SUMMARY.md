@@ -6,6 +6,16 @@
   - [Setting up the Riscv Virtual environment](setting_up_qemu.md)
   - [Setting up the Build automation tool]()
 - [Setting Up Communications]()
+- [Setting Up Memory Allocation](setting_up_memory_allocation.md)
+- [Setting Up Memory Virtualization and access_management](setting_up_memory_virtualization_and_access_management.md)
 - [Definitions and Theories](definitions_and_theories.md)
   - [The linker](theory_on_the_linker.md)
   - [Qemu](theory_on_Qemu.md)
+  - [fragmentation_issues](fragmentation_issues.md)
+  - [Memory Tracking Mechanisms](memory_tracking_mechanisms.md)
+- [Miscellenious]()
+  - [Error Numbers](errors.md)
+  - [Measuring Performance of software](measuring_software_performance.md)
+- [Setting Up Wasm Runtime](setting_up_wasm_runtime.md)
+
+

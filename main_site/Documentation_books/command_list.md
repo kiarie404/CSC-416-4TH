@@ -67,3 +67,10 @@ make  //that is enough. Do not dare write : "make run"
 - rustup toolchain list
 - rustup target list --toolchain nightly-x86_64-unknown-linux-gnu
 - rustup target remove x86_64-unknown-linux-gnu --toolchain nightly-x86_64-unknown-linux-gnu
+
+
+##### Setting up webassembly stuff
+- rustup target add wasm32-wasi                         // add a backend target on the Rust compiler
+- curl https://wasmtime.dev/install.sh -sSf | bash      // install Wasmtime CLI component for Linux/your OS
+                                                        // so this is an app that runs on top of a known operating system
+- cargo build --target wasm32-wasi                      // compiling Rust to wasm that is WASI compliant  

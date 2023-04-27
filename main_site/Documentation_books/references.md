@@ -59,6 +59,14 @@
 
 #### OS reads
 - [Processes](https://web.eecs.utk.edu/~smarz1/courses/cosc361/notes/processes/)
+- [Linker Scripting](http://bravegnu.org/gnu-eprog/lds.html)
+
+#### Wasmtime
+- [Wasmtime official Docs](https://docs.wasmtime.dev/introduction.html)
+- [Wasmtime crate Docs](https://docs.rs/wasmtime/latest/wasmtime/)
+
+#### Rust Error Handling
+- Anyhow
 
 
 
