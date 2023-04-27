@@ -8,14 +8,18 @@
 - [Setting Up Communications]()
 - [Setting Up Memory Allocation](setting_up_memory_allocation.md)
 - [Setting Up Memory Virtualization and access_management](setting_up_memory_virtualization_and_access_management.md)
+- [Handling interrupts and Traps](handling_interrupts_and_traps.md)
 - [Definitions and Theories](definitions_and_theories.md)
   - [The linker](theory_on_the_linker.md)
   - [Qemu](theory_on_Qemu.md)
   - [fragmentation_issues](fragmentation_issues.md)
   - [Memory Tracking Mechanisms](memory_tracking_mechanisms.md)
+  - [Theory on MMU implementation in Riscv](theory_on_MMU_implementation_in_riscv.md)
 - [Miscellenious]()
   - [Error Numbers](errors.md)
   - [Measuring Performance of software](measuring_software_performance.md)
+  - [Importing variables from the Linker script](importing_variables_from_the_linker_script.md)
+  - [GNU assembly macros](./GNU_assembly_macros.md)
 - [Setting Up Wasm Runtime](setting_up_wasm_runtime.md)
 
 
