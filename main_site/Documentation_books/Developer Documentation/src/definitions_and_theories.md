@@ -1,4 +1,3 @@
 # Definitions and Theories
 
-#### Linker
 
