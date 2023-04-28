@@ -24,7 +24,9 @@ THe mcause register store information about :
 1. The type of interrupt (whether it is synchronous or asynchronous)  0 == Synchronous, 1 == Asynchronous
 2. The code specifying the cause of interrupt eg code 12 == instruction page fault
 
-
+we will handle rhe flow of interrupt handling using the following files :
+1. trap.s
+2. 
 ## Rust function to handle Interrupts
 inputs : 
     1. mcause : helps us determine the type and code of the interrupt

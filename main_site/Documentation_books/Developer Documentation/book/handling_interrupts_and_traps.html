@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Setting Things Up - Developer Documentation</title>
+        <title>Handling interrupts and Traps - Developer Documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -80,7 +80,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="setting_things_up.html" class="active"><strong aria-hidden="true">1.</strong> Setting Things Up</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.1.</strong> Setting up the compiler</div></li><li class="chapter-item expanded "><a href="setting_up_LLD_linker.html"><strong aria-hidden="true">1.2.</strong> Setting up the linker</a></li><li class="chapter-item expanded "><a href="setting_up_qemu.html"><strong aria-hidden="true">1.3.</strong> Setting up the Riscv Virtual environment</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.</strong> Setting up the Build automation tool</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Setting Up Communications</div></li><li class="chapter-item expanded "><a href="setting_up_memory_allocation.html"><strong aria-hidden="true">3.</strong> Setting Up Memory Allocation</a></li><li class="chapter-item expanded "><a href="setting_up_memory_virtualization_and_access_management.html"><strong aria-hidden="true">4.</strong> Setting Up Memory Virtualization and access_management</a></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps.html"><strong aria-hidden="true">5.</strong> Handling interrupts and Traps</a></li><li class="chapter-item expanded "><a href="definitions_and_theories.html"><strong aria-hidden="true">6.</strong> Definitions and Theories</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="theory_on_the_linker.html"><strong aria-hidden="true">6.1.</strong> The linker</a></li><li class="chapter-item expanded "><a href="theory_on_Qemu.html"><strong aria-hidden="true">6.2.</strong> Qemu</a></li><li class="chapter-item expanded "><a href="fragmentation_issues.html"><strong aria-hidden="true">6.3.</strong> fragmentation_issues</a></li><li class="chapter-item expanded "><a href="memory_tracking_mechanisms.html"><strong aria-hidden="true">6.4.</strong> Memory Tracking Mechanisms</a></li><li class="chapter-item expanded "><a href="theory_on_MMU_implementation_in_riscv.html"><strong aria-hidden="true">6.5.</strong> Theory on MMU implementation in Riscv</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Miscellenious</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="errors.html"><strong aria-hidden="true">7.1.</strong> Error Numbers</a></li><li class="chapter-item expanded "><a href="measuring_software_performance.html"><strong aria-hidden="true">7.2.</strong> Measuring Performance of software</a></li><li class="chapter-item expanded "><a href="importing_variables_from_the_linker_script.html"><strong aria-hidden="true">7.3.</strong> Importing variables from the Linker script</a></li><li class="chapter-item expanded "><a href="GNU_assembly_macros.html"><strong aria-hidden="true">7.4.</strong> GNU assembly macros</a></li></ol></li><li class="chapter-item expanded "><a href="setting_up_wasm_runtime.html"><strong aria-hidden="true">8.</strong> Setting Up Wasm Runtime</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="setting_things_up.html"><strong aria-hidden="true">1.</strong> Setting Things Up</a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.1.</strong> Setting up the compiler</div></li><li class="chapter-item expanded "><a href="setting_up_LLD_linker.html"><strong aria-hidden="true">1.2.</strong> Setting up the linker</a></li><li class="chapter-item expanded "><a href="setting_up_qemu.html"><strong aria-hidden="true">1.3.</strong> Setting up the Riscv Virtual environment</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.4.</strong> Setting up the Build automation tool</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Setting Up Communications</div></li><li class="chapter-item expanded "><a href="setting_up_memory_allocation.html"><strong aria-hidden="true">3.</strong> Setting Up Memory Allocation</a></li><li class="chapter-item expanded "><a href="setting_up_memory_virtualization_and_access_management.html"><strong aria-hidden="true">4.</strong> Setting Up Memory Virtualization and access_management</a></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps.html" class="active"><strong aria-hidden="true">5.</strong> Handling interrupts and Traps</a></li><li class="chapter-item expanded "><a href="definitions_and_theories.html"><strong aria-hidden="true">6.</strong> Definitions and Theories</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="theory_on_the_linker.html"><strong aria-hidden="true">6.1.</strong> The linker</a></li><li class="chapter-item expanded "><a href="theory_on_Qemu.html"><strong aria-hidden="true">6.2.</strong> Qemu</a></li><li class="chapter-item expanded "><a href="fragmentation_issues.html"><strong aria-hidden="true">6.3.</strong> fragmentation_issues</a></li><li class="chapter-item expanded "><a href="memory_tracking_mechanisms.html"><strong aria-hidden="true">6.4.</strong> Memory Tracking Mechanisms</a></li><li class="chapter-item expanded "><a href="theory_on_MMU_implementation_in_riscv.html"><strong aria-hidden="true">6.5.</strong> Theory on MMU implementation in Riscv</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Miscellenious</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="errors.html"><strong aria-hidden="true">7.1.</strong> Error Numbers</a></li><li class="chapter-item expanded "><a href="measuring_software_performance.html"><strong aria-hidden="true">7.2.</strong> Measuring Performance of software</a></li><li class="chapter-item expanded "><a href="importing_variables_from_the_linker_script.html"><strong aria-hidden="true">7.3.</strong> Importing variables from the Linker script</a></li><li class="chapter-item expanded "><a href="GNU_assembly_macros.html"><strong aria-hidden="true">7.4.</strong> GNU assembly macros</a></li></ol></li><li class="chapter-item expanded "><a href="setting_up_wasm_runtime.html"><strong aria-hidden="true">8.</strong> Setting Up Wasm Runtime</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -141,54 +141,68 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="setting-things-up"><a class="header" href="#setting-things-up">Setting Things Up</a></h2>
-<p>Under this chapter, we intend to answer the following 3 questions :</p>
+                        <h3 id="what-is-an-interrupt"><a class="header" href="#what-is-an-interrupt">what is an interrupt?</a></h3>
+<h3 id="what-is-a-trap"><a class="header" href="#what-is-a-trap">What is a trap?</a></h3>
+<h3 id="how-is-a-trap-handled"><a class="header" href="#how-is-a-trap-handled">How is a trap handled?</a></h3>
+<h3 id="how-is-an-interrupt-handled"><a class="header" href="#how-is-an-interrupt-handled">How is an interrupt handled?</a></h3>
+<h2 id="risc-v-interrupt-system"><a class="header" href="#risc-v-interrupt-system">RISC-V Interrupt System</a></h2>
+<p>The riscv system allows you to handle traps in all the CPU modes : usermode, supervisor mode and machine mode.<br />
+But our system will handle all OS interrupts and traps in machine mode..</p>
+<p>When an interrupt happens, the cpu : </p>
 <ol>
-<li>What are we setting up?</li>
-<li>Why are we setting up those things?</li>
-<li>How are we seting up those things?</li>
+<li>updates the mcause register</li>
+<li>updates the mepc register</li>
+<li>updates mtval register </li>
+<li>saves the context of the current program </li>
+<li>calls the interrupt handling function.<br />
+The address of the interrupt handling function is stored in the mtvec register (Machine Trap Vector). A vector is a fancy word for saying &quot;pointer to a function&quot;</li>
 </ol>
-<h3 id="what-are-we-setting-up"><a class="header" href="#what-are-we-setting-up">What are we setting up?</a></h3>
-<p>We are setting up a <strong>development toolchain</strong>, <strong>RISCV virtual environment</strong> and a <strong>no-std Rust file</strong>.</p>
-<h4 id="the-development-toolchain"><a class="header" href="#the-development-toolchain">The development Toolchain</a></h4>
-<p>A toolchain is a group of software tools that typically get used together...a chain of tools...
-In OS Development, the name toolchain usually refers to the combination of the compiler, linker, debugger and a bunch of programs that help in inspecting files. This toolchain gets used to convert source code into a format that can run on an execution <em>environment</em>.</p>
-<p>An execution environment is a place where a software program can run. It provides the necessary resources, like the operating system and libraries, that the program needs to function. Examples of execution enviroments include: Bare metal, Browsers, Virtual Machines, Operating systems and Containers.</p>
-<p>The toolchain in our case will consist of the following tools :</p>
+<p>We will use Direct mode of handling interrupts, we wil not use the vectored approach.<br />
+Below is the the structure of the mtvec register :<br />
+<img src="../images/mtvec.png" alt="mtvec register layout" /></p>
+<p>THe mcause register store information about :</p>
 <ol>
-<li>The Rust Nightly Compiler with a riscv64gc-unknown-none-elf backend</li>
-<li>linker : Rust-lld</li>
-<li>Binutils </li>
-<li>Make</li>
+<li>The type of interrupt (whether it is synchronous or asynchronous)  0 == Synchronous, 1 == Asynchronous</li>
+<li>The code specifying the cause of interrupt eg code 12 == instruction page fault</li>
 </ol>
-<p>To our luck, we do not have to install all these elements seperately. There exists compact toolchains :</p>
+<p>we will handle rhe flow of interrupt handling using the following files :</p>
 <ol>
-<li>LLVM Riscv toolchain</li>
-<li>The GNU Riscv Toolchain</li>
+<li>trap.s</li>
+<li></li>
 </ol>
-<h4 id="why-we-need-the-toolchain"><a class="header" href="#why-we-need-the-toolchain">Why we need the toolchain</a></h4>
-<p>We will have two kinds of source code files in our project : Rust source files and RISCV-Assembly files. Both of these types of files need to be turned into object files. Afterwards, those object files need to get linked together into a single executable file.</p>
-<p>We can go about this process of creating a single executable file in two ways:
-1. Method 1 
-We can compile the Rust files seperately from the Assembly files. Afterwords we can combine the resultant object files using a linker to form a single executable.
-2. Method 2
-We can embed the assembly code into the Rust source code. That way, we only need one compilation, we will only need to compile the asm_embedded Rust files. This method seems more of plug and play. The disadvantage is that we will always have to re-compile every file each time we change anything in any source file. But this is not really a problem. Modern compilers are Fast. This is a more user friendly method. Trading off negligible compile time over a user-friendly build and configuration process is by far a very good choice.</p>
-<pre><code>    Moreover, the rust compiler comes with its own inbuilt LLVM linker, rust-lld. That means that once we hit compile, we get the executable file output. One click, and all the build process runs inbuilt; from compiling rust files, to compiling assembly files, to creating a riscv-compliant executable file
-</code></pre>
-<h4 id="the-rust-llvm-compiler-and-targets"><a class="header" href="#the-rust-llvm-compiler-and-targets">The Rust LLVM compiler and Targets</a></h4>
-<h4 id="the-linker"><a class="header" href="#the-linker">The Linker</a></h4>
-<p><em><strong>references</strong></em></p>
-<ul>
-<li><a href="https://lld.llvm.org/">The LLD official Page</a></li>
-<li><a href="https://nnethercote.github.io/perf-book/compile-times.html">Linking in Rust</a></li>
-</ul>
+<h2 id="rust-function-to-handle-interrupts"><a class="header" href="#rust-function-to-handle-interrupts">Rust function to handle Interrupts</a></h2>
+<p>inputs : 
+1. mcause : helps us determine the type and code of the interrupt
+2. mepc   : helps us determine the latest value of the program counter
+3. mtval  : some error handling functions need the matval eg in a page fault, the mtval registe contains the address of the faulty page
+4. </p>
+<p>Output : the program counter to the next instruction after the error handler has done its thing</p>
+<p>Steps :
+1. Check if the interrupt is synchronous or asynchronous. We divide this way for modularities sake. Also it is a standard convention.
+- If the interrupt is synchromous, go to step 2
+- If the interrupt is asynchromous, go to step 6
+2. Extract the cause code from the mcause
+3. Make the return address point to the mepc... since this was the latest program counter
+4. use a switch to call specific error handling functions based on <a href="#table-x">table x</a>
+5. return the updated program counter
+6. Extract the cause code from the mcause
+7. Make the return address point to the mepc... since this was the latest program counter
+8. use a switch to call specific error handling functions based on <a href="#table-y">table y</a>
+9. return the updated program counter</p>
+<h6 id="table-x"><a class="header" href="#table-x">Table x</a></h6>
+<p><img src="../images/mcause_synchronous_interrupts.png" alt="" /></p>
+<h6 id="table-y"><a class="header" href="#table-y">Table y</a></h6>
+<p><img src="../images/mcause_asynchronous_interrupts.png" alt="" /></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="setting_up_memory_virtualization_and_access_management.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
-                            <a rel="next" href="setting_up_LLD_linker.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="definitions_and_theories.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -198,8 +212,11 @@ We can embed the assembly code into the Rust source code. That way, we only need
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="setting_up_memory_virtualization_and_access_management.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-                    <a rel="next" href="setting_up_LLD_linker.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="definitions_and_theories.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
