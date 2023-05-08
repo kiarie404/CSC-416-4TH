@@ -74,3 +74,13 @@ make  //that is enough. Do not dare write : "make run"
 - curl https://wasmtime.dev/install.sh -sSf | bash      // install Wasmtime CLI component for Linux/your OS
                                                         // so this is an app that runs on top of a known operating system
 - cargo build --target wasm32-wasi                      // compiling Rust to wasm that is WASI compliant  
+
+
+##### Inspecting files (especially executables)
+- hexdump -C [input_file].[whatever_extension]          // use capital C flag
+- hexdump -C hello | head                               // Show elf Header only
+- man hexdump
+- readelf -h hello  // show Elf header
+- readelf -l hello  // show program header table and Segment-to-section mapping
+- readelf -S hello  // show Section header table and Section addresses
+- readelf -s hello  // show symbol table

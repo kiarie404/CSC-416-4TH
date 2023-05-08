@@ -6,6 +6,7 @@
 - Overwhelming course work 
 
 #### Technical
+- Reading Hardware and software Specifications. Very Hard without tutorial-like documentation
 - Poorly documented libraries, mnemonics in variables, documentation mostly consisted of 'linux config installations" that were not easily compatible with Manjaro Linux ==> later switched to Linux mint(more generic)
 - Bash programming language is weird, had to use nu shell
 - Makefiles were weird and hard at the beginning due to scarce learning resources ... but I eventually found a tutorial
@@ -28,6 +29,7 @@
 - unable to log in the Qemu monitor
 - Rust Macros are hard.
 - How will I measure performances of Applications? I do not know how?
+- Reading and forgetting. Reading in Loops
 
 
 

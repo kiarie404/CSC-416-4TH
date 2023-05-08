@@ -68,8 +68,19 @@
 #### Rust Error Handling
 - Anyhow
 
+#### ELF Files
+- [elf file format specifications](https://osblog.stephenmarz.com/files/elf.pdf)
+- The ELF file Specifications : (from [Linux Foundation](https://refspecs.linuxfoundation.org/elf/elf.pdf)) (From [CMU.edu](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f00/docs/elf.pdf))
+- https://wiki.osdev.org/ELF
+- [Tools in inspecting Elf files](https://linuxhint.com/understanding_elf_file_format/)
+
+#### Miscelleneous
+- [multitasking](https://os.phil-opp.com/async-await/)
+- [Patterns..including the singleton pattern](https://refactoring.guru/design-patterns)
+- [OS beginner mistakes](https://wiki.osdev.org/Beginner_Mistakes#Is_there_a_tutorial_on....3F)... and debunking them
 
 
-love over fear
-innovation over practicality'
+curiosity over fear  
+innovation over practicality'  
 authenticity over professionalism 
+Learning over Graduating
