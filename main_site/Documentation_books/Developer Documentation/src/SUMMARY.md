@@ -1,10 +1,11 @@
 # Summary
 
 - [Setting Things Up](setting_things_up.md)
-  - [Setting up the compiler]()
+  - [Setting up the compiler](./setting_up_the_compiler.md)
   - [Setting up the linker](setting_up_LLD_linker.md)
   - [Setting up the Riscv Virtual environment](setting_up_qemu.md)
-  - [Setting up the Build automation tool]()
+  - [Setting up the Build automation tool](./setting_up_build_automation.md)
+- [The Bootloader](the_bootloader.md)
 - [Setting Up Communications]()
 - [Setting Up Memory Allocation](setting_up_memory_allocation.md)
 - [Setting Up Memory Virtualization and access_management](setting_up_memory_virtualization_and_access_management.md)
@@ -30,10 +31,16 @@
   - [The singleton Structure](./the_singleton_design.md)
   - [Multitasking](multitasking.md)
   - [Bitmasking_and_bit_operations](Bitmasking_and_bit_operations)
+  - [Compressed Instructions](compressed_instructions.md)
   - [The ABI](./the_ABI.md)
+  - [Elf Files](./ELF_files.md)
+  - [Riscv_registers](./riscv_registers.md)
   - [Virtual representation of riscv in Qemu](./virt.h) 
     - [PCIe express devices](./pcie_express_devices.md)
     - [VIRTIO devices](./virtio_devices.io)
+- [AfterMath]()
+  - [buffer_overflow_attacks](buffer_overflow_attacks.md)
+  - [fork_bomb]()
 - [Setting Up Wasm Runtime](setting_up_wasm_runtime.md)
 
 

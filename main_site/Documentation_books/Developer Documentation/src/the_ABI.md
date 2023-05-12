@@ -11,4 +11,4 @@ Now if your OS uses this RISCV syscall calling convention, you could say that yo
 If you were to run an operating system or program that was compiled for the RISC-V architecture on an x86 CPU, you would need an emulator or virtual machine that can simulate the RISC-V instruction set and system calls. However, the resulting binary would not conform to the x86 ABI, which specifies a different set of rules for how programs interact with the system on x86 CPUs.
 
 What is the Linux-ABI
-Can we have a custom API that combines aspects of Linux ABI and RISCV
+Can we have a custom API that combines aspects of Linux ABI and RISCV  

@@ -4,6 +4,7 @@
 - mdbook
 - giscuss
 - git & github
+- Excalidraw
 
 
 
@@ -26,4 +27,5 @@
 - ChatGPT
 - losetup
 - readelf
+- https://github.com/search
 

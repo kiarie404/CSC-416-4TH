@@ -27,6 +27,7 @@
 - [Simple down to earth Blog](https://danielmangum.com/categories/risc-v-bytes/)
 - [Riscv down to earth Tutorial](https://smist08.wordpress.com/2019/09/06/introducing-risc-v/)
 - [Riscv Control and Status Registers](https://book.rvemu.app/hardware-components/03-csrs.html)
+- [Riscv manual - by SHakti deelopment Team](https://shakti.org.in/docs/risc-v-asm-manual.pdf)
 
 ##### General
 - [How to write Linker scripts](https://sourceware.org/binutils/docs/ld/Scripts.html)
@@ -74,10 +75,15 @@
 - https://wiki.osdev.org/ELF
 - [Tools in inspecting Elf files](https://linuxhint.com/understanding_elf_file_format/)
 
+#### Booting
+- [Booting in x86 CPU](https://os.phil-opp.com/minimal-rust-kernel/#the-boot-process)
+- [Booting In RISCV](https://osblog.stephenmarz.com/ch1.html)
+
 #### Miscelleneous
 - [multitasking](https://os.phil-opp.com/async-await/)
 - [Patterns..including the singleton pattern](https://refactoring.guru/design-patterns)
 - [OS beginner mistakes](https://wiki.osdev.org/Beginner_Mistakes#Is_there_a_tutorial_on....3F)... and debunking them
+- [How to conduct an Buffer_overflow attack](https://samsclass.info/127/proj/p3-lbuf1.htm)
 
 
 curiosity over fear  

@@ -1,18 +1,84 @@
 # Setting up the linker
+References : 
+- [Guide to Linker Scripting](http://bravegnu.org/gnu-eprog/lds.html)
 
 As earlier mentioned, the Rust compiler comes with an inbuilt linker. 
 Each target comes with its own configured linker  
 
-So by default we do not need a linker script. But as for our case, we are going to do define the memory addresses various sections of the elf file will point to. We are going to manipulate virtual memory addresses in our assembly code. So instead of letting the linker execute its default memory assignation, we define it ourselves.
+So by default we do not need a linker script. But as for our case, we are going to do define the memory addresses various sections of the elf file will point to. We are going to manipulate virtual memory addresses in our assembly code. So instead of letting the linker execute its default memory assignation, we define it ourselves.  
+I mean...instead of letting the linker define the addresses of variables, we will do it ourselves. Handling addresses is a delicate matter, we need no guessing. The best way to avoid guessing an address is assigning that address yourself.
 
 We would not wish to work with a blackbox.
 
-Here is the Linker script :
-```bash
+So how do we write a Linker Script? And to which linker are we scripting for?
 
+####  Which linker are we scripting for?
+The rust gives you an option to choose whichever linker you want to use.  
+Rust uses the LLVM Linker by default. So we are currently scripting for the LLVM Linker.   
+You may want to use other linkers based on your usecase. For example the LLVM linker is known for its advanced optimizations. The gold linker is optimized for elf files only, so it is lightweight and faster than the GNU linker. Meaning that you will not prefer the gold linker when creating non_elf fies.  
+
+To know which linker you are currently using, you can enter the command below :
+```bash
+rustc --version --verbose
+```
+
+You get a result like this :
+	rustc 1.70.0-nightly (f63ccaf25 2023-03-06)
+    binary: rustc
+    commit-hash: f63ccaf25f74151a5d8ce057904cd944074b01d2
+    commit-date: 2023-03-06
+    host: x86_64-unknown-linux-gnu
+    release: 1.70.0-nightly
+    LLVM version: 15.0.7
+
+From the above result, you can see That **LLVM linker is used** and specifically version 15.0.7
+
+But each target uses a particular linker flavour, what if you want more information about your current host target? What if you want information about another non_host target ? Use the following command :  
+```bash
+rustc +nightly -Z unstable-options --target=wasm32-unknown-unknown --print target-spec-json   // for the nightly compiler
+OR
+rustc  -Z unstable-options --target=riscv64gc-unknown-none-elf --print target-spec-json     //for the stable compiler
+
+```  
+
+
+
+You can optionall specify your linker choice in the build manifest file (configuration file) - cargo.toml as follows :
+```toml
+[target.'cfg(target_os = "linux")'.llvm]
+linker = "/usr/bin/ld.gold"                   //this specifies the path to the gold linker
+```
+But this is hard work, we are not taking that path. The less configurations we do, the more portable our code, the less headaches we get.
+
+#### How do we write a Linker Script?
+Before we explain how to write the linker script, we should answer the question : "Why write the liner script?"  
+The linker functions include :
+	- Resolving External symbols
+	- Section Merging
+	- Section Placement
+
+We are writing the linker script so that we can instruct the linker on how it will do the section merging and section placement.  
+
+**Section merging** is the process of combining similar elf sections from different files: For example if A.o and B.o were to be linked together to form C.o then the linker will merge the .text section in both A and B ie.  A.text_section + B.text_section = C.text_section  
+
+**Section placement** is the process of specifying the virtual address of the different sections within the elf file. For example you may place the text section at 0x00 or 0x800... you name it. By default the linker places the different segments in adjacent to each other... but if you do this section placement process manually, you can set paddings between segments or jumble things up.  
+
+You can follow this tutorial [here](http://bravegnu.org/gnu-eprog/lds.html) :
+
+- Tell the linker which architecture you are targeting
+- You define the entry address of the elf file
+- Define all the memory that we have : RAM and ROM or just one of them 
+
+
+
+
+
+
+Here is the Linker script example :
+```bash
 /*
-  riscv is the name of the architecture that the linker understands
-  for any RISC-V target (64-bit or 32-bit).
+  define the architecture that the linker understands.  
+  for any RISC-V target (64-bit riscv is the name of the architectut or 32-bit).
 
   We will further refine this by using -mabi=lp64 and -march=rv64gc
 */
@@ -78,7 +144,7 @@ headers.
 */
 PHDRS
 {
-  text PT_LOAD;
+  text PT_LOAD;   
   data PT_LOAD;
   bss PT_LOAD;
 }
@@ -99,8 +165,9 @@ SECTIONS
 	0x8000_0000, we need our entry point to line up here.
   */
   .text : {
-	  /* 
-	    PROVIDE allows me to access a symbol called _text_start so
+	  /* In the GNU Linker Script Language, the PROVIDE keyword instructs the linker to declare a new symbol and assign it a value 
+
+	    PROVIDE allows me to create a symbol called _text_start so
 		I know where the text section starts in the operating system.
 		This should not move, but it is here for convenience.
 		The period '.' tells the linker to set _text_start to the
@@ -111,7 +178,8 @@ SECTIONS
     PROVIDE(_text_start = .);
 	/*
 	  We are going to layout all text sections here, starting with 
-	  .text.init. The asterisk in front of the parentheses means to match
+	  .text.init. 
+	  The asterisk in front of the parentheses means to match
 	  the .text.init section of ANY object file. Otherwise, we can specify
 	  which object file should contain the .text.init section, for example,
 	  boot.o(.text.init) would specifically put the .text.init section of
@@ -149,9 +217,9 @@ SECTIONS
 	         ram region of memory. To my knowledge, the '>' does not mean "greater than". Instead,
 			 it is a symbol to let the linker know we want to put this in ram.
 
-	  AT>ram - This sets the LMA (load memory address) region to the same thing. LMA is the final
-	           translation of a VMA (virtual memory address). With this linker script, we're loading
-			   everything into its physical location. We'll let the kernel copy and sort out the 
+	  AT>ram - This sets the LMA (load memory address) region to the same thing.this linker script, we're loading
+			   everything into its physical location. We'll l LMA is the final
+	           translation of a VMA (virtual memory address). With et the kernel copy and sort out the 
 			   virtual memory. That's why >ram and AT>ram are continually the same thing.
 
 	  :text  - This tells the linker script to put this into the :text program header. We've only
@@ -190,6 +258,8 @@ SECTIONS
 	   . = ALIGN(4096) tells the linker to align the current memory location (which is
 	   0x8000_0000 + text section + rodata section) to 4096 bytes. This is because our paging
 	   system's resolution is 4,096 bytes or 4 KiB.
+
+	   As a result, the current memory address is rounded off to the next nearest address that has a value that is a multiple of 4096
 	*/
     . = ALIGN(4096);
     PROVIDE(_data_start = .);
@@ -217,10 +287,12 @@ SECTIONS
 
   /*
      The following will be helpful when we allocate the kernel stack (_stack) and
-	 determine where the heap begnis and ends (_heap_start and _heap_start + _heap_size)/
+	 determine where the heap begins and ends (_heap_start and _heap_start + _heap_size)/
 	 When we do memory allocation, we can use these symbols.
 
 	 We use the symbols instead of hard-coding an address because this is a floating target.
+	 Floating target means that the address space layout keeps on changing, do it becomes hard to hardcode physical adresses.
+	 The heap size is not known at compile time
 	 As we add code, the heap moves farther down the memory and gets shorter.
 
 	 _memory_start will be set to 0x8000_0000 here. We use ORIGIN(ram) so that it will take
@@ -251,10 +323,4 @@ SECTIONS
 
 ```
 
-Now that our linker script is ready, we need to configure our build settings in the cargo file:  
-Add the following line to cargo.toml.  That way, we notify the linker about the path to the linker script
-```bash
-[build]
-target = "riscv64gc-unknown-none-elf"
-rustflags = ['-Clink-arg=-Tsrc/lds/virt.lds']
-```
+Our Linker script is ready !!!
