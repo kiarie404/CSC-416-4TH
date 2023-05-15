@@ -1,1 +1,0 @@
-# Allocating RAM Memory

@@ -12,6 +12,7 @@
     - [Abstracting the RAM](./abstracting_the_RAM.md)
     - [Allocating RAM Memory](./allocation_and_deallocation_RAM.md)
     - [Setting Up RAM Memory Virtualization and access_management](setting_up_memory_virtualization_and_access_management.md)
+    - [Using the Physical MMU instead of Virtual MMU](./handling_the_Physical_MMU.md)
 - [Handling interrupts and Traps](handling_interrupts_and_traps.md)
 - [Handling External Interrupts](handling_external_interrupts.md)
 - [The Block Driver](the_block_driver.md)

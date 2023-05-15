@@ -164,4 +164,4 @@ So the Translation Table now is updated to this :
 
 #### The Translation Process
 
-When a process wants to access the RAM, it uses virtual addresses.  The instructions 
+When a process wants to access the RAM, it uses virtual addresses.  The instructions inside the elf binary reference virtual memory addresses. The Data inside the elf binary file also reference virtual addresses. So when the CPU executes a user_program instruction, it needs to first translate 
