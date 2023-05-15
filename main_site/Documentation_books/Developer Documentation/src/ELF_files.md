@@ -90,7 +90,7 @@ The File Data part contains :
     To summarize, sections are the individual units of code and data within an ELF file, while segments are groups of sections that are combined together for the purpose of being loaded into memory at runtime.
 
 Here is a diagram presentation of the ELF File Format :  
-![](../images/not_raw/elf_format.webp)
+![](./images/not_raw/elf_format.webp)
 
 ###### The Elf Header
 This part is 32 bytes long... ALWAYS.  
@@ -124,8 +124,8 @@ ELF Header:
 ```
 
 Here is a more detailed Header Layout and Possible Values (extracted from : [OSDev Wiki](https://wiki.osdev.org/ELF))   
-![](../images/elf/ELF%20Header%20Values.png)
-![](../images/elf/ELF%20header%20ISA%20values%20.png)
+![](./images/elf/ELF%20Header%20Values.png)
+![](./images/elf/ELF%20header%20ISA%20values%20.png)
 
 
 
@@ -199,7 +199,7 @@ Program Headers:
 ```
 
 The illustration above is an example. Below this sentence is a more general layout description of the Section Header Table :  
-![](../images/elf/Program%20Header%20Table%20Layout%20and%20values.png)
+![](./images/elf/Program%20Header%20Table%20Layout%20and%20values.png)
 
 ###### THe Section Header Table
 
@@ -234,7 +234,7 @@ This preserves space.
 
 
 ### Implementing User Processes
-- The ELF header contains a field called "entry_point". This is a virtual address that indicates the first appropriate instruction for the whole executable. THis is where the Program counter should point to at the beginning. The Entry_point is where the _start fuction is found.
+- The ELF header contains a field called "entry_point". This is a virtual address that indicates the first appropriate instruction for the whole executable. This is where the Program counter should point to at the beginning. The Entry_point is where the _start fuction is found.
 - The Design of a very simple userprogram is as follows :  _start calls main and when main retuns it calls the exit system call. It is up to us to code the exit system call. The RISCV hardware can only take us as far us providing the RISCV System call Convention. We place the exit syscall ID_code in the a7 register... and hopefully we should have defined the exit call function in the kernel code(in some fancy table or Match statement).  
 - The exit system call removes the process from the schedule list and then it frees all of the resources related to the ending process
 
@@ -315,7 +315,7 @@ By specifying both the "size of segment in file" and "size of segment in memory"
 References sources: 
   - Section 2-7 of the Official ELF specification
   - 
-Loading the Elf file means ... reading the elf file contents in the hard disk and storing a copy of the different sections in the RAM. THat way, the CPU program Counter can point to the code of the program. It is up to the loading process to map the sections in the RAM just as how the virtual addresses found in the ELF file specified.  
+Loading the Elf file means ... reading the elf file contents in the hard disk and storing a copy of the different sections in the RAM. That way, the CPU program Counter can point to the code of the program. It is up to the loading process to map the sections in the RAM just as how the virtual addresses found in the ELF file specified.  
 
 So high_level tasks in loading become : 
     - Read and understand the layout of the elf file. (read the header, program_header_table and section_header_table)

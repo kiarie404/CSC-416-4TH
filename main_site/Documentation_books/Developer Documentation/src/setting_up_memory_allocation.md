@@ -46,7 +46,7 @@ we have the following segments:
 ### Page Grained Physical memory allocations
 - It means that when free memory is either allocated or deallocated... it is done in a pagewise manner. ie The address of a new empty page is returned when an allocation is needed.
 - A page in our system is 4096 bytes long. ie 4 KiB
-- A page allocation is less precise that a byte allocation. Allocating a whole page(4096 bytes) in a single command is better than allocoting bytes 4096 times. It means you need to execute 4096 byte-wise commands in order to do what a single page command would have done.
+- A page allocation is less precise than a byte allocation. Allocating a whole page(4096 bytes) in a single command is better than allocoting bytes 4096 times. It means you need to execute 4096 byte-wise commands in order to do what a single page command would have done.
 - Also building a management system for bytes is harder than building the same sytem for pages. There are more items to manage in a byte-wise system... for one page that you need to manage... you need to manage 4085 more items if you had taken the byte route.
 
 
@@ -59,9 +59,9 @@ So in our page allocation system we need to achieve the following :
 4. Provide a function that receives a request of allocating certain number of contiguous pages... and it returns the address of the first page of the available contiguous pages
 5. Provide a function that receives an address of occupied pages and completely frees them.
 
-We could implement our tracking syste using one of the following methods :
+We could implement our tracking system using one of the following methods :
 1. Treating each page as a linked list node.
-![linked_list_representation_of_heap](../images/raw/linked_list_representation_of_heap.jpg)
+![linked_list_representation_of_heap](./images/raw/linked_list_representation_of_heap.jpg)
 At the top of the Node, we have a pointer to the next node. So we create 2 lists... used nodes and unused nodes
    - This method helps because there is no need for contiguous allocation of pages. This consequently means that we will not have [fragmentation issues](./fragmentation_issues.md)
    - However this method has a couple of disadvantages :
@@ -70,11 +70,11 @@ At the top of the Node, we have a pointer to the next node. So we create 2 lists
      - The pages are dirty. The top part of the page has the address of the next node. If a process want to read or write to the page, it has to consider that some information contained in the page is useless to it. And when a couple of pages are read, the process has to filter out the next_address and start concatenating necessary data. This is unnecessary work
      - There is no direct access within the linked list... you have to traverse it from the beginning each time. Thi is a very huge DEFFIFIENCY because we are dealing with the RAM. Ram daa access is expected to be fast. If we has used an array or some tree structure, the CPU would have had faster access speeds.
 1. We could use a 2-bit bitmap : THis is the fastest and most memory efficient method
-![bitmap_representation_of_heap_memory](../images/raw/bitmap_representation_of_heap_memory.jpg)
+![bitmap_representation_of_heap_memory](./images/raw/bitmap_representation_of_heap_memory.jpg)
 
 
 2. We could use a bunch of descriptors. This would be the same as that of a bitmap execution. It is just that each descriptor takes 1 byte to describe a page while in the bitmap uses only 2 bits to describe a page (empty, taken, first, last)
-![descriptor_representation_of_heap_memory](../images/raw/descriptor_representation_of_heap_memory.jpg)
+![descriptor_representation_of_heap_memory](./images/raw/descriptor_representation_of_heap_memory.jpg)
 
 More discissions about memory tracking are found [here](./memory_tracking_mechanisms.md)
 
@@ -120,7 +120,7 @@ Steps:
    - return an [error_M2](./errors.md) indicating that there is no free contiguous space.
 
 
-#### THe de-allocation method
+#### The de-allocation method
 algorithm : dealloc
 inputs to dealloc algorithm : the address of the first page of a contiguous block of pages that needs to be freed (starter)
 Outputs to dealloc algorithm : The Result Type (Ok/Error)
@@ -139,6 +139,11 @@ Steps:
      - Change the status of the corresponding descriptor to 'empty'
 5. After the loop, return a successful message Result (ok) type
 
+#### API 
+- dealloc function for user heap
+- alloc function for user heap
+- dealloc function for kernel heap
+- alloc function for kernel heap
 
 #### Testing this module
 This module does 3 tasks. So we need to test all the 3 tasks.
@@ -169,4 +174,6 @@ Confirm if the following values are similar:
 - Confirm that all the data pages are indeed zeroed after deallocation and that they contain no garbage data or residue data.
 - Confirm that all descritors involved in the deallocation process are updated to 'empty'
 
+
+### Designs 
 

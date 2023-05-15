@@ -51,7 +51,7 @@ We will focus on the Minix 3 file system... but with tweaks
 ### Minix 3 File System (our Variation)
 
 The minix 3 Filesystem organizes the bytes within a partition as follows :  
-![Minix 3 file system](../images/Minix%203%20filesystem.png)
+![Minix 3 file system](./images/Minix%203%20filesystem.png)
 
 **A block** is a group of bytes. Like in minix 3, a block typically means 1024 contiguous bytes. But this is not always the case. For example, the superblock is only 32 contiguous bytes.
 

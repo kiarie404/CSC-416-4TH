@@ -1,9 +1,9 @@
 # VirtIO
 
 [Main reference paper](https://docs.oasis-open.org/virtio/virtio/v1.1/virtio-v1.1.html)
-![Virtio memory layout part 1](../images/Virtio%20MMIO%20Register%20Layout%20part%201.png)
-![Virtio memory layout part 2](../images/Virtio%20MMIO%20register%20layout%20part%202.png)
-![Virtio device type IDs](../images/virtio%20device%20IDs.png)
+![Virtio memory layout part 1](./images/Virtio%20MMIO%20Register%20Layout%20part%201.png)
+![Virtio memory layout part 2](./images/Virtio%20MMIO%20register%20layout%20part%202.png)
+![Virtio device type IDs](./images/virtio%20device%20IDs.png)
 ***terms***
 
 This definitions are described under the context of OS development. They may mean entirely different things under other contexts such as web development or cloud development. Moreover, there is no way to categorize software perfectly using words... for example person A may call Linux a full-fledged OS while another may call it 'just an advanced kernel'. Potato-potato
@@ -17,7 +17,7 @@ A virtual machine typically runs on top of virtualized hardware. VMs can be made
 
 Without the hypervisor or virtualization layer, a virtual machine would have direct access to the underlying physical hardware, just like any other application running on the bare metal. If you intend to run only one virtual machine then running on bare metal is possible. But if you intend to run multiple VMs then this would create a potential conflict for resource allocation and management, and could also create security risks, as different operating systems and applications could interfere with each other and potentially compromise the integrity of the entire system.
 
-![Virtual machine](../images/raw/virtual_machine.jpeg)
+![Virtual machine](./images/raw/virtual_machine.jpeg)
 
 1. **A Hypervisor** - a hypervisor is a piece of software that runs on top of hardware. A hypervisor's main goal is to abstract the underlying hardware.  
 In the context of virtual machines : The hypervisor is a layer of software that sits between the virtual machine and the underlying hardware, and it provides a level of abstraction that allows multiple virtual machines to share and utilize the same physical hardware resources.

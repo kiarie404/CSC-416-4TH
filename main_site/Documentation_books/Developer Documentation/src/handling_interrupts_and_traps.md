@@ -18,7 +18,7 @@ The address of the interrupt handling function is stored in the mtvec register (
 
 We will use Direct mode of handling interrupts, we wil not use the vectored approach.  
 Below is the the structure of the mtvec register :  
-![mtvec register layout](../images/mtvec.png)
+![mtvec register layout](./images/mtvec.png)
 
 THe mcause register store information about :
 1. The type of interrupt (whether it is synchronous or asynchronous)  0 == Synchronous, 1 == Asynchronous
@@ -77,7 +77,7 @@ Steps :
     9. return the updated program counter
 
 ###### Table x
-![](../images/mcause_synchronous_interrupts.png)
+![](./images/mcause_synchronous_interrupts.png)
 
 ###### Table y
-![](../images/mcause_asynchronous_interrupts.png)
+![](./images/mcause_asynchronous_interrupts.png)

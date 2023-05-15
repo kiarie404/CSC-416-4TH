@@ -12,9 +12,9 @@ In our case, we will act ad the VM  and Qemu will act as the Hypervisor.
 
 We will deal with virtio block devices. We will write a driver for a Virtio Block device.
 
-![Virtio memory layout part 1](../images/Virtio%20MMIO%20Register%20Layout%20part%201.png)
-![Virtio memory layout part 2](../images/Virtio%20MMIO%20register%20layout%20part%202.png)
-![Virtio device type IDs](../images/virtio%20device%20IDs.png)
+![Virtio memory layout part 1](./images/Virtio%20MMIO%20Register%20Layout%20part%201.png)
+![Virtio memory layout part 2](./images/Virtio%20MMIO%20register%20layout%20part%202.png)
+![Virtio device type IDs](./images/virtio%20device%20IDs.png)
 
 For the QEMU emulator, it puts virtio devices (backwards) from 0x1000_1000 to 0x1000_8000. If we only have one device, it should be attached at 0x1000_8000  
 Qemu supports 8 Virtio buses. Each having 4096 byte register space.

@@ -59,7 +59,7 @@
 
 
 #### OS reads
-- [Processes](https://web.eecs.utk.edu/~smarz1/courses/cosc361/notes/processes/)
+- [Processes](https://web.eecs.utk.e inspiring in the face of challdu/~smarz1/courses/cosc361/notes/processes/)
 - [Linker Scripting](http://bravegnu.org/gnu-eprog/lds.html)
 
 #### Wasmtime
@@ -85,8 +85,16 @@
 - [OS beginner mistakes](https://wiki.osdev.org/Beginner_Mistakes#Is_there_a_tutorial_on....3F)... and debunking them
 - [How to conduct an Buffer_overflow attack](https://samsclass.info/127/proj/p3-lbuf1.htm)
 
+#### UART
+- [The UART Datasheet](http://caro.su/msx/ocm_de1/16550.pdf)
+- [The UART specifications](https://www.lammertbies.nl/comm/info/serial-uart)
+- [Stephen's tutorial](https://osblog.stephenmarz.com/ch2.html)
+
 
 curiosity over fear  
-innovation over practicality'  
-authenticity over professionalism 
-Learning over Graduating
+innovation over practicality'     
+authenticity over professionalism   
+Learning over Graduating   
+
+It is not over until I am done. My own time, No external deadlines determine my path.  
+And I will curve my own path.

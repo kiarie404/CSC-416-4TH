@@ -5,3 +5,4 @@
 - Qemu
 - booting (x86, Riscv)
 - Bitmasking shenanigans
+- USB

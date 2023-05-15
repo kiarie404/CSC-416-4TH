@@ -118,3 +118,16 @@ Now this operation is delicate; we are accessing another memory map to access gl
         B --> |prepares the CPU registers for kernel, calls kernel entry point| C[Kernel Runs] 
   </pre>
 </body>
+
+
+
+#### Kernel loader sequence of events
+```mermaid
+    graph TD 
+        A[set assembler directives] --> B[Look for HART 0] ;
+        B --> C{Is the Core HART 0?} ;
+        C -->|Yes| D[Clear Kernels BSS section];
+        C -->|No| E[Put HART to sleep];
+        D --> F[initialize CPU registers for kernel];
+        F --> G[summon kmain];
+```

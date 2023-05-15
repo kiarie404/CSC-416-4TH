@@ -35,10 +35,10 @@ The x2 register can hold an operand in the following ways:
 *x10 to x17* - these are argument registers, when a function is called, the arguments to the functionare copied to these 8 registers. The stack is used in case the number exceeds 8.
 
 General Registers and their RISCV ABI usage :   
-![](../images/RISCV/General_registers_when_using_ABI.png)
+![](./images/RISCV/General_registers_when_using_ABI.png)
 
 Control Status Registers while in Machine Mode
-![](../images/RISCV/machine_mode_CSRs.png)
+![](./images/RISCV/machine_mode_CSRs.png)
 
 
 ### CSRs
