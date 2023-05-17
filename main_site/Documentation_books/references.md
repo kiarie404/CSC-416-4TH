@@ -94,7 +94,4 @@
 curiosity over fear  
 innovation over practicality'     
 authenticity over professionalism   
-Learning over Graduating   
-
-It is not over until I am done. My own time, No external deadlines determine my path.  
-And I will curve my own path.
+Learning over Grades  
