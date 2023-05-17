@@ -181,6 +181,8 @@ Make kinit global for the linker using &quot;extern&quot;</p>
 <ul>
 <li>declare a single instance of the UART object</li>
 <li>initialize the UART instance (configure the UART registers for communication)</li>
+</ul>
+</li>
 <li>Initialize the page allocator system
 <ul>
 <li>clear the page destriptors in the heap</li>
@@ -192,9 +194,9 @@ Make kinit global for the linker using &quot;extern&quot;</p>
 <li>define the number of kernel pages (512 pages)</li>
 <li>create a kernel heap by allocating those pages, and zeroing them out</li>
 <li>set the first AllocStruct</li>
-<li>Allocate Space for the Root Page Table immediately after the kernel Heap</li>
 </ul>
 </li>
+<li>Allocate Space for the Root Page Table immediately after the kernel Heap</li>
 <li>Set up the values of the paging 
 <ul>
 <li>Get position of the root table that was created during kmem::init()</li>
@@ -203,7 +205,6 @@ Make kinit global for the linker using &quot;extern&quot;</p>
 <li>Map the UART</li>
 <li>Map the PLIC</li>
 <li>Map the CLINT</li>
-<li>Map the TRAP_FRAME address for this HART</li>
 <li>Define the SATP value</li>
 </ul>
 </li>
@@ -211,12 +212,11 @@ Make kinit global for the linker using &quot;extern&quot;</p>
 <ul>
 <li>Store the address of the TRAP_FRAME in the mscratch register</li>
 <li>Store the address of the TRAP_FRAME in the sscratch register</li>
-<li></li>
-</ul>
-</li>
+<li>Map the TRAP_FRAME address for this HART</li>
 </ul>
 </li>
 <li>initialize the page memory allocation system</li>
+<li></li>
 </ul>
 
                     </main>

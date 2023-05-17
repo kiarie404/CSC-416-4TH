@@ -149,8 +149,8 @@
 </ol>
 <h5 id="insert-image"><a class="header" href="#insert-image">insert Image</a></h5>
 <p><img src="./images/plic_cpu_structure.png" alt="(PLIC and CLINT)interraction with CPU" /></p>
-<p>The PLIC interfaces with the CPU via a physical Interrupt pin. The interrupt pin is enabled, disabled and configured using the MIE register (the machine interrpt Enable register)<br />
-The meie bit is found within the MIE register. It enables the acceptance of external interrupts.</p>
+<p>The PLIC interfaces with the CPU via a physical Interrupt pin. The interrupt pin is enabled, disabled and configured using the MIE register (the machine interrpt Enable register) </p>
+<p>The meie bit is found within the MIE register. It enables the acceptance of external interrupts.</p>
 <p>Whenever we see that this pin has been triggered (an external interrupt is pending), we can query the PLIC to see what caused it.</p>
 <p>Configuring the PLIC means :
 1. Prioritizing certain interrupt sources in certain conditions.
