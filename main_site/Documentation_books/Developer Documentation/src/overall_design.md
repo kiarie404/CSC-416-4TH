@@ -48,7 +48,7 @@ Here we have the Computer components
 
 
 
-
+<!-- 
 ##### Late desigs
 
 Let us be on the same page:
@@ -66,4 +66,4 @@ An innovator faces the risk of being wrong and poor.  They may be a liitle lucky
 
 If you were given 2 years to implement time travel, chances are half way you will still not have understood what you are doing. You won't have understood the implementation. You won't have the desigs. The designs will keep on changing.
 
-
+ -->
