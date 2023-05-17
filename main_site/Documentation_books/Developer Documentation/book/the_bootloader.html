@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>The Bootloader - Developer Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="setting_things_up.html"><strong aria-hidden="true">1.</strong> Setting Things Up</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="setting_up_the_compiler.html"><strong aria-hidden="true">1.1.</strong> Setting up the compiler</a></li><li class="chapter-item expanded "><a href="setting_up_LLD_linker.html"><strong aria-hidden="true">1.2.</strong> Setting up the linker</a></li><li class="chapter-item expanded "><a href="setting_up_qemu.html"><strong aria-hidden="true">1.3.</strong> Setting up the Riscv Virtual environment</a></li><li class="chapter-item expanded "><a href="setting_up_build_automation.html"><strong aria-hidden="true">1.4.</strong> Setting up the Build automation tool</a></li></ol></li><li class="chapter-item expanded "><a href="the_bootloader.html" class="active"><strong aria-hidden="true">2.</strong> The Bootloader</a></li><li class="chapter-item expanded "><a href="the_bootloader_2.html"><strong aria-hidden="true">3.</strong> The Bootloader_2</a></li><li class="chapter-item expanded "><a href="setting_up_comunications.html"><strong aria-hidden="true">4.</strong> Setting Up Communications</a></li><li class="chapter-item expanded "><a href="setting_up_memory_management.html"><strong aria-hidden="true">5.</strong> Setting Up Memory Management</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="RAM_management.html"><strong aria-hidden="true">5.1.</strong> The RAM Management</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="abstracting_the_RAM.html"><strong aria-hidden="true">5.1.1.</strong> Abstracting the RAM</a></li><li class="chapter-item expanded "><a href="allocation_and_deallocation_RAM.html"><strong aria-hidden="true">5.1.2.</strong> Allocating RAM Memory</a></li><li class="chapter-item expanded "><a href="fine_grained_alloation.html"><strong aria-hidden="true">5.1.3.</strong> Byte-grained allocation</a></li><li class="chapter-item expanded "><a href="setting_up_memory_virtualization_and_access_management.html"><strong aria-hidden="true">5.1.4.</strong> Setting Up RAM Memory Virtualization and access_management</a></li><li class="chapter-item expanded "><a href="handling_the_Physical_MMU.html"><strong aria-hidden="true">5.1.5.</strong> Using the Physical MMU instead of Virtual MMU</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps.html"><strong aria-hidden="true">6.</strong> Handling interrupts and Traps</a></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps_2.html"><strong aria-hidden="true">7.</strong> Handling interrupts and Traps 2</a></li><li class="chapter-item expanded "><a href="handling_external_interrupts.html"><strong aria-hidden="true">8.</strong> Handling External Interrupts</a></li><li class="chapter-item expanded "><a href="the_block_driver.html"><strong aria-hidden="true">9.</strong> The Block Driver</a></li><li class="chapter-item expanded "><a href="system_calls.html"><strong aria-hidden="true">10.</strong> system_calls</a></li><li class="chapter-item expanded "><a href="setting_up_processes.html"><strong aria-hidden="true">11.</strong> Setting up Processes</a></li><li class="chapter-item expanded "><a href="Filesystem.html"><strong aria-hidden="true">12.</strong> Filesystem</a></li><li class="chapter-item expanded "><a href="user_processes.html"><strong aria-hidden="true">13.</strong> User Processes</a></li><li class="chapter-item expanded "><a href="overall_design.html"><strong aria-hidden="true">14.</strong> Overall Design</a></li><li class="chapter-item expanded "><a href="definitions_and_theories.html"><strong aria-hidden="true">15.</strong> Definitions and Theories</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="theory_on_the_linker.html"><strong aria-hidden="true">15.1.</strong> The linker</a></li><li class="chapter-item expanded "><a href="theory_on_Qemu.html"><strong aria-hidden="true">15.2.</strong> Qemu</a></li><li class="chapter-item expanded "><a href="fragmentation_issues.html"><strong aria-hidden="true">15.3.</strong> fragmentation_issues</a></li><li class="chapter-item expanded "><a href="memory_tracking_mechanisms.html"><strong aria-hidden="true">15.4.</strong> Memory Tracking Mechanisms</a></li><li class="chapter-item expanded "><a href="theory_on_MMU_implementation_in_riscv.html"><strong aria-hidden="true">15.5.</strong> Theory on MMU implementation in Riscv</a></li><li class="chapter-item expanded "><a href="VirtIO.html"><strong aria-hidden="true">15.6.</strong> VirtIO</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> Miscellenious</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="errors.html"><strong aria-hidden="true">16.1.</strong> Error Numbers</a></li><li class="chapter-item expanded "><a href="measuring_software_performance.html"><strong aria-hidden="true">16.2.</strong> Measuring Performance of software</a></li><li class="chapter-item expanded "><a href="importing_variables_from_the_linker_script.html"><strong aria-hidden="true">16.3.</strong> Importing variables from the Linker script</a></li><li class="chapter-item expanded "><a href="GNU_assembly_macros.html"><strong aria-hidden="true">16.4.</strong> GNU assembly macros</a></li><li class="chapter-item expanded "><a href="the_singleton_design.html"><strong aria-hidden="true">16.5.</strong> The singleton Structure</a></li><li class="chapter-item expanded "><a href="multitasking.html"><strong aria-hidden="true">16.6.</strong> Multitasking</a></li><li class="chapter-item expanded "><a href="Bitmasking_and_bit_operations.html"><strong aria-hidden="true">16.7.</strong> Bitmasking_and_bit_operations</a></li><li class="chapter-item expanded "><a href="compressed_instructions.html"><strong aria-hidden="true">16.8.</strong> Compressed Instructions</a></li><li class="chapter-item expanded "><a href="the_ABI.html"><strong aria-hidden="true">16.9.</strong> The ABI</a></li><li class="chapter-item expanded "><a href="ELF_files.html"><strong aria-hidden="true">16.10.</strong> Elf Files</a></li><li class="chapter-item expanded "><a href="riscv_registers.html"><strong aria-hidden="true">16.11.</strong> Riscv_registers</a></li><li class="chapter-item expanded "><a href="virt.html"><strong aria-hidden="true">16.12.</strong> Virtual representation of riscv in Qemu</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="pcie_express_devices.html"><strong aria-hidden="true">16.12.1.</strong> PCIe express devices</a></li><li class="chapter-item expanded "><a href="virtio_devices.html"><strong aria-hidden="true">16.12.2.</strong> VIRTIO devices</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> AfterMath</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="buffer_overflow_attacks.html"><strong aria-hidden="true">17.1.</strong> buffer_overflow_attacks</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.2.</strong> fork_bomb</div></li></ol></li><li class="chapter-item expanded "><a href="setting_up_wasm_runtime.html"><strong aria-hidden="true">18.</strong> Setting Up Wasm Runtime</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Developer Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="the-bootloader"><a class="header" href="#the-bootloader">The Bootloader</a></h1>
+<p>For a long time I thought the way the CPU worked was some dark magic.</p>
+<p>The CPU is an indiscriminate machine, it is just a bunch of circuits that repeatedly do one thing from the moment it is powered on : </p>
+<ul>
+<li>It reads the program counter register</li>
+<li>Fetches the instruction pointed to by program counter from some memory</li>
+<li>Executes the instruction using its circuits</li>
+<li>repeats infinitely</li>
+</ul>
+<p>It is up to us to occasionally make the program counter to point to the instrutions we want executed.<br />
+To control this machine, we have to change the value in its control status registers.<br />
+When you look at it from this perspective, it no longer seems like dark magic.</p>
+<p>We will be using RISCV assembly to write the assembly code for the bootloader.<br />
+The Basic Bootloader is a software program that :
+- Finds the kernel image
+- Loads the kernel image to memory
+- Transfers control to the kernel</p>
+<p>The Bootloader has many definitions depending on the additional functionalities it has :
+- Dealing with the convertion of CPI from real mode to protected mode and finally to 64-bit mode
+- Having a user interface that gives its users the option to choose among multiple kernel images
+- Having the bootloader code implemented in seperate parts.<br />
+- Having the bootloader do some tasks that were originally meant for the firmware eg. Power_on_self tests</p>
+<h3 id="the-boot-process"><a class="header" href="#the-boot-process">The Boot process</a></h3>
+<p>References : </p>
+<ul>
+<li><a href="https://os.phil-opp.com/minimal-rust-kernel/#the-boot-process">Booting in x86 CPU</a></li>
+<li><a href="https://osblog.stephenmarz.com/ch1.html">Booting In RISCV</a></li>
+</ul>
+<p>When the machine is powered on : </p>
+<h4 id="the-firmware"><a class="header" href="#the-firmware">The Firmware</a></h4>
+<p>The CPU begins its fetch-execute cycle. Typically, the PC register of the CPU points to a memory address in the ROM.<br />
+The ROM contains hardcoded firmware code. In x86 this firmware can be BIOS or UEFI. 
+The firmware code performs Power-on-tests on all pluged devices.<br />
+The firmware code initializes the hardware : for example it maps the dedicated I/O MMIO memory and enumerates the RAM.<br />
+After setting up the execution environment, it scans the plugged in secondary memory devices... Depending on the partitioning scheme used in those devices, it looks for valid bootloaders. At this point some firmware give the user a chance to choose which bootloader they would prefer among the ones the firmware has discovered</p>
+<h4 id="the-bootloader-1"><a class="header" href="#the-bootloader-1">The Bootloader</a></h4>
+<p>After the Firmware has set up the execution environment, It makes the CPU pointer ton point at the entr point of the boot_code.<br />
+In our case, the bootloader will do the following functions :
+1. Pick only one CPU to complete the execution of the bootloader code. This is because at the beginning we do not want any kind of paralellism. Moreover, the bootcode is a simple code that can easily be done by one CPU, adding parallelism increases unnecessary complexity. It means we will have to do interprocessor communications at the start. That is just unnecessary overengineering to save a nano_secog of a nanosecond of a nanosecond
+2. Clear the uninitialized memory sections : the heap and BSS section.
+3. Transfer control to the Kernel code found in memory</p>
+<h5 id="pseudo-code"><a class="header" href="#pseudo-code">pseudo code</a></h5>
+<p>inputs : No inputs
+outputs : No outputs</p>
+<ul>
+<li>set the necessary assembler directives
+<ul>
+<li>notify the assembler that the code should not use compressed code</li>
+</ul>
+</li>
+<li>define the memory sections
+<ul>
+<li>.text.init section : the .text.init section is different from the .text section because the .text.init section contains initialization code that gets executed before the main function.</li>
+<li>.data section</li>
+</ul>
+</li>
+<li>Choose HART 0 as the main and only core
+<ul>
+<li>if the Hart ID is not 0, subject that core to and endless sleep</li>
+</ul>
+</li>
+<li>Confirm that the HART is in machine mode</li>
+<li>fetch the global pointer so that we ge to access the data sections more confidently</li>
+<li>Clear the BSS section, we need no surprises.</li>
+<li>Setup the CPU status to suit the jump to kernel code :
+<ul>
+<li>set the medeleg register  : we will not delegate any exception, we will handle all exceptions in Machine mode</li>
+<li>set the mideleg register  : we will not delegate any interrupt to lower levels, we will handle all interrupts in Machine mode</li>
+<li>set the mstatus to allow software interrupts and external interrupts</li>
+<li>Set the MIE register to handle only </li>
+<li>set the stack pointer to point at the bottom of the stack</li>
+<li>set the mstatus register :
+<ul>
+<li>allow interrups to be allowed in both machine mode and supervisor mode by setting the MPP(Machine Previous Protection) to the value 3 </li>
+</ul>
+</li>
+<li>set the MEPC ; machine exception program Counter to point to the kernel entry point.</li>
+<li>Set the MTVEC : Machine Trao Vector to point to the Exception handling code</li>
+</ul>
+</li>
+<li>Call MRET</li>
+</ul>
+<p><strong>Why are we calling WFI?</strong><br />
+We are calling the WFI instruction to put all the other CPU cores to sleep. Our OS only uses one HART (Cpu).</p>
+<p>The WFI (Wait for interrupt instruction) - This RISCV instruction powers off the CPU and only leaves a small circiut running. THis circuit continuously checks if an interrupt signal has been sent to the powered off CPU. If an interrupt is detected, the CPU gets powered on.  It is kind of a 'sleep' instruction. It can be used to save power when the CPU is idle.
+We are calling the WFI instruction to put all the other CPU cores to sleep. Our OS only uses one HART (Cpu).</p>
+<p><strong>Why are we disabling Riscv Compressed instruction?</strong></p>
+<ul>
+<li>So that we gain simplicity in debugging. </li>
+</ul>
+<p>In RISCV, the assembler usually encodes each assembly instruction into 32 bits. But this is not always the case, you can instruct the assembler to use compressed instructions. Compressed instructions are only 16 bits long. Not all assembly instructions get encoded to 16 bits... just a select few. This ensures memory efficient code.<br />
+However, it makes it hard to debug code because the not ALL instructions are 32 bits as before.</p>
+<p>we achieve this by using either of the two assembly directives : </p>
+<pre><code class="language-riscv">.option norvc      // No RiscV compressed instructions
+.option rvc        // Yes to RiscV compressed instructions
+</code></pre>
+<p><strong>Why do we need to load the global pointer when writing the Bootloader?</strong>
+So that the bootloader code gets to use the correct global data associated to the Operating system image.</p>
+<p>The global pointer references the base address of global data in the memory map.<br />
+To access any global data, you have to know the base address + offset.<br />
+The bootloader typically gets executed as a seperate program from the operating system. So the bootloader may have a different memory map from the memory map of the kernel.<br />
+Considering that the bootloader needs to use the operating system's global data, we make the global pointer that the bootloader references to be the gp found in the memory map of the kernel.</p>
+<p>Now this operation is delicate; we are accessing another memory map to access global data that may or may not be the same as the data we are trying to change. We need to make this operation explicit, no surprises. So we temporarily kill all code optimizations when doing this operation by using the directives :</p>
+<pre><code class="language-riscv">.option push       // save previous assembly directives... because in the next few lines we may use contradicting directives
+.option norelax    // no optimization
+.option pop        // restore previous assembly directives
+</code></pre>
+<h2 id="designs"><a class="header" href="#designs">Designs</a></h2>
+<h4 id="initial-program-flow-diagram"><a class="header" href="#initial-program-flow-diagram">Initial Program Flow diagram</a></h4>
+<body>
+  <pre class="mermaid">
+        graph TD 
+        A[Qemu ELF loader] -->|loads Elf file containing kernel loader| B[kernel Loader] 
+        B --> |prepares the CPU registers for kernel, calls kernel entry point| C[Kernel Runs] 
+  </pre>
+</body>
+<h4 id="kernel-loader-sequence-of-events"><a class="header" href="#kernel-loader-sequence-of-events">Kernel loader sequence of events</a></h4>
+<pre class="mermaid">    graph TD 
+        A[set assembler directives] --&gt; B[Look for HART 0] ;
+        B --&gt; C{Is the Core HART 0?} ;
+        C --&gt;|Yes| D[Clear Kernels BSS section];
+        C --&gt;|No| E[Put HART to sleep];
+        D --&gt; F[initialize CPU registers for kernel];
+        F --&gt; G[summon kmain];
+</pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="setting_up_build_automation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="the_bootloader_2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="setting_up_build_automation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="the_bootloader_2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </body>
+</html>

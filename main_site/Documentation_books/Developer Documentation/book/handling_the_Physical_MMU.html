@@ -1,0 +1,489 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Using the Physical MMU instead of Virtual MMU - Developer Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="setting_things_up.html"><strong aria-hidden="true">1.</strong> Setting Things Up</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="setting_up_the_compiler.html"><strong aria-hidden="true">1.1.</strong> Setting up the compiler</a></li><li class="chapter-item expanded "><a href="setting_up_LLD_linker.html"><strong aria-hidden="true">1.2.</strong> Setting up the linker</a></li><li class="chapter-item expanded "><a href="setting_up_qemu.html"><strong aria-hidden="true">1.3.</strong> Setting up the Riscv Virtual environment</a></li><li class="chapter-item expanded "><a href="setting_up_build_automation.html"><strong aria-hidden="true">1.4.</strong> Setting up the Build automation tool</a></li></ol></li><li class="chapter-item expanded "><a href="the_bootloader.html"><strong aria-hidden="true">2.</strong> The Bootloader</a></li><li class="chapter-item expanded "><a href="the_bootloader_2.html"><strong aria-hidden="true">3.</strong> The Bootloader_2</a></li><li class="chapter-item expanded "><a href="setting_up_comunications.html"><strong aria-hidden="true">4.</strong> Setting Up Communications</a></li><li class="chapter-item expanded "><a href="setting_up_memory_management.html"><strong aria-hidden="true">5.</strong> Setting Up Memory Management</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="RAM_management.html"><strong aria-hidden="true">5.1.</strong> The RAM Management</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="abstracting_the_RAM.html"><strong aria-hidden="true">5.1.1.</strong> Abstracting the RAM</a></li><li class="chapter-item expanded "><a href="allocation_and_deallocation_RAM.html"><strong aria-hidden="true">5.1.2.</strong> Allocating RAM Memory</a></li><li class="chapter-item expanded "><a href="fine_grained_alloation.html"><strong aria-hidden="true">5.1.3.</strong> Byte-grained allocation</a></li><li class="chapter-item expanded "><a href="setting_up_memory_virtualization_and_access_management.html"><strong aria-hidden="true">5.1.4.</strong> Setting Up RAM Memory Virtualization and access_management</a></li><li class="chapter-item expanded "><a href="handling_the_Physical_MMU.html" class="active"><strong aria-hidden="true">5.1.5.</strong> Using the Physical MMU instead of Virtual MMU</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps.html"><strong aria-hidden="true">6.</strong> Handling interrupts and Traps</a></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps_2.html"><strong aria-hidden="true">7.</strong> Handling interrupts and Traps 2</a></li><li class="chapter-item expanded "><a href="handling_external_interrupts.html"><strong aria-hidden="true">8.</strong> Handling External Interrupts</a></li><li class="chapter-item expanded "><a href="the_block_driver.html"><strong aria-hidden="true">9.</strong> The Block Driver</a></li><li class="chapter-item expanded "><a href="system_calls.html"><strong aria-hidden="true">10.</strong> system_calls</a></li><li class="chapter-item expanded "><a href="setting_up_processes.html"><strong aria-hidden="true">11.</strong> Setting up Processes</a></li><li class="chapter-item expanded "><a href="Filesystem.html"><strong aria-hidden="true">12.</strong> Filesystem</a></li><li class="chapter-item expanded "><a href="user_processes.html"><strong aria-hidden="true">13.</strong> User Processes</a></li><li class="chapter-item expanded "><a href="overall_design.html"><strong aria-hidden="true">14.</strong> Overall Design</a></li><li class="chapter-item expanded "><a href="definitions_and_theories.html"><strong aria-hidden="true">15.</strong> Definitions and Theories</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="theory_on_the_linker.html"><strong aria-hidden="true">15.1.</strong> The linker</a></li><li class="chapter-item expanded "><a href="theory_on_Qemu.html"><strong aria-hidden="true">15.2.</strong> Qemu</a></li><li class="chapter-item expanded "><a href="fragmentation_issues.html"><strong aria-hidden="true">15.3.</strong> fragmentation_issues</a></li><li class="chapter-item expanded "><a href="memory_tracking_mechanisms.html"><strong aria-hidden="true">15.4.</strong> Memory Tracking Mechanisms</a></li><li class="chapter-item expanded "><a href="theory_on_MMU_implementation_in_riscv.html"><strong aria-hidden="true">15.5.</strong> Theory on MMU implementation in Riscv</a></li><li class="chapter-item expanded "><a href="VirtIO.html"><strong aria-hidden="true">15.6.</strong> VirtIO</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> Miscellenious</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="errors.html"><strong aria-hidden="true">16.1.</strong> Error Numbers</a></li><li class="chapter-item expanded "><a href="measuring_software_performance.html"><strong aria-hidden="true">16.2.</strong> Measuring Performance of software</a></li><li class="chapter-item expanded "><a href="importing_variables_from_the_linker_script.html"><strong aria-hidden="true">16.3.</strong> Importing variables from the Linker script</a></li><li class="chapter-item expanded "><a href="GNU_assembly_macros.html"><strong aria-hidden="true">16.4.</strong> GNU assembly macros</a></li><li class="chapter-item expanded "><a href="the_singleton_design.html"><strong aria-hidden="true">16.5.</strong> The singleton Structure</a></li><li class="chapter-item expanded "><a href="multitasking.html"><strong aria-hidden="true">16.6.</strong> Multitasking</a></li><li class="chapter-item expanded "><a href="Bitmasking_and_bit_operations.html"><strong aria-hidden="true">16.7.</strong> Bitmasking_and_bit_operations</a></li><li class="chapter-item expanded "><a href="compressed_instructions.html"><strong aria-hidden="true">16.8.</strong> Compressed Instructions</a></li><li class="chapter-item expanded "><a href="the_ABI.html"><strong aria-hidden="true">16.9.</strong> The ABI</a></li><li class="chapter-item expanded "><a href="ELF_files.html"><strong aria-hidden="true">16.10.</strong> Elf Files</a></li><li class="chapter-item expanded "><a href="riscv_registers.html"><strong aria-hidden="true">16.11.</strong> Riscv_registers</a></li><li class="chapter-item expanded "><a href="virt.html"><strong aria-hidden="true">16.12.</strong> Virtual representation of riscv in Qemu</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="pcie_express_devices.html"><strong aria-hidden="true">16.12.1.</strong> PCIe express devices</a></li><li class="chapter-item expanded "><a href="virtio_devices.html"><strong aria-hidden="true">16.12.2.</strong> VIRTIO devices</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> AfterMath</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="buffer_overflow_attacks.html"><strong aria-hidden="true">17.1.</strong> buffer_overflow_attacks</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.2.</strong> fork_bomb</div></li></ol></li><li class="chapter-item expanded "><a href="setting_up_wasm_runtime.html"><strong aria-hidden="true">18.</strong> Setting Up Wasm Runtime</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Developer Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="handling_the_physical_mmu"><a class="header" href="#handling_the_physical_mmu">Handling_the_Physical_MMU</a></h1>
+<p>Developing the Virtual MMU turneed out harder than expected. We had to figure out how to :</p>
+<ul>
+<li>Create a custom Page translation table</li>
+<li>Make the CPU consult the MMU every time the CPU executes an instruction</li>
+<li>Design our own page fault mechanisms.</li>
+</ul>
+<p>It is better to just use already made hardware. We get a performance boost. We get to use a standard method of handling transltion, a method that is tried and tested. Designing a custom MMU was hard... we failed but.. Well, we learn a lot... moving on.</p>
+<p>We need to cover the following tasks :</p>
+<ol>
+<li>Page allocations</li>
+<li>Page deallocations</li>
+<li>Program the Memory Management unit
+<ol>
+<li>Handle Mapping Virtual Adresses to Physical Addresses.</li>
+<li>Handling Page Faults</li>
+<li>Handling page Translations during CPU instruction executions.</li>
+</ol>
+</li>
+</ol>
+<h2 id="page-allocation-and-deallocation"><a class="header" href="#page-allocation-and-deallocation">Page allocation and deallocation</a></h2>
+<p>As discused earlier, we will be allocating pages from the heap of the RAM. Each page is 4096 bytes long. And each page has a descriptor that describes the page status. Each descriptor is 1 byte long. The number of descriptors is equal to the number of pages found in the head. The descriptors are stored in an array found in the kernel code. The array of descriptors is not part on the heap. </p>
+<p>The Heap is virtually divided into 2, The kernel Heap and the User Heap</p>
+<h3 id="allocation-algorithm"><a class="header" href="#allocation-algorithm">Allocation Algorithm</a></h3>
+<p>algorithm : alloc
+inputs to alloc : the number of free pages required a user process or the kernel(required_pages)
+Outputs to alloc : the address of the first page of a contiguous block of free pages (starter_address)
+main goal : return an address to the first page of a free contiguous set of pages  : A RESULT VALUE (pointer(usize)/ error)</p>
+<p>Steps:</p>
+<ol>
+<li>Confirm that the number of required pages is more than zero.
+<ol>
+<li>If number is zero or less
+<ol>
+<li>Throw an <a href="./errors#error_m1.html">Error M1</a> to show that the allocator was given a zero.</li>
+<li>Return the error to the calling function.</li>
+</ol>
+</li>
+<li>If the number is more than zero... continue to step 2</li>
+</ol>
+</li>
+<li>Traverse the array of descriptors found in the kernel code.</li>
+<li>Try to Find a block of contiguous free pages
+<ol>
+<li>If you find a block... skip to step 4</li>
+<li>If you traverse the whole array and you do not find space ... skip to step 5</li>
+</ol>
+</li>
+<li>Do the folowing :
+<ul>
+<li>update the descriptors that represent the block</li>
+<li>return the pointer to the first page of the block</li>
+</ul>
+</li>
+<li>Do the following
+<ul>
+<li>return an <a href="./errors#error_m2.html">error_M2</a> indicating that there is no free contiguous space.</li>
+</ul>
+</li>
+</ol>
+<h3 id="deallocation-algorithm"><a class="header" href="#deallocation-algorithm">Deallocation Algorithm</a></h3>
+<p>algorithm : dealloc
+inputs to dealloc algorithm : the address of the first page of a contiguous block of pages that needs to be freed (starter)
+Outputs to dealloc algorithm : The Result Type (Ok/Error)
+main goal : deallocate </p>
+<p>Steps:</p>
+<ol>
+<li>Check if the starter address is valid or not.
+<ul>
+<li>If the starter address is a null pointer... go to step 2</li>
+<li>If the starter address is an out of range address... go to step 3</li>
+<li>If the starter address is a valid address...go to step 4</li>
+</ul>
+</li>
+<li>Return a Result_Error showing that the process tried to deallocate a null pointer : <a href="./errors#error_m3.html">Error_M3</a></li>
+<li>Return a Result_Error showing that the process tried to deallocate a non-existent memory location : <a href="./errors#error_m4.html">Error_M4</a></li>
+<li>Loop through the allocated block page by page :
+<ul>
+<li>For every page...
+<ul>
+<li>clear the data by zero-ing the bytes within the page</li>
+<li>Change the status of the corresponding descriptor to 'empty'</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>After the loop, return a successful message Result (ok) type</li>
+</ol>
+<h2 id="programming-the-memory-management-unit"><a class="header" href="#programming-the-memory-management-unit">Programming the Memory Management unit</a></h2>
+<p>The instructions in the Elf files of programs typically reference virtual addresses. The CPU cannot execute an instruction that has a virtual address. For this reason, everytime the CPU encouters a virtual address in an instruction, so the CPU uses the MMU ciruitry to translate the virtual address into a physical address.</p>
+<p>You can program the MMU to enforce access rights to certain physical memory addresses, such that a translation will fail if an access right is being violated. If the translation fails, a page fault is thrown by the MMU and the interrupt handler handles it. In this case, the MMU acts as a memory protector, ensuring translations only happen when all access rights are adhered to.</p>
+<p>In Machine Mode, RISCV provides a mechanism of protecting memory called Physical Memory Protection(PMP). But PMP does not scale well.</p>
+<p>A virtual Memory Management system is provided In Supervisor mode</p>
+<ul>
+<li>leaf node</li>
+</ul>
+<h3 id="sv39-system"><a class="header" href="#sv39-system">SV39 system</a></h3>
+<p>Terms : </p>
+<ol>
+<li>The Virtual Address </li>
+<li>The Physical Address</li>
+<li>The Page table Entry (PTE)</li>
+</ol>
+<p>A page table contains 512 PTEs. ie (2^9) entries
+Each PTE is 8 bytes long. Which means the table occupies (512 x 8)bytes = 4096 bytes</p>
+<p>Rust:</p>
+<ul>
+<li>map</li>
+<li>unmap </li>
+<li>Translate</li>
+</ul>
+<p>Abstract a table entry</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct Entry {
+	pub entry: i64,
+}
+
+
+<span class="boring">}</span></code></pre></pre>
+<p>Abstract a translation table</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct Table {
+	pub entries: [Entry; 512],
+}
+<span class="boring">}</span></code></pre></pre>
+<h3 id="mapping-function"><a class="header" href="#mapping-function">Mapping function</a></h3>
+<p>inputs : 
+- mutable Root_table (we will update the root table)
+- Virtual address meant to be mapped
+- Physical address to be mapped
+- protection bots (flags)
+- the level of page table (by default 0)</p>
+<p>No outputs</p>
+<ul>
+<li>Make sure the bits are not zero. Zero means that the entry is a branch. we want a leaf.</li>
+<li>Extract the VPNs (3) from the virtual address</li>
+<li>Extract the PPNs from the Physical address</li>
+<li>Access the root table</li>
+<li>Use the VPN[2] index to access the entry table in the root (mutably) - call this entry x</li>
+<li>Check if the x points to a valid memory</li>
+<li>If No
+<ul>
+<li>allocate a new page, store the page address at addr_1</li>
+<li>update the entry x
+<ul>
+<li>store addr_1 into x</li>
+<li>shift x to the right by 2 bits</li>
+<li>add the valid bit in the LSB</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If yes, store the address of the next table at addr_1
+<ul>
+<li>Remove the valid bit from the copy value of x</li>
+<li>Shift the x by 2 bits to the left</li>
+<li>store this value into addr 1</li>
+</ul>
+</li>
+<li>Use the VPN[1] index to access the entry table in the Table_1 call it entry y</li>
+<li>Check if the y points to a valid memory</li>
+<li>If No
+<ul>
+<li>allocate a new page, store the page address at addr_2</li>
+<li>update the entry y
+<ul>
+<li>store addr_2 into y</li>
+<li>shift y to the right by 2 bits</li>
+<li>add the valid bit in the LSB</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If Yes
+<ul>
+<li>Remove the valid bit from the copy value of y</li>
+<li>Shift the y by 2 bits to the left</li>
+<li>store this value into addr_2</li>
+</ul>
+</li>
+<li>Use the VPN[0] index to access the entry table in the Table_2 whose address is addr_2 - call it entry z</li>
+<li>Create an temporary entry called PHYSICAL</li>
+<li>Store the PPNs in it</li>
+<li>Store the Flags in it, make it valid</li>
+<li>store it at Table_2 VPN[0]</li>
+</ul>
+<p>Use a loop in the future... this was just for clarity</p>
+<h4 id="unmapping"><a class="header" href="#unmapping">Unmapping</a></h4>
+<p>You can unmap a specific irtual address. Work this algorithm out.<br />
+You can also unmap the whole system, like the way stephen did. But this is undesirable.</p>
+<h4 id="translating"><a class="header" href="#translating">Translating</a></h4>
+<p>This function takes in a virtual address and returns a physical address. If things go wrong, it may throw a page fault or return (None) to notify you that such a translation does not exist.</p>
+<p>Inputs : </p>
+<ul>
+<li>Root_Table as read</li>
+<li>Virtual_address as read_only</li>
+</ul>
+<p>Outputs : Option<address></p>
+<ul>
+<li>extract each part of the VPN from the virtual address as VP1, VP2 and VP3</li>
+<li>access the root_table</li>
+<li>access the target entry in root using index VP2</li>
+<li>Enter a loop that traverses PTEs starting from the root table
+<ul>
+<li>read the target PTE</li>
+<li>check if it is valid, else throw a page fault</li>
+<li>Check if the entry is a branch or a leaf</li>
+<li>If the entry is a branch, continue traversing</li>
+<li>If the entry is a leaf
+<ul>
+<li>extract the offset from the virtual address</li>
+<li>extract the physical address by 
+<ul>
+<li>shifting entry to the left by 2 bits</li>
+<li>Clearing out the last 2 bits</li>
+<li>ANDING the offset to the page physical address </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If you reach this point, it means you have not found a translation, return (None)</li>
+</ul>
+<p>Now the kernel is currently using the physical addresses. TO turn the MMu on, you set the SATP MODE field to 8. 
+But if we turn the MMU ON , Both the kernel and user processes will be forced to use virtual addresses ONLY. This means that we have to MAP all existing memory addresses befor we turn the MMU on. 
+So we will map the kernel elf sections, kernel stack, required MMIO addresses.<br />
+As a result, the kernel code meant to run in machine mode will also run in Supervisor mode</p>
+<p>To make things easy, we identity map the virtual addresses and Virtual addresses. This means that for non_user addresses, there will be no time wasted on translation</p>
+<h4 id="identity-mapping-a-range-of-functions"><a class="header" href="#identity-mapping-a-range-of-functions">identity mapping a range of functions</a></h4>
+<p>The goal is to map a couple of pages at a time. Pages that have not been mapped will not be accessible. So if there is any page that has elements inside, it needs to get mapped. For example kernel_data_section is found in a certain page, we don't care if it is in the middle or at the start of a page... bottomline, that page needs to be mapped.<br />
+All page start addresses are aligned to 4096. That is why we defined the allign function. However the align function ony returns a multiple value that is greater or equal to the input value.</p>
+<p>Algorithm : map_pages_in_a_range
+inputs :
+- the mutable root table
+- The start known address
+- The End known address
+- The security flags</p>
+<p>No outputs</p>
+<ul>
+<li>Find the true start_address of the page that contains start_known_address  : Call it true_start</li>
+<li>Find the true end_address : this is the address of the next page that has not been touched by the End known address
+<ul>
+<li>You can get this address by using the 'align function' on the End known address.</li>
+</ul>
+</li>
+<li>Calculate the number of pages that are found within true start and true end, this number of pages will help us in the looping process of mapping mapping.</li>
+<li>Loop for each page that needs to be mapped
+<ul>
+<li>For each page : page::map(root, memaddr, memaddr, bits, 0);</li>
+<li>increment the memaddr by 4096</li>
+</ul>
+</li>
+</ul>
+<p>Sometimes mapping may overlap, but that will cause no harm, because our mapping function only maps pages that have not been mapped. If it meets a mapped page, it moves along[undone]</p>
+<p>Then we map all the setions and UART mem addresses : ORDER</p>
+<ol>
+<li>Export global data from Linker and bring them to Rust</li>
+<li>Initialize Page allocation system</li>
+<li>Allocate the Root table in the Heap. We could have defined a predefined array table in our code. But if we did that , the memory address of the array would be hard to pinpoint. For this reason, we just use the heap, where we can know the exact page and address that the root table occupies. (4096 bytes, 512 entries)</li>
+<li>Update the SATP register ... (without turning it on). Here is the SATP Layout :
+<ul>
+<li>insert the 44 bit PPN in a abstract SATP (usize)</li>
+<li>Insert the mode bit (setting the mode bit does not automatically turn the MMU on out of the blue, this mode bit will work only id we are in supervisor mode)</li>
+<li>To actually switch from Machine mode to Supervisor mode, you have to modify the SPIE and MPP fields in the mstatus register. Afterwards, you call mret to restore the MPP, SPIE and update the PC register to point at the MEPC value.</li>
+<li>Use inline web assembly to modify the real SATP : asm!(&quot;csrw satp, $0&quot; :: &quot;r&quot;(satp_val));
+<img src="images/RISCV/satp_register.png" alt="SATP register layout" /></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>you can store your translation tables anywhere, I chose the heap</li>
+<li>The SPIE bit in the sstatus or msstatus indicates whether supervisor interrupts were enabled prior to trapping into supervisor
+mode.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="setting_up_memory_virtualization_and_access_management.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="handling_interrupts_and_traps.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="setting_up_memory_virtualization_and_access_management.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="handling_interrupts_and_traps.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </body>
+</html>

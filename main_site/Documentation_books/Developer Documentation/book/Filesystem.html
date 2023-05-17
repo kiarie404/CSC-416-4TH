@@ -1,0 +1,307 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Filesystem - Developer Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="setting_things_up.html"><strong aria-hidden="true">1.</strong> Setting Things Up</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="setting_up_the_compiler.html"><strong aria-hidden="true">1.1.</strong> Setting up the compiler</a></li><li class="chapter-item expanded "><a href="setting_up_LLD_linker.html"><strong aria-hidden="true">1.2.</strong> Setting up the linker</a></li><li class="chapter-item expanded "><a href="setting_up_qemu.html"><strong aria-hidden="true">1.3.</strong> Setting up the Riscv Virtual environment</a></li><li class="chapter-item expanded "><a href="setting_up_build_automation.html"><strong aria-hidden="true">1.4.</strong> Setting up the Build automation tool</a></li></ol></li><li class="chapter-item expanded "><a href="the_bootloader.html"><strong aria-hidden="true">2.</strong> The Bootloader</a></li><li class="chapter-item expanded "><a href="the_bootloader_2.html"><strong aria-hidden="true">3.</strong> The Bootloader_2</a></li><li class="chapter-item expanded "><a href="setting_up_comunications.html"><strong aria-hidden="true">4.</strong> Setting Up Communications</a></li><li class="chapter-item expanded "><a href="setting_up_memory_management.html"><strong aria-hidden="true">5.</strong> Setting Up Memory Management</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="RAM_management.html"><strong aria-hidden="true">5.1.</strong> The RAM Management</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="abstracting_the_RAM.html"><strong aria-hidden="true">5.1.1.</strong> Abstracting the RAM</a></li><li class="chapter-item expanded "><a href="allocation_and_deallocation_RAM.html"><strong aria-hidden="true">5.1.2.</strong> Allocating RAM Memory</a></li><li class="chapter-item expanded "><a href="fine_grained_alloation.html"><strong aria-hidden="true">5.1.3.</strong> Byte-grained allocation</a></li><li class="chapter-item expanded "><a href="setting_up_memory_virtualization_and_access_management.html"><strong aria-hidden="true">5.1.4.</strong> Setting Up RAM Memory Virtualization and access_management</a></li><li class="chapter-item expanded "><a href="handling_the_Physical_MMU.html"><strong aria-hidden="true">5.1.5.</strong> Using the Physical MMU instead of Virtual MMU</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps.html"><strong aria-hidden="true">6.</strong> Handling interrupts and Traps</a></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps_2.html"><strong aria-hidden="true">7.</strong> Handling interrupts and Traps 2</a></li><li class="chapter-item expanded "><a href="handling_external_interrupts.html"><strong aria-hidden="true">8.</strong> Handling External Interrupts</a></li><li class="chapter-item expanded "><a href="the_block_driver.html"><strong aria-hidden="true">9.</strong> The Block Driver</a></li><li class="chapter-item expanded "><a href="system_calls.html"><strong aria-hidden="true">10.</strong> system_calls</a></li><li class="chapter-item expanded "><a href="setting_up_processes.html"><strong aria-hidden="true">11.</strong> Setting up Processes</a></li><li class="chapter-item expanded "><a href="Filesystem.html" class="active"><strong aria-hidden="true">12.</strong> Filesystem</a></li><li class="chapter-item expanded "><a href="user_processes.html"><strong aria-hidden="true">13.</strong> User Processes</a></li><li class="chapter-item expanded "><a href="overall_design.html"><strong aria-hidden="true">14.</strong> Overall Design</a></li><li class="chapter-item expanded "><a href="definitions_and_theories.html"><strong aria-hidden="true">15.</strong> Definitions and Theories</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="theory_on_the_linker.html"><strong aria-hidden="true">15.1.</strong> The linker</a></li><li class="chapter-item expanded "><a href="theory_on_Qemu.html"><strong aria-hidden="true">15.2.</strong> Qemu</a></li><li class="chapter-item expanded "><a href="fragmentation_issues.html"><strong aria-hidden="true">15.3.</strong> fragmentation_issues</a></li><li class="chapter-item expanded "><a href="memory_tracking_mechanisms.html"><strong aria-hidden="true">15.4.</strong> Memory Tracking Mechanisms</a></li><li class="chapter-item expanded "><a href="theory_on_MMU_implementation_in_riscv.html"><strong aria-hidden="true">15.5.</strong> Theory on MMU implementation in Riscv</a></li><li class="chapter-item expanded "><a href="VirtIO.html"><strong aria-hidden="true">15.6.</strong> VirtIO</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> Miscellenious</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="errors.html"><strong aria-hidden="true">16.1.</strong> Error Numbers</a></li><li class="chapter-item expanded "><a href="measuring_software_performance.html"><strong aria-hidden="true">16.2.</strong> Measuring Performance of software</a></li><li class="chapter-item expanded "><a href="importing_variables_from_the_linker_script.html"><strong aria-hidden="true">16.3.</strong> Importing variables from the Linker script</a></li><li class="chapter-item expanded "><a href="GNU_assembly_macros.html"><strong aria-hidden="true">16.4.</strong> GNU assembly macros</a></li><li class="chapter-item expanded "><a href="the_singleton_design.html"><strong aria-hidden="true">16.5.</strong> The singleton Structure</a></li><li class="chapter-item expanded "><a href="multitasking.html"><strong aria-hidden="true">16.6.</strong> Multitasking</a></li><li class="chapter-item expanded "><a href="Bitmasking_and_bit_operations.html"><strong aria-hidden="true">16.7.</strong> Bitmasking_and_bit_operations</a></li><li class="chapter-item expanded "><a href="compressed_instructions.html"><strong aria-hidden="true">16.8.</strong> Compressed Instructions</a></li><li class="chapter-item expanded "><a href="the_ABI.html"><strong aria-hidden="true">16.9.</strong> The ABI</a></li><li class="chapter-item expanded "><a href="ELF_files.html"><strong aria-hidden="true">16.10.</strong> Elf Files</a></li><li class="chapter-item expanded "><a href="riscv_registers.html"><strong aria-hidden="true">16.11.</strong> Riscv_registers</a></li><li class="chapter-item expanded "><a href="virt.html"><strong aria-hidden="true">16.12.</strong> Virtual representation of riscv in Qemu</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="pcie_express_devices.html"><strong aria-hidden="true">16.12.1.</strong> PCIe express devices</a></li><li class="chapter-item expanded "><a href="virtio_devices.html"><strong aria-hidden="true">16.12.2.</strong> VIRTIO devices</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> AfterMath</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="buffer_overflow_attacks.html"><strong aria-hidden="true">17.1.</strong> buffer_overflow_attacks</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.2.</strong> fork_bomb</div></li></ol></li><li class="chapter-item expanded "><a href="setting_up_wasm_runtime.html"><strong aria-hidden="true">18.</strong> Setting Up Wasm Runtime</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Developer Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="filesystem"><a class="header" href="#filesystem">Filesystem</a></h1>
+<h2 id="theory"><a class="header" href="#theory">Theory</a></h2>
+<p><strong>What is a file?</strong><br />
+A file is a named collection of static data.<br />
+Data can be a byte, a couple of bytes or gigabytes.<br />
+The data collection needs to be static so as to store data persistently. So in this case, files can be redefined as : A named data collection in a persistent storage device.</p>
+<p><em><strong>File Types</strong></em><br />
+There are different types of files. Types emmerge due to either &quot;the file format&quot; or &quot;the file purpose&quot;.<br />
+For example an elf file has a different format to a .exe file... but they serve the same purpose.<br />
+A data file has the same format as a system file... but they erver different purposes</p>
+<p>File Types include :</p>
+<ol>
+<li>Regular Data Files : These are files that contain user-level information. It can contain Binary data or ASCII data.</li>
+<li>Directory Files : These are files that describe the structure of the file system</li>
+</ol>
+<p><em><strong>Block device</strong></em><br />
+A block is a kind of storage device that allows data to be read and written to it in fixed sizes called blocks. A block is a large group of bytes. From this, it it clear that a block storage device consisting of many many bytes. For example a HDD device or SSD device.</p>
+<p><em><strong>A Character device</strong></em><br />
+A character device is also a storage device that only allows data to be read and written to it character-wise... or rather byte-wise.</p>
+<p>Block devices are suitable in situations where we need performance. This is because Character devices force the CPU to do more I/O operations. I/O operations are expensive as hell.  We always need performance</p>
+<p>Character devices are suitable when we need data in a stream-wise fashion... a continuous fashion. Eg data from a keyboard or a mouse. Keyboards and Mice are character devices.</p>
+<p><em><strong>A disk Partition</strong></em>
+A disk is a fancy name for a hardisk ... a hardisk is a type of a block device.<br />
+A partition scheme is a specification of how to logically seperate bytes in a hard disk into seperate sections called partitions.</p>
+<p>We have many partitioning specifications eg MBR, UEFI, GPT LVM<br />
+If you use a partitioning software to partition your disk, your disk will typically have 3 parts...</p>
+<ol>
+<li>The partial_boot code : The partial boot code will help the firmware locate the bootloader that may be found in one of the partitions</li>
+<li>The partition table </li>
+<li>The actual Partitions</li>
+</ol>
+<p>The Partition table contains metadata about the partitions. It typically contains info such as :</p>
+<ul>
+<li>The file systems found in each partition</li>
+<li>The status flags of each partition eg : Bootable flag, writable flag</li>
+<li>The size of each partition</li>
+<li>The memory boundaries of each partition</li>
+<li>The type of each partition (primary? swap? extended? logical? )</li>
+</ul>
+<p><em><strong>A File system</strong></em><br />
+A file system is a software definition of how the bytes in a block device are organized. To be more specific a file system is a software definition of how the bytes in a <strong>partition</strong> are organized.<br />
+We have many file systems in existence...each with their own usecase and trade-offs. For example : NTFS, ExFAT, EXT4, BTRFS and Minix 3 File system.</p>
+<p>We will focus on the Minix 3 file system... but with tweaks</p>
+<h3 id="minix-3-file-system-our-variation"><a class="header" href="#minix-3-file-system-our-variation">Minix 3 File System (our Variation)</a></h3>
+<p>The minix 3 Filesystem organizes the bytes within a partition as follows :<br />
+<img src="./images/Minix%203%20filesystem.png" alt="Minix 3 file system" /></p>
+<p><strong>A block</strong> is a group of bytes. Like in minix 3, a block typically means 1024 contiguous bytes. But this is not always the case. For example, the superblock is only 32 contiguous bytes.</p>
+<p><strong>A zone</strong> is a group of blocks. Like in Minix 3, a zone usually contains 4 contiguous blocks.</p>
+<p><strong>A bitmap</strong> is an array of bits.</p>
+<h4 id="the-boot-block"><a class="header" href="#the-boot-block"><strong>The Boot block</strong></a></h4>
+<p>This section might contain boot code for an operating system. If there is no operating system...this section is filled with zeros. The bootblock is 1024 bytes long. Sometimes the 1024 byte is not enough... in such a case, part of the boot code will get stored in the Data zone.</p>
+<h4 id="the-superblock"><a class="header" href="#the-superblock"><strong>The SuperBlock</strong></a></h4>
+<p>The Superblock is 32 bytes long.<br />
+The Superblock contains metadata about the entire Filesystem. Here is a struct showing the data contained in a superblock :</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[repr(C)]
+pub struct SuperBlock {
+  pub ninodes:         u32,  // the total number of index nodes
+  pub pad0:            u16,
+  pub imap_blocks:     u16,  // 
+  pub zmap_blocks:     u16,
+  pub first_data_zone: u16,
+  pub log_zone_size:   u16,
+  pub pad1:            u16,
+  pub max_size:        u32,
+  pub zones:           u32,
+  pub magic:           u16,  // identifies the file system type (Minix == 0x4d5a)
+  pub pad2:            u16,
+  pub block_size:      u16,
+  pub disk_version:    u8,
+}
+<span class="boring">}</span></code></pre></pre>
+<p>The superblock does not change once the partition gets mounted. This is because the superblock contains static information such as &quot;the number of inodes&quot; which will only change when you resize the disk.</p>
+<p>Our file system code only needs to read from this Superblock structure. Recall that we can find this structure after the boot block. The default block size of the Minix 3 file system is 1,024 bytes, which is why we can ask the block driver to get us the super block using the following.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// descriptor, buffer, size, offset
+// synchronous_read ... it's synchronous because we suspend the calling code until the read operation is done.
+// If it were an asynchronous read... the calling code would have continued doing other things as it waits for the I/O operation to end.
+syc_read(desc, buffer.get_mut(), 512, 1024);
+<span class="boring">}</span></code></pre></pre>
+<p>The super block itself is only about 32 bytes; however, recall that the block driver must receive requests in sectors which is a group of 512 bytes. Yes, we waste quite a bit of memory reading the super block, but due to I/O constraints, we have to.  This is why I use a buffer in most of my code. We can point the structure to just the top portion of the memory. If the fields are aligned correctly, we can read the superblock by simply referencing the Rust structure. This is why you see #[repr(C)] to change Rust's structure to a C-style structure. </p>
+<p>The Superblock is 32 bytes but our block read function reads 512 bytes at once. So we will just read the 512 bytes and store them in a buffer... from there we can just disect it using offsets of u8</p>
+<h4 id="the-padding-to-even-out-a-block-to-1024-bytes"><a class="header" href="#the-padding-to-even-out-a-block-to-1024-bytes">The Padding to even out a block to 1024 bytes</a></h4>
+<p>Considering the superblock</p>
+<h4 id="the-z-map-and-imap"><a class="header" href="#the-z-map-and-imap">THe Z map and imap</a></h4>
+<p>The Z map is a bunch of 1-bit arrays. Each bit represents an existing zone. 1 means the zone is taken and 0 means the zone is free.<br />
+The Imap is a bunch of 1-bit arrays. Each bit represents an existing inode. 1 means the zone is taken and 0 means the zone is free.</p>
+<h2 id="implementation"><a class="header" href="#implementation">Implementation</a></h2>
+<p>If you make a function a process, it can be executed independently if it is pure non_dependent code.<br />
+Our file block driver initially did synchronous reads. Synchronous reads bad for performance.<br />
+We need to mak our file reads asynchronous. Asynchronous reads are good for performance.<br />
+We can make our file reading asynchronous by turning the file reading operation into a kernel process... instead of a procedural function. This kernel process will only be ready to get executed if we receive an interrupt from the block device.(the block device sends interrupts to signal that it has finished a read operation).</p>
+<p>CAN I JUST USE THE PREDEFINED MINIX FILESYSteM?????!!!!</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="setting_up_processes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="user_processes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="setting_up_processes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="user_processes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>The Block Driver - Developer Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="setting_things_up.html"><strong aria-hidden="true">1.</strong> Setting Things Up</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="setting_up_the_compiler.html"><strong aria-hidden="true">1.1.</strong> Setting up the compiler</a></li><li class="chapter-item expanded "><a href="setting_up_LLD_linker.html"><strong aria-hidden="true">1.2.</strong> Setting up the linker</a></li><li class="chapter-item expanded "><a href="setting_up_qemu.html"><strong aria-hidden="true">1.3.</strong> Setting up the Riscv Virtual environment</a></li><li class="chapter-item expanded "><a href="setting_up_build_automation.html"><strong aria-hidden="true">1.4.</strong> Setting up the Build automation tool</a></li></ol></li><li class="chapter-item expanded "><a href="the_bootloader.html"><strong aria-hidden="true">2.</strong> The Bootloader</a></li><li class="chapter-item expanded "><a href="the_bootloader_2.html"><strong aria-hidden="true">3.</strong> The Bootloader_2</a></li><li class="chapter-item expanded "><a href="setting_up_comunications.html"><strong aria-hidden="true">4.</strong> Setting Up Communications</a></li><li class="chapter-item expanded "><a href="setting_up_memory_management.html"><strong aria-hidden="true">5.</strong> Setting Up Memory Management</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="RAM_management.html"><strong aria-hidden="true">5.1.</strong> The RAM Management</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="abstracting_the_RAM.html"><strong aria-hidden="true">5.1.1.</strong> Abstracting the RAM</a></li><li class="chapter-item expanded "><a href="allocation_and_deallocation_RAM.html"><strong aria-hidden="true">5.1.2.</strong> Allocating RAM Memory</a></li><li class="chapter-item expanded "><a href="fine_grained_alloation.html"><strong aria-hidden="true">5.1.3.</strong> Byte-grained allocation</a></li><li class="chapter-item expanded "><a href="setting_up_memory_virtualization_and_access_management.html"><strong aria-hidden="true">5.1.4.</strong> Setting Up RAM Memory Virtualization and access_management</a></li><li class="chapter-item expanded "><a href="handling_the_Physical_MMU.html"><strong aria-hidden="true">5.1.5.</strong> Using the Physical MMU instead of Virtual MMU</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps.html"><strong aria-hidden="true">6.</strong> Handling interrupts and Traps</a></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps_2.html"><strong aria-hidden="true">7.</strong> Handling interrupts and Traps 2</a></li><li class="chapter-item expanded "><a href="handling_external_interrupts.html"><strong aria-hidden="true">8.</strong> Handling External Interrupts</a></li><li class="chapter-item expanded "><a href="the_block_driver.html" class="active"><strong aria-hidden="true">9.</strong> The Block Driver</a></li><li class="chapter-item expanded "><a href="system_calls.html"><strong aria-hidden="true">10.</strong> system_calls</a></li><li class="chapter-item expanded "><a href="setting_up_processes.html"><strong aria-hidden="true">11.</strong> Setting up Processes</a></li><li class="chapter-item expanded "><a href="Filesystem.html"><strong aria-hidden="true">12.</strong> Filesystem</a></li><li class="chapter-item expanded "><a href="user_processes.html"><strong aria-hidden="true">13.</strong> User Processes</a></li><li class="chapter-item expanded "><a href="overall_design.html"><strong aria-hidden="true">14.</strong> Overall Design</a></li><li class="chapter-item expanded "><a href="definitions_and_theories.html"><strong aria-hidden="true">15.</strong> Definitions and Theories</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="theory_on_the_linker.html"><strong aria-hidden="true">15.1.</strong> The linker</a></li><li class="chapter-item expanded "><a href="theory_on_Qemu.html"><strong aria-hidden="true">15.2.</strong> Qemu</a></li><li class="chapter-item expanded "><a href="fragmentation_issues.html"><strong aria-hidden="true">15.3.</strong> fragmentation_issues</a></li><li class="chapter-item expanded "><a href="memory_tracking_mechanisms.html"><strong aria-hidden="true">15.4.</strong> Memory Tracking Mechanisms</a></li><li class="chapter-item expanded "><a href="theory_on_MMU_implementation_in_riscv.html"><strong aria-hidden="true">15.5.</strong> Theory on MMU implementation in Riscv</a></li><li class="chapter-item expanded "><a href="VirtIO.html"><strong aria-hidden="true">15.6.</strong> VirtIO</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> Miscellenious</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="errors.html"><strong aria-hidden="true">16.1.</strong> Error Numbers</a></li><li class="chapter-item expanded "><a href="measuring_software_performance.html"><strong aria-hidden="true">16.2.</strong> Measuring Performance of software</a></li><li class="chapter-item expanded "><a href="importing_variables_from_the_linker_script.html"><strong aria-hidden="true">16.3.</strong> Importing variables from the Linker script</a></li><li class="chapter-item expanded "><a href="GNU_assembly_macros.html"><strong aria-hidden="true">16.4.</strong> GNU assembly macros</a></li><li class="chapter-item expanded "><a href="the_singleton_design.html"><strong aria-hidden="true">16.5.</strong> The singleton Structure</a></li><li class="chapter-item expanded "><a href="multitasking.html"><strong aria-hidden="true">16.6.</strong> Multitasking</a></li><li class="chapter-item expanded "><a href="Bitmasking_and_bit_operations.html"><strong aria-hidden="true">16.7.</strong> Bitmasking_and_bit_operations</a></li><li class="chapter-item expanded "><a href="compressed_instructions.html"><strong aria-hidden="true">16.8.</strong> Compressed Instructions</a></li><li class="chapter-item expanded "><a href="the_ABI.html"><strong aria-hidden="true">16.9.</strong> The ABI</a></li><li class="chapter-item expanded "><a href="ELF_files.html"><strong aria-hidden="true">16.10.</strong> Elf Files</a></li><li class="chapter-item expanded "><a href="riscv_registers.html"><strong aria-hidden="true">16.11.</strong> Riscv_registers</a></li><li class="chapter-item expanded "><a href="virt.html"><strong aria-hidden="true">16.12.</strong> Virtual representation of riscv in Qemu</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="pcie_express_devices.html"><strong aria-hidden="true">16.12.1.</strong> PCIe express devices</a></li><li class="chapter-item expanded "><a href="virtio_devices.html"><strong aria-hidden="true">16.12.2.</strong> VIRTIO devices</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> AfterMath</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="buffer_overflow_attacks.html"><strong aria-hidden="true">17.1.</strong> buffer_overflow_attacks</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.2.</strong> fork_bomb</div></li></ol></li><li class="chapter-item expanded "><a href="setting_up_wasm_runtime.html"><strong aria-hidden="true">18.</strong> Setting Up Wasm Runtime</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Developer Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="the-block-driver"><a class="header" href="#the-block-driver">The Block Driver</a></h1>
+<p>Theory : Virtio Protocol</p>
+<p>VirtIO protocol is a communication protocol. It defines how a virtual machine communicates with a hypervisor.<br />
+Okay... now you are asking &quot;what do virtual machines and hypervisors have to do with us? we were just here chilling and talking about bare-metal operating systems!&quot;</p>
+<p>The thing is that Virtio protocol defines Virtio devices. Virtio devices are virtual devices that have a simple standard interface. For example, it defines network cards and hard disks. Qemu uses provides us with this devices.<br />
+In our case, we will act ad the VM  and Qemu will act as the Hypervisor.</p>
+<p>We will deal with virtio block devices. We will write a driver for a Virtio Block device.</p>
+<p><img src="./images/Virtio%20MMIO%20Register%20Layout%20part%201.png" alt="Virtio memory layout part 1" />
+<img src="./images/Virtio%20MMIO%20register%20layout%20part%202.png" alt="Virtio memory layout part 2" />
+<img src="./images/virtio%20device%20IDs.png" alt="Virtio device type IDs" /></p>
+<p>For the QEMU emulator, it puts virtio devices (backwards) from 0x1000_1000 to 0x1000_8000. If we only have one device, it should be attached at 0x1000_8000<br />
+Qemu supports 8 Virtio buses. Each having 4096 byte register space.</p>
+<p>We use MMIO programming to communicate with the underlying Virtio device
+MMIO registers for Virtio in Riscv are 32 bits only</p>
+<p><em><strong>Abstracting the MMIO Bus address full of registers</strong></em></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Below are offsets
+#[repr(usize)]
+pub enum MmioOffsets {
+  MagicValue = 0x000,
+  // Version = 0x004,
+  DeviceId = 0x008,
+  VendorId = 0x00c,
+  HostFeatures = 0x010,
+  HostFeaturesSel = 0x014,
+  GuestFeatures = 0x020,
+  GuestFeaturesSel = 0x024,
+  GuestPageSize = 0x028,
+  QueueSel = 0x030,
+  QueueNumMax = 0x034,
+  QueueNum = 0x038,
+  QueueAlign = 0x03c,
+  QueuePfn = 0x040,
+  QueueNotify = 0x050,
+  InterruptStatus = 0x060,
+  InterruptAck = 0x064,
+  Status = 0x070,
+  Config = 0x100,
+}
+
+
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li><em>probe function</em> - We first need to scan the buses dedicated to connecting the virtio devices (from 0x1000_1000 to 0x1000_8000) and check which devices is attached to each bus 
+<ul>
+<li>loop through the buses in a bus-wise fashion</li>
+<li>confirm that indeed each bus is a virtio bus address by reading the magic value</li>
+<li>check if a device is connected to the bus. (if device_id &gt; 0)</li>
+<li>Check the type of device attached to the bus (device ID 2 == block device)</li>
+<li>If we find that the bus is a virtio bus and device id 2, we can configure this device as a block device. </li>
+</ul>
+</li>
+</ul>
+<p><em><strong>configuring the device (initializing_the_device)</strong></em><br />
+Before we use the device(any device in the world), we must set the right configurations by adjusting the values in the MMIO registers.<br />
+These steps are commonly referred to as the &quot;initialization handshake&quot;. They are used to establish communication between the driver and the device.</p>
+<p>The steps for configurating a device are laid out in the virtio specification as (<a href="https://docs.oasis-open.org/virtio/virtio/v1.1/cs01/virtio-v1.1-cs01.html#x1-920001">source</a>):</p>
+<p>pre-requisites : </p>
+<ul>
+<li><a href="https://docs.oasis-open.org/virtio/virtio/v1.1/cs01/virtio-v1.1-cs01.html#x1-100001"><strong>Device Status Register</strong> fields</a> </li>
+<li></li>
+</ul>
+<ol>
+<li>Reset the device by writing 0 to the Device status register. Resetting means setting values to known default values. This removes any uncertainities or unpredictable behaviour, we begin our communication on a clean slate. No surprises.</li>
+</ol>
+<ul>
+<li>Reading from the Device status register returns the current device status flags.</li>
+<li>Writing non-zero values to this register sets the status flags, indicating the OS/driver progress. </li>
+<li>Writing zero (0x0) to this register triggers a device reset. The device sets QueuePFN to zero (0x0) for all queues in the device.</li>
+</ul>
+<ol start="2">
+<li>Set the ACKNOWLEDGE status bit to the status register.</li>
+</ol>
+<ul>
+<li>within the device status register, there is a single bit called the Acknowledge status bit.</li>
+<li>The Acknowledge status bit value is 1 when both the driver and device agree that they are connected to each other and can continue with initialization. This bit answers the question &quot;Are we connected to each other? And are all of us okay with this connection?&quot;</li>
+<li>The driver sets the Bit to 1 to acknowledge that it has access to the device registers and has found it to be a valid virtio device(connected).</li>
+<li>The device reads, the bit and also resets it to 1 to confirm that it is okay with the connection.</li>
+<li>The device cannot reset the bit to 0. If an error occurs within the device and the device is not okay with the connection, it sends a message through other status bits such as DEVICE_NEEDS_RESET or DEVICE_FAILED bits, to indicate that the initialization process has failed and needs to be restarted in order to create a proper connection.</li>
+</ul>
+<ol start="3">
+<li>Set the DRIVER status bit to the status register </li>
+</ol>
+<ul>
+<li>The driver status bit indicates that the Guest has a driver that can drive the device.</li>
+<li>After the driver sets the Acknowledge bit to 1, it sets the DRIVER status bit to 1 to indicate that it is in control of the device and is ready to negotiate the features that the device supports. The device then acknowledges this by setting the ACKNOWLEDGE status bit to 1 and waits for the driver to read the device features from the host_features register.</li>
+</ul>
+<ol start="4">
+<li>Read device features from <strong>host_features register</strong>.</li>
+</ol>
+<ul>
+<li>Here are the <a href="https://docs.oasis-open.org/virtio/virtio/v1.1/cs01/virtio-v1.1-cs01.html#x1-2420003">Features of the virtio block device</a></li>
+<li>Each virtio device offers all the features it understands. During device initialization, the driver reads this and tells the device the subset that it accepts. The only way to renegotiate is to reset the device.</li>
+<li>This allows for forwards and backwards compatibility: if the device is enhanced with a new feature bit, older drivers will not write that feature bit back to the device. Similarly, if a driver is enhanced with a feature that the device doesn’t support, it see the new feature is not offered. </li>
+<li>Feature bits are allocated as follows:
+0 to 23
+Feature bits for the specific device type 
+24 to 37
+Feature bits reserved for extensions to the queue and feature negotiation mechanisms 
+38 and above
+Feature bits reserved for future extensions.
+Note: For example, feature bit 0 for a network device (i.e. Device ID 1) indicates that the device supports checksumming of packets.</li>
+</ul>
+<ol start="5">
+<li>Negotiate the set of features and write what you'll accept to <strong>guest_features register</strong>.</li>
+</ol>
+<ul>
+<li>The Guest_features register contains Write_only Flags representing device features understood and activated by the driver.</li>
+<li>Fill this out so as to establish compatibility between</li>
+</ul>
+<ol start="6">
+<li>
+<p>Set the FEATURES_OK status bit to the status register '</p>
+<ul>
+<li>The FEATURES_OK status bit Indicates that the driver has acknowledged all the features it understands, and feature negotiation is complete. </li>
+<li>The driver sets the FEATURES_OK status bit to indicate to the Virtio device that it has negotiated a set of compatible features. </li>
+<li>During device configuration, after the driver negotiates the set of features and writes what it will accept to the guest_features register, the device checks if it can support the negotiated features. If the device does not support all the features negotiated by the driver, it may set the FEATURES_OK status bit to 0 to indicate that it cannot accept the negotiated features</li>
+</ul>
+</li>
+<li>
+<p>Re-read the status register to confirm that the device accepted your features. The driver might have reset the Features_OK register to 0.</p>
+</li>
+<li>
+<p>Perform device-specific setup - The driver performs any device-specific setup required to initialize the Virtio device, such as configuring queues and memory mappings.</p>
+<ul>
+<li>Set <strong>Queue Number register</strong>.
+<ul>
+<li>The QueueNum is a register in the device's configuration space that specifies the maximum number of virtqueues supported by the device. By default, the Queue Number is set to 1...such that there is only one virtual queue occupying all of the buffer space.</li>
+<li>But you may need multiple queues to implement parallelism. So you will have multiple queues under the same buffer space.</li>
+<li>The <strong>Queue_Num_Max register</strong> is provided by the device (Read only), it specifies the total amount of parallel queues you can have </li>
+</ul>
+</li>
+<li>VIRTIO_RING_SIZE is a constant defined in the VirtIO specification and represents the maximum number of elements (or &quot;entries&quot;) in a VirtIO ring (default == 1024). A VirtIO ring is a data structure used by the VirtIO device and the driver to communicate with each other. It is a circular buffer of fixed size that is divided into two sections: the &quot;available ring&quot; and the &quot;used ring&quot;. </li>
+</ul>
+</li>
+</ol>
+<p>Actual :
+- step 7 :
+- read Queue_Num_Max register and see the max number of queues that is supported for parallelism
+- We randomly chose 1024 (VIRTIO_RING_SIZE) to be the number of parallel queues
+- We calculate the number of pages required to store the Queue structure for the block device. We add PAGE_SIZE - 1 to the size of the Queue structure (which is obtained using the size_of function), then divides the result by PAGE_SIZE to round up to the nearest page. The addition of PAGE_SIZE - 1 is to ensure that the calculation rounds up to the nearest page, so that there is no wasted memory.
+- We create space for the virtual queue in our driver. We do this by allocating pages that will be used by the queue
+- allocate memory for the queue and stores the physical address of the queue in the queue_pfn </p>
+<ol>
+<li>Set the DRIVER_OK status bit to the status register. The device is now LIVE.
+<ul>
+<li>The DRIVER_OK status bit indicates that the driver is set up and ready to drive the device. </li>
+<li>The driver sets the DRIVER_OK status bit to 1 to indicate to the Virtio device that initialization is complete and it is ready to use the device.</li>
+</ul>
+</li>
+</ol>
+<p><em><strong>Communicating</strong></em>
+Now that the device is LIVE, we can start making requests by using the virtio rings.<br />
+The virtio descriptor/ring system is generic; however, we have a protocol when making block requests. We will make a block request using three descriptors: 
+(1) block request header<br />
+(2) block request buffer<br />
+(3) block request status.</p>
+<p>The Block request header specifies the type of operation and the sector number<br />
+After the header, we store the data buffer. For reads, the device will write to this piece of memory, and for writes, the device will read from this piece of memory. It's important to note that these must be physical addresses, since the block device bypasses the MMU.</p>
+<p>Finally, we have a status field. The device will write the result of the request to this 8-bit field. There are currently only three responses we can get: 0-success, 1-failure, 2-unsupported operation. That doesn't give us a lot of information, but if we get a 0, we can reasonably assume that our request was properly handled.</p>
+<p>When making a request to the device, the memory we use to store the request must remain valid until the device has finished processing the request and has sent back a response. If we use memory that is allocated on the stack, it will be automatically deallocated when the function exits, which could lead to undefined behavior if the device tries to access that memory later.</p>
+<p>To avoid this issue, we need to allocate heap memory to store the request. This memory will stay resident until we explicitly deallocate it, so we can be sure that it will remain valid until we have received a response from the device.</p>
+<p>We will grab three open descriptors from the virtio queue, populate it with the header, buffer, and status, and then we write the virtqueue's number (0) into the queue_notify register to tell the device to start working on the request. </p>
+<p>I will import the block driver... this bock driver has too much detail</p>
+<hr />
+<ul>
+<li>&quot;step by&quot; in Rust</li>
+<li>volatiles in Rust</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="handling_external_interrupts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="system_calls.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="handling_external_interrupts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="system_calls.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </body>
+</html>

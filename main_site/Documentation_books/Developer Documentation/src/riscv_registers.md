@@ -68,6 +68,7 @@ undone
 
 PMP protection
 mideleg ?
+sfence
 
 10.3 Machine mode exception handling
 

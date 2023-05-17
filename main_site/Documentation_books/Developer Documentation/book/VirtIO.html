@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>VirtIO - Developer Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="setting_things_up.html"><strong aria-hidden="true">1.</strong> Setting Things Up</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="setting_up_the_compiler.html"><strong aria-hidden="true">1.1.</strong> Setting up the compiler</a></li><li class="chapter-item expanded "><a href="setting_up_LLD_linker.html"><strong aria-hidden="true">1.2.</strong> Setting up the linker</a></li><li class="chapter-item expanded "><a href="setting_up_qemu.html"><strong aria-hidden="true">1.3.</strong> Setting up the Riscv Virtual environment</a></li><li class="chapter-item expanded "><a href="setting_up_build_automation.html"><strong aria-hidden="true">1.4.</strong> Setting up the Build automation tool</a></li></ol></li><li class="chapter-item expanded "><a href="the_bootloader.html"><strong aria-hidden="true">2.</strong> The Bootloader</a></li><li class="chapter-item expanded "><a href="the_bootloader_2.html"><strong aria-hidden="true">3.</strong> The Bootloader_2</a></li><li class="chapter-item expanded "><a href="setting_up_comunications.html"><strong aria-hidden="true">4.</strong> Setting Up Communications</a></li><li class="chapter-item expanded "><a href="setting_up_memory_management.html"><strong aria-hidden="true">5.</strong> Setting Up Memory Management</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="RAM_management.html"><strong aria-hidden="true">5.1.</strong> The RAM Management</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="abstracting_the_RAM.html"><strong aria-hidden="true">5.1.1.</strong> Abstracting the RAM</a></li><li class="chapter-item expanded "><a href="allocation_and_deallocation_RAM.html"><strong aria-hidden="true">5.1.2.</strong> Allocating RAM Memory</a></li><li class="chapter-item expanded "><a href="fine_grained_alloation.html"><strong aria-hidden="true">5.1.3.</strong> Byte-grained allocation</a></li><li class="chapter-item expanded "><a href="setting_up_memory_virtualization_and_access_management.html"><strong aria-hidden="true">5.1.4.</strong> Setting Up RAM Memory Virtualization and access_management</a></li><li class="chapter-item expanded "><a href="handling_the_Physical_MMU.html"><strong aria-hidden="true">5.1.5.</strong> Using the Physical MMU instead of Virtual MMU</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps.html"><strong aria-hidden="true">6.</strong> Handling interrupts and Traps</a></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps_2.html"><strong aria-hidden="true">7.</strong> Handling interrupts and Traps 2</a></li><li class="chapter-item expanded "><a href="handling_external_interrupts.html"><strong aria-hidden="true">8.</strong> Handling External Interrupts</a></li><li class="chapter-item expanded "><a href="the_block_driver.html"><strong aria-hidden="true">9.</strong> The Block Driver</a></li><li class="chapter-item expanded "><a href="system_calls.html"><strong aria-hidden="true">10.</strong> system_calls</a></li><li class="chapter-item expanded "><a href="setting_up_processes.html"><strong aria-hidden="true">11.</strong> Setting up Processes</a></li><li class="chapter-item expanded "><a href="Filesystem.html"><strong aria-hidden="true">12.</strong> Filesystem</a></li><li class="chapter-item expanded "><a href="user_processes.html"><strong aria-hidden="true">13.</strong> User Processes</a></li><li class="chapter-item expanded "><a href="overall_design.html"><strong aria-hidden="true">14.</strong> Overall Design</a></li><li class="chapter-item expanded "><a href="definitions_and_theories.html"><strong aria-hidden="true">15.</strong> Definitions and Theories</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="theory_on_the_linker.html"><strong aria-hidden="true">15.1.</strong> The linker</a></li><li class="chapter-item expanded "><a href="theory_on_Qemu.html"><strong aria-hidden="true">15.2.</strong> Qemu</a></li><li class="chapter-item expanded "><a href="fragmentation_issues.html"><strong aria-hidden="true">15.3.</strong> fragmentation_issues</a></li><li class="chapter-item expanded "><a href="memory_tracking_mechanisms.html"><strong aria-hidden="true">15.4.</strong> Memory Tracking Mechanisms</a></li><li class="chapter-item expanded "><a href="theory_on_MMU_implementation_in_riscv.html"><strong aria-hidden="true">15.5.</strong> Theory on MMU implementation in Riscv</a></li><li class="chapter-item expanded "><a href="VirtIO.html" class="active"><strong aria-hidden="true">15.6.</strong> VirtIO</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> Miscellenious</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="errors.html"><strong aria-hidden="true">16.1.</strong> Error Numbers</a></li><li class="chapter-item expanded "><a href="measuring_software_performance.html"><strong aria-hidden="true">16.2.</strong> Measuring Performance of software</a></li><li class="chapter-item expanded "><a href="importing_variables_from_the_linker_script.html"><strong aria-hidden="true">16.3.</strong> Importing variables from the Linker script</a></li><li class="chapter-item expanded "><a href="GNU_assembly_macros.html"><strong aria-hidden="true">16.4.</strong> GNU assembly macros</a></li><li class="chapter-item expanded "><a href="the_singleton_design.html"><strong aria-hidden="true">16.5.</strong> The singleton Structure</a></li><li class="chapter-item expanded "><a href="multitasking.html"><strong aria-hidden="true">16.6.</strong> Multitasking</a></li><li class="chapter-item expanded "><a href="Bitmasking_and_bit_operations.html"><strong aria-hidden="true">16.7.</strong> Bitmasking_and_bit_operations</a></li><li class="chapter-item expanded "><a href="compressed_instructions.html"><strong aria-hidden="true">16.8.</strong> Compressed Instructions</a></li><li class="chapter-item expanded "><a href="the_ABI.html"><strong aria-hidden="true">16.9.</strong> The ABI</a></li><li class="chapter-item expanded "><a href="ELF_files.html"><strong aria-hidden="true">16.10.</strong> Elf Files</a></li><li class="chapter-item expanded "><a href="riscv_registers.html"><strong aria-hidden="true">16.11.</strong> Riscv_registers</a></li><li class="chapter-item expanded "><a href="virt.html"><strong aria-hidden="true">16.12.</strong> Virtual representation of riscv in Qemu</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="pcie_express_devices.html"><strong aria-hidden="true">16.12.1.</strong> PCIe express devices</a></li><li class="chapter-item expanded "><a href="virtio_devices.html"><strong aria-hidden="true">16.12.2.</strong> VIRTIO devices</a></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> AfterMath</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="buffer_overflow_attacks.html"><strong aria-hidden="true">17.1.</strong> buffer_overflow_attacks</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.2.</strong> fork_bomb</div></li></ol></li><li class="chapter-item expanded "><a href="setting_up_wasm_runtime.html"><strong aria-hidden="true">18.</strong> Setting Up Wasm Runtime</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Developer Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="virtio"><a class="header" href="#virtio">VirtIO</a></h1>
+<p><a href="https://docs.oasis-open.org/virtio/virtio/v1.1/virtio-v1.1.html">Main reference paper</a>
+<img src="./images/Virtio%20MMIO%20Register%20Layout%20part%201.png" alt="Virtio memory layout part 1" />
+<img src="./images/Virtio%20MMIO%20register%20layout%20part%202.png" alt="Virtio memory layout part 2" />
+<img src="./images/virtio%20device%20IDs.png" alt="Virtio device type IDs" />
+<em><strong>terms</strong></em></p>
+<p>This definitions are described under the context of OS development. They may mean entirely different things under other contexts such as web development or cloud development. Moreover, there is no way to categorize software perfectly using words... for example person A may call Linux a full-fledged OS while another may call it 'just an advanced kernel'. Potato-potato</p>
+<ol>
+<li><strong>A virtual machine</strong> - A virtual machine is a software program that emulates a computer system. A 'computer system' in this case means (OS + drivers + hardware)
+For example when creating an insance of a VM, you will first just name the number of CPUs you want... or the number of network cards you want... and anstract instances of those devices will be created. 
+Second after, you will need to install a real OS on top of that abstract hardware.</li>
+</ol>
+<p>A virtual machine typically runs on top of virtualized hardware. VMs can be made to run directly on top of bare-metal but this is undesirable.  For this reason, a VM must run on top of a virtualizer software such as a hypervisor.</p>
+<p>Without the hypervisor or virtualization layer, a virtual machine would have direct access to the underlying physical hardware, just like any other application running on the bare metal. If you intend to run only one virtual machine then running on bare metal is possible. But if you intend to run multiple VMs then this would create a potential conflict for resource allocation and management, and could also create security risks, as different operating systems and applications could interfere with each other and potentially compromise the integrity of the entire system.</p>
+<p><img src="./images/raw/virtual_machine.jpeg" alt="Virtual machine" /></p>
+<ol>
+<li><strong>A Hypervisor</strong> - a hypervisor is a piece of software that runs on top of hardware. A hypervisor's main goal is to abstract the underlying hardware.<br />
+In the context of virtual machines : The hypervisor is a layer of software that sits between the virtual machine and the underlying hardware, and it provides a level of abstraction that allows multiple virtual machines to share and utilize the same physical hardware resources.</li>
+</ol>
+<p>So the hypervisor will abstract things like the CPU, network cards, Graphics, Harddisks etc.</p>
+<h3 id="virtio-1"><a class="header" href="#virtio-1">VirtIO</a></h3>
+<p>The VirtIO is a framework (standard set of communication protocols and interfaces).<br />
+It is a framework that defines how the virtual machine interacts with the host environment. The Host environment can be a hypervisor, a virtualization software, another bare-metal OS or anything that virtalizes hardware.</p>
+<p>It was created to address the need for fast and efficient I/O (input/output) between virtual machines and their hosts.<br />
+Before Virtio came through, people used to abstract hardware in full (virtualize all components and all commands).<br />
+For example they would virtualize the whole motherboard...even devices that are not in Use.<br />
+They would replicate everything down to the registers of the CPU. But we are in a virtual environment... why bring all that detail to our simple virtual world? 
+They would replicate the entire APIs to those abstracted devices. Meaning that the same unique low level protocols needed to communicate with those devices get brought to our simple peaceful virtual world.</p>
+<p>As you can see, Before VirtIO, virtual machines used <strong>emulated</strong> devices to communicate with their hosts, which often led to slow and inefficient I/O operations. </p>
+<p>But virtio allows you to only abstract necessary devices. 
+Each device has a simplified interface that might not be identical to the interface defined by the physical hardware. Virtualize devices... not emulate them. 
+This two qualities make it suitable for our peaceful virtual world</p>
+<p>With Virtio being made standard, it made VMs to be platform agnostic.</p>
+<p><em><strong>How does Virtio work?</strong></em></p>
+<p>VirtIO defines a set of virtual devices that are <em>optimized for use in virtualized environments</em>. 
+By optimized I mean that they have:</p>
+<ul>
+<li>
+<p>Reduced overhead: VirtIO devices are implemented as software running in the host environment, so they can be designed to minimize overhead and reduce the amount of processing required in the virtual machine.</p>
+</li>
+<li>
+<p>Simplified interfaces: VirtIO devices use standardized, simple interfaces that are designed to be easy to implement and use. This reduces the complexity of communication between the virtual machine and the host environment, which can improve performance.</p>
+</li>
+<li>
+<p>Flexibility: VirtIO devices can be added or removed from a virtual machine as needed, without requiring any changes to the virtual machine itself. This provides flexibility and makes it easier to manage virtualized environments. </p>
+</li>
+</ul>
+<p>These devices are designed to be lightweight and efficient, with a simplified interface that allows them to communicate directly with the hypervisor and other devices in the virtualized environment.</p>
+<p>When a virtual machine is created, the hypervisor provides a set of these VirtIO devices to the virtual machine. These devices are presented to the virtual machine as if they were physical devices, but they are actually implemented as software running in the host environment.</p>
+<p>The virtual machine communicates with the VirtIO devices through a set of standardized interfaces, which are implemented by the hypervisor. These interfaces are designed to be simple and efficient, allowing the virtual machine to communicate with the VirtIO devices without incurring significant overhead.</p>
+<p>One of these virtio devices is the Block device.<br />
+A block device is a storage device that returns data in blocks. It does not return data in a character stream</p>
+<p><em><strong>Implementation</strong></em></p>
+<p>The Virtio has 2 layers :</p>
+<ol>
+<li>The front-end layer  - deals with the communication between VM and virtio devices </li>
+<li>The back-end layer   - deals with the communication between the virtio devices and physical hardware</li>
+</ol>
+<p>The VM communicates with the virtio device using MMIO programming. Under virtio bus, there are a bunch if registers</p>
+<p>The device and guest share a segment of physcal memory. This segment is used for communication purposes. This is where the virtiqueue is found.<br />
+To pass along a message, you store that message in the virt Queue and press the GO (write 1 to the Queue notifier register). The device reads the message, processes it and writes the responce in the virtiqueue.</p>
+<p>The virt Queue is the main send/response structure.<br />
+The Virtio virtual queue is a shared memory region used for communication between a Virtio device and its driver. It consists of three main components: the descriptor table, the available-ring, and the used-ring.</p>
+<p>The descriptor table is an array of descriptors that describes the data buffers or commands that will be processed by the Virtio device. Each descriptor is a small data structure that contains information about a single data buffer or command. The descriptor typically includes a pointer to the data buffer, its length, and control flags.</p>
+<p>The available-ring is another array of descriptors that are used by the driver to indicate which descriptors in the descriptor table are available for the Virtio device to process. Each entry in the available-ring corresponds to an entry in the descriptor table and contains a descriptor index and a set of flags.</p>
+<p>When the driver wants to send data to the Virtio device, it updates one or more entries in the available-ring to indicate which descriptors are available for the device to process. The driver then notifies the device by writing to a special register in the Virtio device.</p>
+<p>The Virtio device reads the available-ring to determine which descriptors are available for processing. It then processes the data buffers or commands described by the descriptors and writes completion descriptors to the used-ring.</p>
+<p>The used-ring is the third component of the Virtio virtual queue. It is another array of descriptors that are used by the Virtio device to indicate which descriptors in the descriptor table it has completed processing. Each entry in the used-ring corresponds to an entry in the descriptor table and contains a descriptor index and a set of flags.</p>
+<p>After the Virtio device has processed a data buffer or command, it writes a completion descriptor to the used-ring to indicate that the corresponding descriptor in the descriptor table has been processed. The driver reads the used-ring to determine which descriptors have been completed and can then free any associated resources.</p>
+<p>Overall, the Virtio virtual queue provides a flexible and efficient way for a Virtio device and its driver to communicate with each other. By using a shared memory region, it avoids the overhead of copying data between different memory regions, as would be necessary if the device and driver communicated using I/O ports or other communication channels.</p>
+<h6 id="the-queue-pfn-physical-frame-number"><a class="header" href="#the-queue-pfn-physical-frame-number">The Queue PFN (physical Frame Number)</a></h6>
+<p>The Queue PFN stores the physical address of the virtual queue in memory.</p>
+<p>The virtual queue itself is typically implemented as a data structure in the driver's memory, and the driver is responsible for mapping the virtual queue into physical memory so that the Virtio device can access it.<br />
+When the driver initializes the Virtio device, it writes the physical address of the virtual queue into the QueuePFN field in the device's configuration space. This allows the Virtio device to access the virtual queue by reading and writing to the memory location specified by the QueuePFN field.</p>
+<h6 id="the-queuenum-register"><a class="header" href="#the-queuenum-register">The QueueNum Register</a></h6>
+<p>The QueueNum register is another field in the Virtio device's configuration space that is used to configure the Virtio virtual queue. It specifies the number of virtual queue pairs that the device and driver will use to communicate.</p>
+<p>A virtual queue pair consists of an available-ring and a used-ring, as well as the associated descriptor table. Each virtual queue pair is used for a separate stream of communication between the Virtio device and its driver.</p>
+<p>When the driver initializes the Virtio device, it writes the desired number of virtual queue pairs to the QueueNum register. The Virtio device then uses this value to determine the size of the descriptor table and the available-ring and used-ring arrays for each virtual queue pair.</p>
+<h6 id="the-request-block"><a class="header" href="#the-request-block">The Request block</a></h6>
+<p>The desriptors in the Vurtqueue point to the Request block.<br />
+So the request Blocks are found in the Drivers's memory.<br />
+They give information about the type of I/O operation the driver needs from the device.</p>
+<p>The Request Block (also known as the &quot;virtqueue descriptor&quot; or simply &quot;descriptor&quot;) is a data structure used in Virtio block devices to describe a block I/O operation that the driver wants to perform on the device. It is typically implemented as a buffer in the driver's memory, and is used to pass information about the I/O operation from the driver to the Virtio block device.</p>
+<p>The Request Block contains several fields that describe the I/O operation, including the operation type (e.g. read or write), the starting sector number, the length of the data to be transferred, and a set of flags that control various aspects of the I/O operation.</p>
+<p>When the driver wants to perform a block I/O operation on the Virtio block device, it creates a Request Block in its memory and initializes the appropriate fields with the desired values. It then adds the Request Block to the appropriate Virtio virtual queue by appending it to the available-ring and notifying the device using the appropriate mechanism (e.g. an interrupt or memory-mapped I/O).</p>
+<p>When the Virtio block device receives a Request Block from the driver, it reads the necessary fields from the Request Block to determine the details of the I/O operation being requested. It then performs the requested operation and updates the Request Block with the results of the operation (e.g. the number of bytes transferred). Finally, it appends the updated Request Block to the used-ring of the corresponding virtual queue pair to notify the driver that the operation has completed.</p>
+<p>The request block is this struct  with  (request header), (Data Buffer) and (status buffer)
+- request type (32bits) [IN(a read by driver), OUT(a write by driver), FLUSH, DISCARD, WRITE_ZEROES]
+- reserved (32 bits)
+- Request sector {
+- (tells us from which block to begin to read from in memory. Sector is a fancy name for 'block'. Block size gets set durin initialization of the device)
+- every sector has 512 bytes
+- The databyte [sector][byte_number] ---&gt; The actual dat byte getting affected by this block I/O operation
+- The Status ---&gt; This byte shows whether the virtio device succeeded or failed  or if the operation was unsupported.
+- this byte gets written to by the virtio device (o == success, 1 == error, 2 == unsupported operation)
+- at the beginning, make the driver write some arbitrary value such as x... that way we will know if the block device even did dare touch our block request </p>
+<p>The request block will be represented by 3 descriptors.<br />
+- Descriptor 1 (stored in the virtqueue descriptor array) - references the block request header. The &quot;next&quot; address points to the Descriptor 2 (that is stored in guest's memory instead of virtqueue)
+- Descriptor 2 points to Descriptor 3 and references data Buffer
+- Descriptor  3 references the status buffer of the block request</p>
+<ul>
+<li>All this in the name of modularity </li>
+</ul>
+<p><em><strong>In Qemu</strong></em>
+For the QEMU emulator, it puts virtio devices (backwards) from 0x1000_1000 to 0x1000_8000. If we only have one device, it should be attached at 0x1000_8000</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="theory_on_MMU_implementation_in_riscv.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="errors.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="theory_on_MMU_implementation_in_riscv.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="errors.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </body>
+</html>

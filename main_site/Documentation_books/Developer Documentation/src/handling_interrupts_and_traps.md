@@ -1,7 +1,18 @@
-### what is an interrupt?
-### What is a trap?
-### How is a trap handled?
-### How is an interrupt handled?
+An **event trigger** in this case means the action of an instruction causing the CPU to stop executing the current process and start executing the interrupt handler.    
+
+An **Interrupt** is an *event trigger* caused by an external device. This trigger is asynchronous (random).   
+A **Trap** is a *deliberate* event trigger that is found in the program getting executed by the CPU. For example, a deliberate system call to access the file system.  
+An **exception** is a *random* event trigger caused by the program that was being executed by the kernel. For example, a division by zero.  
+
+Some event triggers are **synchronous**, meaning that the currently executing instruction is the one that caused the event trigger... whether is was done deliberately or randomly we don't care. 
+
+Other event triggers are **asynchronous**, meaning that the event trigger was not caused by the currently executing instruction. It was caused by something other tan the currently executing instruction
+
+Here are the asynchronous triggers :
+![](./images/mcause_asynchronous_interrupts.png)
+
+Here are the synchronous triggers :
+![](./images/mcause_synchronous_interrupts.png)
 
 
 ## RISC-V Interrupt System
@@ -12,7 +23,7 @@ When an interrupt happens, the cpu :
 1. updates the mcause register
 2. updates the mepc register
 3. updates mtval register 
-4. saves the context of the current program 
+4. saves the context of the current program . We save this context in a trap frame. We store the trap frame in a mscratch register.
 5. calls the interrupt handling function.  
 The address of the interrupt handling function is stored in the mtvec register (Machine Trap Vector). A vector is a fancy word for saying "pointer to a function"
 
@@ -31,11 +42,11 @@ we will handle rhe flow of interrupt handling using the following files :
 
 ### boot.s
 boot.s contains the assembly code that 
-1. Initializes CPU registers and makes the mecp register point to the enntry point of the kernel code ie kmain. so that if we call mret... the kernel code starts executing.
+1. Initializes CPU registers and makes the mecp register point to the entry point of the kernel code ie kmain. so that if we call mret... the kernel code starts executing.
 2. It makes the mtvec point to the asm_trap_vector function. The asm_trap_vector has been defined in the trap.s file
 
 ### trap.s
-this file defines the assembly code that does the folowing :
+This file defines the assembly code that does the folowing :
 1. Saving the context of the interrupted process.
 2. Set up the suitable context for the m_trap function.
 3. Call the entry point of the Rust code that defines how each interrupt is handled.
@@ -44,21 +55,37 @@ this file defines the assembly code that does the folowing :
 
 ### trap.rs
 This file defines the Rust functions and structures to handle interrupts  
-- define the entry point function
-- define the structure of the interrupts
-- define the error handler for each interrupt (adjust the program counter appropriately)
+- defines the entry point function
+- defines the structure of the interrupts
+- defines the error handler for each interrupt (adjust the program counter appropriately)
 
 
-**We are going to borrow the RISCV macro, oone has time to learn that stuff**
+**We are going to borrow the RISCV macro, no-one has time to learn that stuff**
+
+
+### The Trap Frame
+```rust
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct TrapFrame {
+	pub regs:       [usize; 32], // 0 - 255
+	pub fregs:      [usize; 32], // 256 - 511
+	pub satp:       usize,       // 512 - 519
+	pub trap_stack: *mut u8,     // 520
+	pub hartid:     usize,       // 528
+}
+```
+
+We store the SATP because it might change when a context switch happens. Maybe the SATP will reference  different Root table for another RAM, Maybe the ASID will change, The ASID tells us which process was executing (process ID) [unsure]
 
 
 
 
 ## Rust function to handle Interrupts
 inputs : 
-    1. mcause : helps us determine the type and code of the interrupt
-    2. mepc   : helps us determine the latest value of the program counter
-    3. mtval  : some error handling functions need the matval eg in a page fault, the mtval registe contains the address of the faulty page
+    1. cause : helps us determine the type and code of the interrupt
+    2. epc   : helps us determine the latest value of the program counter
+    3. tval  : some error handling functions need the matval eg in a page fault, the mtval registe contains the address of the faulty page
     4. 
 
 Output : the program counter to the next instruction after the error handler has done its thing
