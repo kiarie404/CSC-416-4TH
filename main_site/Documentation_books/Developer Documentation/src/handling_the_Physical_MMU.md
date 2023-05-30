@@ -230,7 +230,7 @@ Then we map all the setions and UART mem addresses : ORDER
 4. Update the SATP register ... (without turning it on). Here is the SATP Layout :
    - insert the 44 bit PPN in a abstract SATP (usize)
    - Insert the mode bit (setting the mode bit does not automatically turn the MMU on out of the blue, this mode bit will work only id we are in supervisor mode)
-   - To actually switch from Machine mode to Supervisor mode, you have to modify the SPIE and MPP fields in the mstatus register. Afterwards, you call mret to restore the MPP, SPIE and update the PC register to point at the MEPC value.
+   - To actually switch from Machine mode to Supervisor mode, you have to modify the SPIE and MPP fields in the mstatus register. Afterwards, you call mret to restore the MPP, SPIE and update the PC register to point at the MEPC value.w
    - Use inline web assembly to modify the real SATP : asm!("csrw satp, $0" :: "r"(satp_val));
 ![SATP register layout](images/RISCV/satp_register.png)
 

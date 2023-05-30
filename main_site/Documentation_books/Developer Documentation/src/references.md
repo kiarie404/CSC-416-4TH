@@ -90,6 +90,10 @@
 - [The UART specifications](https://www.lammertbies.nl/comm/info/serial-uart)
 - [Stephen's tutorial](https://osblog.stephenmarz.com/ch2.html)
 
+#### Global Alloc
+- [Readable documentation](https://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/unstable-book/language-features/global-allocator.html)
+- [Official crate documentation](https://doc.rust-lang.org/std/alloc/trait.GlobalAlloc.html)
+
 
 curiosity over fear  
 innovation over practicality'     
