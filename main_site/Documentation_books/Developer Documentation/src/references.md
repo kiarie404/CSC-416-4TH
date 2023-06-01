@@ -6,8 +6,17 @@
    - [WebAssembly Interface Types: Interoperate with All the Things!](https://hacks.mozilla.org/2019/08/webassembly-interface-types/)
 3. [Philip Opperman' blog on building an OS with Rust on x86 cpu](https://os.phil-opp.com/)
 4. [Web Assembly paper on security](https://www.usenix.org/system/files/sec20-lehmann.pdf)
+5. [Will wasm replace docker?](https://www.kubesphere.io/blogs/will-cloud-native-webassembly-replace-docker_/)
+
+#### WASI
+- [Here is the definition of the API structures and functions](https://github.com/WebAssembly/WASI/blob/main/legacy/preview1/docs.md)
+- [Here is the other github Repo with the Implementation of WASI by wasmtime](https://github.com/bytecodealliance/wasmtime/blob/main/docs/WASI-overview.md)
+- [Web assembly security explained](https://github.com/bytecodealliance/wasmtime/blob/main/docs/security.md)
 
 
+#### Wasm Runtimes
+- [Wasmer vs Wasmtime](https://wasmer.io/wasmer-vs-wasmtime)
+- [Architecture of a runtime explained and configs](https://github.com/bytecodealliance/wasmtime/blob/main/docs/contributing-architecture.md)
 
 
 

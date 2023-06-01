@@ -10,4 +10,4 @@ why?
   - cloud updates for IoT (you don't have to worry about compilation )
   - Keeping up with ubiquitous computing (heterogenous devices)
 - Standard application inspection for security (3rd party)
-- 
+
