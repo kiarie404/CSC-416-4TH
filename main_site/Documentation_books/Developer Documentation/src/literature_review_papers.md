@@ -184,7 +184,7 @@ Even if we implement the wasmOS, we need to meet the following requirements in o
 
 - Function normalization happens during compilation. So if we use an AOT compiler, the normalization latency will not affect us at runtime. If we use a JIT or an interpreter, the normalization latency will affect us at runtime.
 
-- Here is an example of normalization : Normalization may happen because there is a difference in function prototypes between the WASI API syscalls and the Native Syscalls.
+- Here is an example of normalization : Normalization happens because there is a difference in function prototypes between the WASI API syscalls and the Native Syscalls.
 
 - We can eliminate the latency caused by normalization by .... (DRUM rolls...) eliminating the need for normalization. We will do this by making the underlying system to export its system calls using the WASI function prototypes.   
 

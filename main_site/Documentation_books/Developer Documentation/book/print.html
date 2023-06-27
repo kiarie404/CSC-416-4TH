@@ -3362,7 +3362,6 @@ The &quot;argv&quot; parameter is an array of pointers to strings, where each st
 </ul>
 </li>
 <li>Standard application inspection for security (3rd party)</li>
-<li></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="literature-review-papers"><a class="header" href="#literature-review-papers">Literature review papers</a></h1>
 <p>Here is a list of references that will guide the following sub_chapters :</p>
@@ -3370,7 +3369,7 @@ The &quot;argv&quot; parameter is an array of pointers to strings, where each st
 <li>Bringing WebAssembly Up to Speed with Dynamic Linking - <a href="https://helda.helsinki.fi/bitstream/handle/10138/335259/WAsDE_SAC2021.pdf?sequence=1#cite.taivalsaari2018development">source</a></li>
 <li>Architecting the Web of Things for the fog computing era - <a href="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/iet-sen.2017.0350">source</a></li>
 <li>On the Development of IoT Systems - <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwiw6vuuxZj_AhX_m_0HHW_9CD8QFnoECAoQAQ&amp;url=https%3A%2F%2Fresearchportal.helsinki.fi%2Ffiles%2F151313168%2Ffour_corners_iot_1.pdf&amp;usg=AOvVaw0R8kUvpQkK2rporht2l2F0">Source</a></li>
-<li></li>
+<li>Isomorphic IoT Architectures with Web Technologies - <a href="https://helda.helsinki.fi/bitstream/handle/10138/336610/Isomorphic.pdf?sequence=1">source</a></li>
 </ol>
 <h4 id="from-1"><a class="header" href="#from-1">From [1]</a></h4>
 <p>We need to accomodate writing software for heterogenous computing. (ubiquitous computing)<br />
@@ -3384,6 +3383,234 @@ You need to choose wisely which tasks get doe centrally and which tasks get done
 <p>Now we are going in an error of programmable matter. We cannot depend on the traditional cloud-server architecture because it is slow. The network transfer time is very expensive. Programmable Matter co-ordinations need to be real time fast.</p>
 <p>Example : Your security system at home uses the camera, thermostat and automated machine gun. These devices need to co-ordinate fast. It is unimaginable that for them to communicate they have to first communicate to a far remote server. That is very slow. More time is spent on message transfer than actual data processing.</p>
 <p>The solution is fog computing, where you have a local server nearby. Or one of the devices(eg camera) takes up the role of a server.</p>
+<h3 id="considering-webassembly-containers-on-iot-devices-as-edge-solution"><a class="header" href="#considering-webassembly-containers-on-iot-devices-as-edge-solution">Considering WebAssembly Containers on IoT Devices as Edge Solution</a></h3>
+<p><a href="https://liu.diva-portal.org/smash/get/diva2:1575228/FULLTEXT01.pdf">source</a></p>
+<ul>
+<li>
+<p>we need to cover the :</p>
+<ul>
+<li>wasm containers</li>
+<li>wasm container runtimes</li>
+<li>wasm ecosystem (management of both the runtimes and containers)</li>
+</ul>
+</li>
+<li>
+<p>Under wasm runtimes, we will cover their :</p>
+<ul>
+<li>speed of execution</li>
+<li>memory footprint</li>
+<li>functionalities provided and how they can be extended</li>
+<li>security (internal security + external security)</li>
+<li>future</li>
+</ul>
+</li>
+<li>
+<p>used wasmer and wasmtime as the test subjects (both written in Rust) BUT wasmtime uses the CraneLift compiler while wasmer offers the option to use Singlepass(AOT), CraneLift(rust JIT), and LLVM(AOT/JIT). Wasmtime is made by the Bytecode Alliance while wasmer is made by the Wasmer private organization(I don't know their name)</p>
+</li>
+<li>
+<p>WebAssembly Runtime is essentially an environment where Wasm can be executed safely, it provides an abstraction layer above the OS, containerizing the execution.</p>
+</li>
+<li>
+<p>Why not Docker?</p>
+<ul>
+<li>slower startup time. Meaning it might be wasteful for an event_driven IoT device</li>
+<li>memory heavy in comparison to (wasm container + runtime)</li>
+</ul>
+</li>
+<li>
+<p>Why Docker?</p>
+<ul>
+<li>known, docs, tutorials</li>
+</ul>
+</li>
+<li>
+<p>Why not native?</p>
+<ul>
+<li>not capability_based security by default</li>
+<li>Not as secure as with wasmRT (why?)</li>
+<li>portability when dealing with heterogenous IoT devices. We need to migrate code + libraries more easily.</li>
+</ul>
+</li>
+<li>
+<p>Why native?</p>
+<ul>
+<li>fast execution because there is no boundary between code and OS. We are taking into account AOT runtimes. JIT and interpreters are out of the picture.</li>
+<li>optimization of native machine code is not an excuse because the AOT compiler insude the WasmRT also does optimization of the native machine code</li>
+</ul>
+</li>
+</ul>
+<p>What are our benchmarks when determining when to use? C vs wasm_binary vs Docker_solution</p>
+<ul>
+<li>Runtime memory usage</li>
+<li>Runtime execution time </li>
+<li>container image/executable image memory usage</li>
+<li>container image/executable execution time</li>
+<li>container image/executable startup time (important becuse of event driven IoT apps?)</li>
+</ul>
+<p>Limitations of paper :</p>
+<ul>
+<li>used raspberry pi model 3 only (it is generic iot platform)</li>
+<li>tested wasmer and wasmtime only</li>
+<li>did not benchmark qualitative aspects of development of programs with Wasm eg ease of development and maintainability or debugging (a major challege in IoT development)</li>
+</ul>
+<p>The paper Uses PolyBench/C - is a suite of 30 different numerical computations, ranging all the way from linear algebra to image processing and physics simulations, written in C</p>
+<p>PolyBench/C has both shorter, burst like jobs, as well as longer; it also has workloads that uses less memory, and workloads that uses substantially more. This shows both the strengths and weaknesses of Docker and Wasm, as they can show how well they perform in the different subsets of these workloads.</p>
+<p>The bias of using PolyBench/C is that it tests many kinds of algorithms. It is better to test for your specific kind of algorithms instead of general algorithms.</p>
+<p>Test : 
+- run each PolyBench Algorithm ten times. Find the average. call it x
+- plot a graph that shows each test runtime or memory usage.</p>
+<p>So when you use wasm runtimes in userspace you get 2 levels of security :</p>
+<ul>
+<li>Security provided by runtime</li>
+<li>security provided by OS kernel eg (file systems, MMU, memory randomization, process isolation)</li>
+</ul>
+<p>One layer of security is enough</p>
+<p>Why wasm ?</p>
+<ul>
+<li>better security than native</li>
+<li>code portability for heterogenous devices (hardware, capabilities, software and configs) in the rig</li>
+<li>smaller memory footprint than docker containers</li>
+<li>faster startup time that Docker when using a wasmRT that uses JIT/ interpretation technology</li>
+<li>faster execution time than docker</li>
+<li>Developers can write in languages that they are profecient in</li>
+<li>
+<h2 id="wasm-container-size-is-smaller-than-native-executables-by-averagely-147-andreas-rossberg-ben-l-titzer-andreas-haas-derek-l-schuff-dan-gohman-luke-wagner-alon-zakai-j-f-bastien-and-michael-holman-2018-bringing-the-web-up-to-speed-with-webassembly"><a class="header" href="#wasm-container-size-is-smaller-than-native-executables-by-averagely-147-andreas-rossberg-ben-l-titzer-andreas-haas-derek-l-schuff-dan-gohman-luke-wagner-alon-zakai-j-f-bastien-and-michael-holman-2018-bringing-the-web-up-to-speed-with-webassembly">Wasm container size is smaller than native executables by averagely 14.7% (Andreas Rossberg, Ben L. Titzer, Andreas Haas, Derek L. Schuff, Dan Gohman, Luke Wagner, Alon Zakai, J. F. Bastien, and Michael Holman. 2018. Bringing the Web up to Speed with WebAssembly.)</a></h2>
+</li>
+</ul>
+<p>So wasm brings portability and security at the cost of performance. </p>
+<p>Why is native code execution faster than wasm code execution(AoT execution in this case)?</p>
+<ul>
+<li>JIT compilation</li>
+<li>AOT compilation of wasm binaries to enhance speed</li>
+<li>Interpretation</li>
+</ul>
+<p>What is the work of a runtime? Security? dependency sorting? What about AOT compiled wasm modules</p>
+<p>Does that mean that the kernel should provide the option of AOT compilation for certain tasks and JIT compilation.<br />
+But why do we need JIT compilation in Embedded systems? In embedded systems performance and efficiency is our first priority. So we are not considering intepreters or JIT compilers</p>
+<p>So we need the runtime so as to execute the native code and further enforce sandboxing features. Not for JIT compilation or Intepretation.
+The runtime interacts with the underlying OS during the execution process. It acts as a manager for the compiled wasm modules.</p>
+<p>A runtime does the following functions :</p>
+<ul>
+<li>Load the wasm modules from storage</li>
+<li>Validate the format of the wasm module</li>
+<li>Compile the wasm module to target machine code. (using AOT or JiT or pure interpretation)</li>
+<li>Interact with the OS system interface in order to initiate the execution of the compiled code . (eg loading code into ram, making syscalls, allocate heap memory)</li>
+<li>Implement WASM sandboxing features</li>
+</ul>
+<p>So when you use wasm runtimes in userspace you get 2 levels of security :</p>
+<ul>
+<li>Security provided by runtime</li>
+<li>security provided by OS kernel eg (file systems, MMU, memory randomization, process isolation)</li>
+</ul>
+<p>so the runtime is a sandbox environment : 
+We use it because it offers the following security implementations :<br />
+Memory Isolation: Wasm runtimes employ memory isolation techniques to prevent unauthorized access or modification of memory. They use memory sandboxing mechanisms such as linear memory boundaries, memory segmentation, or address space layout randomization (ASLR) to isolate Wasm module's memory from the rest of the system.</p>
+<pre><code>Access Control: Runtimes enforce access control policies to restrict the Wasm module's ability to interact with the host environment and sensitive resources. They provide mechanisms to control and limit access to system APIs, file systems, network interfaces, and other potentially dangerous operations.
+
+Sandboxing: Wasm runtimes leverage sandboxing techniques to isolate the execution of Wasm modules from the underlying system. They create a restricted environment where modules operate within predefined boundaries, preventing them from performing malicious or unauthorized actions. Sandboxing techniques may include process-level isolation, operating system-level sandboxes, or virtualization technologies.
+
+Code Verification: Wasm runtimes validate and verify the integrity and safety of Wasm modules before execution. They perform checks on the Wasm module's binary format, ensuring it conforms to the specification and does not contain malicious or malformed code. Verification helps prevent code injection, stack overflows, or other common vulnerabilities.
+
+Controlled Resource Access: Runtimes enforce restrictions on the Wasm module's access to system resources, such as limiting file I/O operations, network requests, or access to hardware devices. They provide APIs or interfaces that allow controlled and supervised interaction between the module and the host environment.
+
+Runtime Sandboxing: Some runtimes implement additional sandboxing techniques at the runtime level. They establish secure execution environments with limited privileges, where Wasm modules can execute without compromising the security of the hosting system. This includes isolating the module's execution from the runtime itself and other concurrently executing modules.
+
+Capability-Based Security: Wasm runtimes may adopt capability-based security models, where explicit permissions and capabilities are granted to Wasm modules. Modules can only access resources or perform privileged operations if they possess the necessary capabilities, effectively limiting their privileges and reducing the risk of unauthorized actions.
+
+Security Auditing: Wasm runtimes undergo rigorous security audits and testing to identify vulnerabilities and mitigate potential risks. Regular security updates and patches are released to address discovered vulnerabilities and ensure the runtime remains secure and resistant to potential attacks.
+</code></pre>
+<h4 id="webassembly-modules-as-lightweight-containers-for-liquid-iot-applications"><a class="header" href="#webassembly-modules-as-lightweight-containers-for-liquid-iot-applications">WebAssembly Modules as Lightweight Containers for Liquid IoT Applications</a></h4>
+<p>Even if we implement the wasmOS, we need to meet the following requirements in order to fully replace docker :</p>
+<ul>
+<li>application state synchronization (make it more mature)</li>
+<li>dynamic orchestration of the apps : spawning of containers, deleting containers across different nodes. (kurbenetes supports wasm containers : This project, called Krustlet [22], allows Wasm containers to be run as Kubelets in Kubernetes.)</li>
+<li>Fine grained security model </li>
+</ul>
+<h4 id="from-wasmachine"><a class="header" href="#from-wasmachine">From Wasmachine</a></h4>
+<ul>
+<li>
+<ul>
+<li>I do not know the security features of wasm runtime compilers : how do they ensure integrity in the control flow? For wasm machine, the AOT compiler ensures cotrol flow integrity by :</li>
+</ul>
+<ol>
+<li>makes code segment immutable to avoid direct code injection </li>
+<li>the compiler adds code that verifies the signature of indirect functions. eg virtual functions</li>
+</ol>
+</li>
+<li>
+<p>WASI is an API. It has different modules inside.</p>
+</li>
+<li>
+<p>An API defines functions and data structures for interaction between 2 systems.</p>
+</li>
+<li>
+<p>Wasi has many modules. For example we have the Core Module that describes an API that is common to many Operating systems eg File_functions, networking functions. We have other non_core modules such as Crypto.</p>
+</li>
+<li>
+<p>A webassembly module without function imports can only do math... keeping the CPU warm.</p>
+</li>
+<li>
+<p>A wasm module can import a host function. This host function can do other things like file manipulation or networking.</p>
+</li>
+<li>
+<p>Now you still have to specify the specific host functions your module is using (capability based search).</p>
+</li>
+<li></li>
+<li>
+<p>WebAssembly modules interact with the outside world exclusively through APIs. </p>
+</li>
+<li>
+<p>WASI file system rules _ sandboxing feature <a href="https://github.com/bytecodealliance/wasmtime/blob/main/docs/WASI-capabilities.md">here</a></p>
+</li>
+<li>
+<p>Function normalization happens during compilation. So if we use an AOT compiler, the normalization latency will not affect us at runtime. If we use a JIT or an interpreter, the normalization latency will affect us at runtime.</p>
+</li>
+<li>
+<p>Here is an example of normalization : Normalization happens because there is a difference in function prototypes between the WASI API syscalls and the Native Syscalls.</p>
+</li>
+<li>
+<p>We can eliminate the latency caused by normalization by .... (DRUM rolls...) eliminating the need for normalization. We will do this by making the underlying system to export its system calls using the WASI function prototypes.</p>
+</li>
+<li>
+<p>Now the remaining latencies are the latencies experienced during : </p>
+<ul>
+<li>interception of syscalls by the runtime. Interception means inspecting the syscalls and making sure they follow runtime security rules...</li>
+<li>Context switching from user process to kernel process.</li>
+</ul>
+</li>
+</ul>
+<p>The only way to remove the inspection latency is to remove the inspection stage. We cannot afford to remove the inspection stage. The inspection stage enforces capability based security.</p>
+<p>To get rid of the context switching expense, we eliminate the need for the OS to do context switching from user_process to kernel_process. THe only way to completely avoid a context switch is to make the wasm_process part of the kernel code. Such that the wasm_process is just a function within the kernel. But this would mean that we have to compile the app together with the kernel. Such that if we want to update the wasm app, we hae to recompile the entire kernel and then re-install it.   But if performance was more important than maintainability, then this is the way to go.</p>
+<p>If your wasm App needs no future updates regularly you can use the above method. WASMACHINE uses this method. The only difference is that they execute these &quot;wasm app functions&quot; as Threads (this is both good and bad) Critic this (hard to implement threading in bare, no updates for both apps and OS, hard for installed apps to communicate easily)
+(simple to implement, fast, optimized during compile time)</p>
+<p>For our method, we wil not get rid of context switching completely. This is because we want to implement the wasm app and the kernel as seperate processes. So we will just reduce the expense of context switching. </p>
+<p>Context switching from a user_level process to a kernel_level process is more expensive that context switching from a kernel_level process to another kernel_level process. This is because switching from user_level process to a kernel_level process requires more overhead : You have to switch modes, re-map the page tables and switch the execution stack. On the other hand, you don't have to switch modes or re-map the page tables</p>
+<p>sandboxing nature so far :</p>
+<ul>
+<li>only interact with outside resources via host function imports only... other than that, you are just keeping the CPU warm.</li>
+<li>specify the specific host functions that a module uses. This will help in scanning which module is using host functions that are not meant to be used by it.</li>
+<li>The runtime configurations ensure that the modules affect resources that it has been granted. For example, the config --dir=. says that </li>
+</ul>
+<ol>
+<li>the wasm modules being executed by the runtime can exercise the file host functions that they have imported. ie '--dir'</li>
+<li>The wasm modules can only affect the current file directory ONLY. Not the entire file system like in UNIX.</li>
+</ol>
+<ul>
+<li>wasm modules use a linear memory that is accessed through base + offset. The wasm module can only access this linear memory. Any out-of-bound access will be detected at compile time.</li>
+</ul>
+<p>The case for wasmachine :</p>
+<ul>
+<li>completely eliminates context switches therefore fast : . The results show that WebAssembly applications in Wasmachine is up to 11% faster than their native opponents in Linux. </li>
+<li>It uses a runtime that has AOT capabilities, meaning that the wasm apps are compiled to native... the only performance bottleneck becomes the systemcall inspections. can you imagine that... inspections... a bunch of majorly read operations</li>
+<li>The final extended runtime does not include the compiler (be it JIT or AOT), it just contains the runtime manager. THis is because the compiler is a different </li>
+<li>The wasmachine </li>
+</ul>
+<p>Why no JIT or intepreter</p>
+<ul>
+<li>Too Compute intensive for embedded environment (constant loops of compilation) - bad for battery and processing power sharing</li>
+<li>Time inefficient (no optimaization like in AOT)</li>
+<li>unpredictable performance in JIT due to dynamic optimization</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="software_deployment"><a class="header" href="#software_deployment">Software_deployment</a></h1>
 <p>Software deployment is the process of making software available for the end user. This is the process that comes after you have already finished coding the project and now what you are left with is just... packaging it for different running environments.<br />
 A running environment is any system (software or hardware) that the code runs on top of. For example; the running environment for the BIOS firmware is the bare metal motherboard. The running environment for the kernel is the bare metal motherboard. The running environment for Skyrim is a Play Station console. The Running environment for your hello world program is the target_system you have compiled for.</p>
@@ -3514,7 +3741,19 @@ The store is responsible for managing the state of instantiated modules. This st
 </li>
 <li><a href="https://os.phil-opp.com/">Philip Opperman' blog on building an OS with Rust on x86 cpu</a></li>
 <li><a href="https://www.usenix.org/system/files/sec20-lehmann.pdf">Web Assembly paper on security</a></li>
+<li><a href="https://www.kubesphere.io/blogs/will-cloud-native-webassembly-replace-docker_/">Will wasm replace docker?</a></li>
 </ol>
+<h4 id="wasi"><a class="header" href="#wasi">WASI</a></h4>
+<ul>
+<li><a href="https://github.com/WebAssembly/WASI/blob/main/legacy/preview1/docs.md">Here is the definition of the API structures and functions</a></li>
+<li><a href="https://github.com/bytecodealliance/wasmtime/blob/main/docs/WASI-overview.md">Here is the other github Repo with the Implementation of WASI by wasmtime</a></li>
+<li><a href="https://github.com/bytecodealliance/wasmtime/blob/main/docs/security.md">Web assembly security explained</a></li>
+</ul>
+<h4 id="wasm-runtimes"><a class="header" href="#wasm-runtimes">Wasm Runtimes</a></h4>
+<ul>
+<li><a href="https://wasmer.io/wasmer-vs-wasmtime">Wasmer vs Wasmtime</a></li>
+<li><a href="https://github.com/bytecodealliance/wasmtime/blob/main/docs/contributing-architecture.md">Architecture of a runtime explained and configs</a></li>
+</ul>
 <h4 id="possible-for-rustriscv"><a class="header" href="#possible-for-rustriscv">Possible for Rust+riscv</a></h4>
 <ul>
 <li><a href="https://pdos.csail.mit.edu/6.828/2020/xv6/book-riscv-rev1.pdf">XV6 book rev 1</a> but find rev3</li>

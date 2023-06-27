@@ -55,6 +55,7 @@
     - [Software_deployment](./software_deployment.md)
   - [Setting Up Wasm Runtime](setting_up_wasm_runtime.md)
   - [webassembly_challenges](./webassembly_challenges.md)
+  - [The Book](./the_wasm_book.md)
 - [References](./references.md)
 
 

@@ -68,8 +68,8 @@
 - References
   - arrange by topics
 - Appendices
-  - installation of Tools
-  - Installation of program
+  - installation process of Tools
+  - Installation process of program
 
 
 
@@ -77,11 +77,24 @@ Abbreviations
 ISA - Instruction Set architecture.
 IOT - Internet of Things
 API - Application Programming Interface
+wasm - Web Assembly
+WASI - Web Assembly System Interface
+POSIX - 
+AOT compiler- Ahead-Of-Time
+JIT compiler - Just-In-Time compiler
 
 References 
 [1] - Taivalsaari, On the development of IoT systems
+[2] - Mikkonen, Tommi : "Isomorphic Internet of Things Architectures With Web Technologies"
+[3] - WASI API
+[4] - Elliott,Gerald : "Wasmachine: Bring IoT up to Speed with A WebAssembly OS"
+[5] - [A list of wasm runtimes](https://github.com/appcypher/awesome-wasm-runtimes)
+[6] - https://osblog.stephenmarz.com/
+[7] - https://os.phil-opp.com/
+[8] - http://rcore-os.cn/rCore-Tutorial-Book-v3/index.html
 
 
-
-building an average IoT system requires the development team to use a lot of unassociated tech. For example; Assembly for the hardware, C/Rust for embedded programming, distributed programming for building the immediate network infrastructure, docker and kurbenetes for implementing microservices over the cloud, web languages to build a website that acts as a remote interface to the embedded devices... And probably kotlin for a mobile app that interacts with the embedded devices. 
-There is a high chance each module will be handled by different teams, each 
+done different
+* maybe use pre-built kernel instead of building one from scratch?
+* reduce scope
+* tackle a project I had done before
