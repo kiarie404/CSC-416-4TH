@@ -1,0 +1,476 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>The Book - Developer Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="setting_things_up.html"><strong aria-hidden="true">1.</strong> Setting Things Up</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="setting_up_the_compiler.html"><strong aria-hidden="true">1.1.</strong> Setting up the compiler</a></li><li class="chapter-item expanded "><a href="setting_up_LLD_linker.html"><strong aria-hidden="true">1.2.</strong> Setting up the linker</a></li><li class="chapter-item expanded "><a href="setting_up_qemu.html"><strong aria-hidden="true">1.3.</strong> Setting up the Riscv Virtual environment</a></li><li class="chapter-item expanded "><a href="setting_up_build_automation.html"><strong aria-hidden="true">1.4.</strong> Setting up the Build automation tool</a></li></ol></li><li class="chapter-item expanded "><a href="the_bootloader.html"><strong aria-hidden="true">2.</strong> The Bootloader</a></li><li class="chapter-item expanded "><a href="the_bootloader_2.html"><strong aria-hidden="true">3.</strong> The Bootloader_2</a></li><li class="chapter-item expanded "><a href="setting_up_comunications.html"><strong aria-hidden="true">4.</strong> Setting Up Communications</a></li><li class="chapter-item expanded "><a href="setting_up_memory_management.html"><strong aria-hidden="true">5.</strong> Setting Up Memory Management</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="RAM_management.html"><strong aria-hidden="true">5.1.</strong> The RAM Management</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="abstracting_the_RAM.html"><strong aria-hidden="true">5.1.1.</strong> Abstracting the RAM</a></li><li class="chapter-item expanded "><a href="allocation_and_deallocation_RAM.html"><strong aria-hidden="true">5.1.2.</strong> Allocating RAM Memory</a></li><li class="chapter-item expanded "><a href="fine_grained_alloation.html"><strong aria-hidden="true">5.1.3.</strong> Byte-grained allocation</a></li><li class="chapter-item expanded "><a href="setting_up_memory_virtualization_and_access_management.html"><strong aria-hidden="true">5.1.4.</strong> Setting Up RAM Memory Virtualization and access_management</a></li><li class="chapter-item expanded "><a href="handling_the_Physical_MMU.html"><strong aria-hidden="true">5.1.5.</strong> Using the Physical MMU instead of Virtual MMU</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps.html"><strong aria-hidden="true">6.</strong> Handling interrupts and Traps</a></li><li class="chapter-item expanded "><a href="handling_interrupts_and_traps_2.html"><strong aria-hidden="true">7.</strong> Handling interrupts and Traps 2</a></li><li class="chapter-item expanded "><a href="handling_external_interrupts.html"><strong aria-hidden="true">8.</strong> Handling External Interrupts</a></li><li class="chapter-item expanded "><a href="setting_up_processes.html"><strong aria-hidden="true">9.</strong> Setting up Processes</a></li><li class="chapter-item expanded "><a href="the_block_driver.html"><strong aria-hidden="true">10.</strong> The Block Driver</a></li><li class="chapter-item expanded "><a href="system_calls.html"><strong aria-hidden="true">11.</strong> system_calls</a></li><li class="chapter-item expanded "><a href="Filesystem.html"><strong aria-hidden="true">12.</strong> Filesystem</a></li><li class="chapter-item expanded "><a href="user_processes.html"><strong aria-hidden="true">13.</strong> User Processes</a></li><li class="chapter-item expanded "><a href="overall_design.html"><strong aria-hidden="true">14.</strong> Overall Design</a></li><li class="chapter-item expanded "><a href="definitions_and_theories.html"><strong aria-hidden="true">15.</strong> Definitions and Theories</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="theory_on_the_linker.html"><strong aria-hidden="true">15.1.</strong> The linker</a></li><li class="chapter-item expanded "><a href="theory_on_Qemu.html"><strong aria-hidden="true">15.2.</strong> Qemu</a></li><li class="chapter-item expanded "><a href="fragmentation_issues.html"><strong aria-hidden="true">15.3.</strong> fragmentation_issues</a></li><li class="chapter-item expanded "><a href="memory_tracking_mechanisms.html"><strong aria-hidden="true">15.4.</strong> Memory Tracking Mechanisms</a></li><li class="chapter-item expanded "><a href="theory_on_MMU_implementation_in_riscv.html"><strong aria-hidden="true">15.5.</strong> Theory on MMU implementation in Riscv</a></li><li class="chapter-item expanded "><a href="VirtIO.html"><strong aria-hidden="true">15.6.</strong> VirtIO</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> Miscellenious</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="errors.html"><strong aria-hidden="true">16.1.</strong> Error Numbers</a></li><li class="chapter-item expanded "><a href="measuring_software_performance.html"><strong aria-hidden="true">16.2.</strong> Measuring Performance of software</a></li><li class="chapter-item expanded "><a href="importing_variables_from_the_linker_script.html"><strong aria-hidden="true">16.3.</strong> Importing variables from the Linker script</a></li><li class="chapter-item expanded "><a href="GNU_assembly_macros.html"><strong aria-hidden="true">16.4.</strong> GNU assembly macros</a></li><li class="chapter-item expanded "><a href="the_singleton_design.html"><strong aria-hidden="true">16.5.</strong> The singleton Structure</a></li><li class="chapter-item expanded "><a href="multitasking.html"><strong aria-hidden="true">16.6.</strong> Multitasking</a></li><li class="chapter-item expanded "><a href="Bitmasking_and_bit_operations.html"><strong aria-hidden="true">16.7.</strong> Bitmasking_and_bit_operations</a></li><li class="chapter-item expanded "><a href="compressed_instructions.html"><strong aria-hidden="true">16.8.</strong> Compressed Instructions</a></li><li class="chapter-item expanded "><a href="the_ABI.html"><strong aria-hidden="true">16.9.</strong> The ABI</a></li><li class="chapter-item expanded "><a href="ELF_files.html"><strong aria-hidden="true">16.10.</strong> Elf Files</a></li><li class="chapter-item expanded "><a href="riscv_registers.html"><strong aria-hidden="true">16.11.</strong> Riscv_registers</a></li><li class="chapter-item expanded "><a href="virt.html"><strong aria-hidden="true">16.12.</strong> Virtual representation of riscv in Qemu</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="pcie_express_devices.html"><strong aria-hidden="true">16.12.1.</strong> PCIe express devices</a></li><li class="chapter-item expanded "><a href="virtio_devices.html"><strong aria-hidden="true">16.12.2.</strong> VIRTIO devices</a></li></ol></li><li class="chapter-item expanded "><a href="global_allocator.html"><strong aria-hidden="true">16.13.</strong> Global Allocator</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> AfterMath</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="buffer_overflow_attacks.html"><strong aria-hidden="true">17.1.</strong> buffer_overflow_attacks</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.2.</strong> fork_bomb</div></li></ol></li><li class="chapter-item expanded "><a href="web_assembly.html"><strong aria-hidden="true">18.</strong> Web Assembly</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="literature_review_papers.html"><strong aria-hidden="true">18.1.</strong> Literature review papers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="software_deployment.html"><strong aria-hidden="true">18.1.1.</strong> Software_deployment</a></li></ol></li><li class="chapter-item expanded "><a href="setting_up_wasm_runtime.html"><strong aria-hidden="true">18.2.</strong> Setting Up Wasm Runtime</a></li><li class="chapter-item expanded "><a href="webassembly_challenges.html"><strong aria-hidden="true">18.3.</strong> webassembly_challenges</a></li><li class="chapter-item expanded "><a href="the_wasm_book.html" class="active"><strong aria-hidden="true">18.4.</strong> The Book</a></li></ol></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">19.</strong> References</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Developer Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>These are notes made from the book : Programming Web Assembly with Rust by Kevin Hoffman.</p>
+<h2 id="intro"><a class="header" href="#intro">Intro</a></h2>
+<ul>
+<li>
+<p>Tech comes and goes; client-server, thinclient, fatclient, full_blown_cloud native.</p>
+</li>
+<li>
+<p>The web can be seen as a global computer.</p>
+</li>
+<li>
+<p>How will Wasm change the way developers build applications/ software? How is it revolutionary?</p>
+<ul>
+<li>I thought it just changes the way you compile applications?</li>
+<li>I thought it was just another bytecode? Or another universal elf file?</li>
+</ul>
+</li>
+<li>
+<p>Kevin says that wasm will change :</p>
+<ul>
+<li>how consumers interact with apps</li>
+<li>how developers build applications</li>
+<li>the kind of applications a developer can build (WHAAAAAAT???? I thought every language was turing complete?)</li>
+<li>It could change the definition of the word appliation</li>
+</ul>
+</li>
+</ul>
+<h3 id="todays-web-technology"><a class="header" href="#todays-web-technology">Todays Web Technology</a></h3>
+<ul>
+<li>
+<p>Web tech has improved : faster transfer speeds of data for any app, better browser engines for clients to run web apps, Better local machines to run those browser engines.</p>
+</li>
+<li>
+<p>In other words, The global computer (the web) has become faster, more efficient and has much better processing units(RAM and CPU and HDD)</p>
+</li>
+<li>
+<p>Wasm is still maturing, it lacks tools. But which tools?</p>
+</li>
+<li>
+<p>It has pain points, But which are these pain points?</p>
+</li>
+<li>
+<p>We need tools for : </p>
+<ul>
+<li>How to interface host systems with wasm modules eg Browser virtual machines, OS virtual machines</li>
+<li>How to orchestrate wasm containers</li>
+<li>How to do security scans and management on wasm containers</li>
+<li>How to reconvert wasm code to readable high level code (so that people who speak different programming languages can understand each other.)</li>
+<li>Handling wasm modules in a language independent manner</li>
+</ul>
+</li>
+</ul>
+<h2 id="fundamentals"><a class="header" href="#fundamentals">Fundamentals</a></h2>
+<p>WebAssembly can be viewed at two different levels—the raw, foundational level and at the higher level of other programming .languages using WebAssembly as a target.
+To understand fundamentals means that we need to Understand what web assembly can do, what it can't, and how to use language independent tools to deal with wasm modules</p>
+<p>This way, you can understand how higher level languages produce wasm modules as a compilation product.</p>
+<p>[promise]
+<strong>One problem solved using wasm is that people can stick to the languages, tools and development styles they like. Regardless of whether they are in backend, frontend, embedded space</strong> - There are paradigm shifts between this spaces. And grass isn't always greener on the other side.  What if you did not have to change your language when switching between this domains?</p>
+<p>You are no longer tied to JS or python if you want to go ubiquitous. You can use any library written in any language, al you have to do is to compile that library to wasm. </p>
+<p>Wasm brings the message : You can code in the language you like, for any domain. No need to learn new languages. You can choose your own language. Be assured will run on anything that can habitate a wasm runtime. Be it a browser, desktop or a satellite. You concentrate on writing the business logic</p>
+<p>You are no longer tied to Java in order to run things everywhere. Or The C# frameworks for making it okay to write for frontends and backends. Or Javascript to develop web applications. Write software in a language you want, it will run</p>
+<p>Let us end this disease of tooling so that developers can concentrate on implementing business processes.</p>
+<p>Wasm is different from Java because it :
+- allows the use of other high level languages by default
+- uses a capability based security architecture.</p>
+<h3 id="wasm"><a class="header" href="#wasm">Wasm</a></h3>
+<ul>
+<li>
+<p><strong>Portable binary code</strong> - has a bytecode that can be translated to existing assembly languages for different CPUs architectures. A generic bytecode. </p>
+</li>
+<li>
+<p><strong>for a stack based machine</strong> - the bytecode instructions are designed for a stack execution. This has its advantages and disadvantages that affect its code size, code sped and code</p>
+<p>advantages :</p>
+<ul>
+<li>smaller binary size</li>
+<li>ease of portability : unlike in registers where some registers have predefined responsibilities mentioned in the ISA Convention. The stack does not have specifics about its stacks.</li>
+<li>I do not understand the rest yet.</li>
+</ul>
+<p>Disadvantages :</p>
+<ul>
+<li>limited parallelism support. The stack is designed to be unwound sequentially. It is cumbersome to implement parallelism. It requires additional stack management activities.</li>
+<li>Unintuitive for most programmers making it hard to debug</li>
+</ul>
+</li>
+</ul>
+<p>Why is Wasm not a JS killer? 
+- Because most browsers have a JS virtual engine. This is a big project. Turning it to be fully wasm-only will be hard.
+- JS has many default features and tools purposefully made to suit web development eg event handling. A language like rust is turing complete yes... but you have to start building new tools around it. Like Yew.
+- Many developers building for the web use JS or typescript. Why change? </p>
+<p>For Me, wasm matters because I am not delving into web development.</p>
+<p>A wasm module on its own cannot do anything. It needs to run within a runtime system that can interact with the host. THe hos in this case can be the OS or an ethereum API.</p>
+<h4 id="datatypes-and-control-flow"><a class="header" href="#datatypes-and-control-flow">Datatypes and control flow</a></h4>
+<ul>
+<li>it only has 4 data types : i32, i64, f32, f64.</li>
+<li>Whether they are signed or unsigned can be specified during operations eg i32.add  or i32.add_u</li>
+</ul>
+<h4 id="linear-memory"><a class="header" href="#linear-memory">Linear memory</a></h4>
+<p>Linear memory : a static set of cotiguous memory. You can grow this linear memory in pages (64KB each). You do this statically. The runtime will not do this for you.</p>
+<p>The linear memory that a module uses can be :
+- decalred by the code inside the module
+- exported by the code inside the module
+- imported from the host using the code inside the module.</p>
+<p><strong>Why linear memory?</strong></p>
+<ul>
+<li>direct memory accesses are mad fast. Causing efficiency. You index the linear memory like an array. Using offsets as the index.</li>
+<li>The wasm module can only read and write from this linear memory. The module cannot read and write to the hosts memory or any other memory that is not its linear memory [security]</li>
+</ul>
+<p><strong>But the host can access the wasm linear memory? Isn't this a risk?</strong>*[security]
+Yes this is a risk. But this risk has been nullified by requiring the host to cause change to the linear memory by using the functions exported from the module. In short the module says to the host : &quot;I will let you control my spaceship, but you will only show you the buttons that I want you to press... and I will define what those buttons actually do in the background&quot; </p>
+<p><strong>in the end, the runtime is the first place to attack</strong>*<br />
+this is because the runtime is the one that enforces these interaction rules between the host and the wasm module.<br />
+The choice of runtime becomes important</p>
+<h2 id="language-independent-tooling"><a class="header" href="#language-independent-tooling">Language Independent Tooling</a></h2>
+<ul>
+<li>we will use the WABT - web Assembly Binary Tools</li>
+<li>This wabt is a set of tools ; but we will only need wat2wasm and wasm-objdump</li>
+<li>wat2wasm converts a .wat file to a .wasm file.</li>
+<li>wasm-objdump helps you analyze :
+<ul>
+<li>see which memories were exported, or imported, or created -- and by which names</li>
+<li>see which function signatures exist</li>
+<li>see which functions exist (by name) and which signatures they use</li>
+<li>see which functions exist (by name), which ones were imported (and their import name)</li>
+<li>which are the global variables</li>
+<li>what are the dependencies of the module?</li>
+<li>other things that I currenntly don't need to know yet</li>
+<li>You can disassemble the machine code and see the assembly code with memory locations of the instructions outlined</li>
+<li>You can see the memory mapping of each header</li>
+</ul>
+</li>
+</ul>
+<p>commands : </p>
+<pre><code class="language-bash">sudo apt install wabt             // installing WABT
+wat2wasm test.wat -o test.wasm    // using wat2wasm
+wasm-objdump test.wasm
+</code></pre>
+<p>You can embed wabt in rust code.<br />
+You can embed wasmi and other runtimes in wasm code.</p>
+<h1 id="outside-the-browser"><a class="header" href="#outside-the-browser">Outside the Browser</a></h1>
+<p>Tasks you need to know:
+- load a wasm module
+- interpret/compile
+- execute the interpreted/compiled code
+- How to avail host functions
+- How to use wasm exported functions
+- How to use memory exported from a wasm module
+- How to import memory from the host</p>
+<h3 id="how-to-be-a-good-runtime-the-functions-of-a-runtime"><a class="header" href="#how-to-be-a-good-runtime-the-functions-of-a-runtime">How to be a good Runtime. The functions of a Runtime</a></h3>
+<p>The WASI interface specifies the contract of interaction between host and wasm module:
+- The syscalls
+- The data formats, communication protocols that both Host and Module must follow for interoperability.</p>
+<p>What does it mean ... &quot;run in the runtime sandbox&quot;?<br />
+The runtime is just a program. It also gets packaged as an elf file filled with machine code.<br />
+The wasm file gets turned to machine code too.<br />
+Running as a runtime means that the wasm_machine_code gets embedded into the elf file of the runtime program.<br />
+The runtime adds management instructions to the wasm_machine_code.<br />
+For example ; wasm_code -&gt; check_syscall_permissions -&gt; validate_syscall_execution -&gt; wasm_code(that makes syscall) -&gt; </p>
+<pre><code>The runtime also adds glue code :
+    - links the WASI calls to the native Syscalls
+    - links host functions to the orrect exported wasm functions
+</code></pre>
+<ul>
+<li>draw a diagram here kid</li>
+</ul>
+<p>The functions of the host include :
+- loading the wasm module : reading the bytes and storing them in a buffer</p>
+<pre><code>- validating the wasm module : check for wasm syntatic, semantic and security specifications eg:
+  - check type safety : eg in function signatures and return values. Or operations that act on wrong types
+  - validate cotrol flow integrity
+  - ensure that the memory references are within linear memory
+  - ensure other run_time specific specs eg : 
+    - checking for access rights 
+    - check if imported functions are available
+
+- Expose the wasm module exports to the Host
+    A wasm module without an export just keeps the CPU warm.    
+    A wasm mobule provides a way for the host to use its functionality by exporting functions.  
+    The Runtime reads the exports and provides a unified working and API to the Host
+    The runtime compiled elf file will contain code that links host functions to wasm exported functions
+
+- Satisfy imports needed by the Wasm Module from the Host
+    The wasm module may import 
+        - host functions 
+        - linear memory.
+        - Global variables (for communication or config purposes)
+        - Tables (This is an array of function references from the host or other wasm modules)
+        - Host custom data structures (eg a driver struct)
+        - A high level API (almost same as a custom data structure or a Table)
+    
+    The runtime needs to make sure that the imports are satisfied. And if they are not satisfied, it should take the appropriate response... depending on the issue.    
+    eg. If the linear memory is not available, then it should return the error : &quot;Host does not hae enough free memory space&quot;   
+
+- compilation or interpretation
+- Execute 
+- Module Isolation from other modules (manage exported and unexported items accordingly) - This can be achieved by executing the runtime elf as seperate threads for each independent module
+</code></pre>
+<h2 id="building-a-runtime-in-rust-but-not-from-scratch"><a class="header" href="#building-a-runtime-in-rust-but-not-from-scratch">Building a Runtime in Rust (but not from scratch)</a></h2>
+<h3 id="wasmi-specifics"><a class="header" href="#wasmi-specifics">Wasmi specifics</a></h3>
+<p>In order to execute code from a wasm module, it must be instantiated. Instantiation includes the following steps:</p>
+<p>steps :
+1. Loading
+2. Validating 
+3. Creating a module instance with no imports satisfied and no instant bootstrapping
+4. Resolving the definition instances for each declared import in the module
+5. Instantiating definitions declared in the module (e.g. allocate global variables, allocate linear memory, etc.).
+6. Initializing memory and table contents by copying segments into them.
+7. Executing the start function, if any
+8. After these steps, the module instance is ready to execute functions</p>
+<h4 id="1-loading"><a class="header" href="#1-loading">1. Loading</a></h4>
+<ul>
+<li>create an empty character buffer, preferrably a vector because of unknown size.</li>
+<li>copy the contents of the .wasm file to the buffer.</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut buffer = Vec::new();
+{
+let mut f = File::open(&quot;../fundamentals/add.wasm&quot;)?;
+f.read_to_end(&amp;mut buffer)?;
+}
+<span class="boring">}</span></code></pre></pre>
+<h4 id="2-validating-wasm-code"><a class="header" href="#2-validating-wasm-code">2. Validating wasm code</a></h4>
+<ul>
+<li>convert the wasm code into a format that wasmi can validate, and validate it.</li>
+<li>All this can be done using the &quot;let module = wasmi::Module::from_buffer(buffer)&quot; command</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let module = wasmi::Module::from_buffer(buffer)?;
+<span class="boring">}</span></code></pre></pre>
+<h4 id="3-creating-a-module-instance-with-no-imports-satisfied-and-no-instant-bootstrapping"><a class="header" href="#3-creating-a-module-instance-with-no-imports-satisfied-and-no-instant-bootstrapping">3. Creating a module instance with no imports satisfied and no instant bootstrapping</a></h4>
+<p>The runtime needs to resolve imports demanded by the validated wasm module.<br />
+The following elements can be imported : linear memory, global variables, functions, tables, 
+So we use some structs called ImportResolver to resolve each of the elements.<br />
+An ImportBuilder calls a bunch of ImportResolvers.<br />
+An ImportBuilder::default() does not call any resolvers.</p>
+<p>The import builder outlines the host's element signatures and unique index . </p>
+<p>A ModuleInstance .assert_no_start(); function panics if the wasm code contains a start function. It prevents automatic bootstraping of modules... for security purposes.</p>
+<p>If we wanted a module with a Start, we could have called ModuleInstance .run_start()</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let add_import_builder = ImportBuilder::default();
+let instance = ModuleInstance::new(&amp;module, &amp;add_import_builder).expect(&quot;failed to instatiate module&quot;).assert_no_start();
+<span class="boring">}</span></code></pre></pre>
+<h4 id="step-456-do-not-apply-in-this-example"><a class="header" href="#step-456-do-not-apply-in-this-example">Step 4,5,6 do not apply in this example.</a></h4>
+<p>This is because the module does not have imports(4) and it has nothing to be instantiated or allocated.</p>
+<h4 id="7-execute-wasm_exported-functions"><a class="header" href="#7-execute-wasm_exported-functions">7. Execute wasm_exported Functions</a></h4>
+<p>When you pass values to a wasm function, you must turn them to RuntimeValues. A RuntimeValue can be I32,i64,f32 or f64.<br />
+Values that are returned from wasm functions are also in Option<RuntimeValue> form. You need to unwrap them as enums.<br />
+You can call a wasm function using the </p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut add_args = [RuntimeValue::from(1), RuntimeValue::from(2)];
+let wasm_return_value = instance.invoke_export(&quot;add&quot;, &amp;add_args, &amp;mut NopExternals);
+<span class="boring">}</span></code></pre></pre>
+<p>The name of wasm_exported function is case-sensitive.<br />
+When you invoke a function from wasm_module, you can give the wasm module the external resources to use using a type that implements an External trait.<br />
+The 'Externals' trait allows you to define which host elements used by the wasm module.</p>
+<p>In our case, executing the add function needs no external resources such as host_functions and global variables. </p>
+<h4 id="pattern"><a class="header" href="#pattern">Pattern</a></h4>
+<ul>
+<li>resolve imports</li>
+<li>define external resources</li>
+<li>wrap the an API around wasm_module_exported function invocations.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="webassembly_challenges.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="references.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="webassembly_challenges.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="references.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </body>
+</html>

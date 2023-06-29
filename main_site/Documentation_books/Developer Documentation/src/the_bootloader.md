@@ -43,9 +43,9 @@ After setting up the execution environment, it scans the plugged in secondary me
 #### The Bootloader
 After the Firmware has set up the execution environment, It makes the CPU pointer ton point at the entr point of the boot_code.  
 In our case, the bootloader will do the following functions :
-    1. Pick only one CPU to complete the execution of the bootloader code. This is because at the beginning we do not want any kind of paralellism. Moreover, the bootcode is a simple code that can easily be done by one CPU, adding parallelism increases unnecessary complexity. It means we will have to do interprocessor communications at the start. That is just unnecessary overengineering to save a nano_secog of a nanosecond of a nanosecond
-    2. Clear the uninitialized memory sections : the heap and BSS section.
-    3. Transfer control to the Kernel code found in memory
+1.  Pick only one CPU to complete the execution of the bootloader code. This is because at the beginning we do not want any kind of paralellism. Moreover, the bootcode is a simple code that can easily be done by one CPU, adding parallelism increases unnecessary complexity. It means we will have to do interprocessor communications at the start. That is just unnecessary overengineering to save a nano_secog of a nanosecond of a nanosecond
+2. Clear the uninitialized memory sections : the heap and BSS section.
+3. Transfer control to the Kernel code found in memory
 
 ##### pseudo code
 inputs : No inputs
@@ -57,7 +57,7 @@ outputs : No outputs
   - .text.init section : the .text.init section is different from the .text section because the .text.init section contains initialization code that gets executed before the main function.
   - .data section
 - Choose HART 0 as the main and only core
-  - if the Hart ID is not 0, subject that core to and endless sleep
+  - if the Hart ID is not 0, subject that core to an endless sleep
 - Confirm that the HART is in machine mode
 - fetch the global pointer so that we ge to access the data sections more confidently
 - Clear the BSS section, we need no surprises.
