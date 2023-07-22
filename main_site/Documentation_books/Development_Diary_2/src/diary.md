@@ -19,4 +19,10 @@ You see, I need to start working on the actual project.
 Or maybe I should focus on the topics I need eg: concurrency, closures, error-handling, smart pointers and do that server project in Rust.
 I have so much to do. But my pace is slow compared to where I want to be. I am not even employable yet.  
 My degree has gone down the drain. 4 years gone.    
-All I can do is ignore the pressure. IGNORE THE PRESSURE and keep going at my slow pace
+All I can do is ignore the pressure. IGNORE THE PRESSURE and keep going at my slow pace.  
+It's going to get easier... it's just that it's not going to happen today
+
+### 30-06-2023
+Today was a success. I got a hang of the wasmi library. Now I can write my documentation.   
+Suddenly life doesn't feel like a pre_suicide
+

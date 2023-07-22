@@ -1,67 +1,80 @@
 # Setting Up Communications
 
-References :
-    - [Chapter 3 : How to write Drivers for Peripherals](https://docs.rust-embedded.org/book/peripherals/index.html)
-    - [Communications : the UART Driver](https://osblog.stephenmarz.com/ch2.html) 
-    - [The UART specifications](https://www.lammertbies.nl/comm/info/serial-uart)
-    - [The UART Datasheet](http://caro.su/msx/ocm_de1/16550.pdf)
+References :   
+    - [Chapter 3 : How to write Drivers for Peripherals](https://docs.rust-embedded.org/book/peripherals/index.html)    
+    - [Communications : the UART Driver](https://osblog.stephenmarz.com/ch2.html)      
+    - [The UART specifications](https://www.lammertbies.nl/comm/info/serial-uart)      
+    - [The UART Datasheet](http://caro.su/msx/ocm_de1/16550.pdf)     
 
-Our OS will communicate with peripherals. Specifically the console output and the keyboard.  
-The connection between the microcontroller and both of these peripherals is a serial connection. This means we will use a UART driver.   
+Our OS will communicate with peripherals. Peripherals are external devices...external cirtuits... things that are not originally part of the Motherboard.   
+In this chapter, the peripherals that we will be attaching will be the console output and the keyboard for input.     
+The connection between the microcontroller and both of these peripherals is a serial connection.   
+
+### Why a serial connection?  
+Inside the motherboard and the peripherals, there are parallel connections connecting the  internal components.   
+Parallel connections are wide. manufacturing wide cables is expensive. So people resorted to just manufacturing single line cables.  
+And then they created algorithms to convert parallel bits to a stream of contiguous bits ... and vice versa.   
 
 ### The UART Driver
-The UART device is a hardware device that stands in between a parralel conection and a serial connection. It converts a serial signal to a parallel signal and vice-versa.  
+The UART device is a hardware device that stands in between a parallel connection and a serial connection. It converts a serial signal to a parallel signal and vice-versa.  
 It stands between the motherboard and the peripheral devices that use serial connections ; eg mouse, keyboard and console output.   
 
-#### Why are we not using the USB?  
-The USB also does the conversion of parallel signals to serial gignals. The USB has higher transfer speeds than the UART connection. I mean the USB can do 20 Gbps while the UART does around 1 Mbps.  
-However, we used the UART because of its simplicity in configuration : this is a learning project, we cannot afford the complex nature of trying to configure the USB.
+#### Why are we not using the USB driver?  
+The USB also does the conversion of parallel signals to serial signals. The USB has higher transfer speeds than the UART connection. The USB can do 20 Gbps while the UART does around 1 Mbps.  
+However, we used the UART because of its simplicity in configuration : this is a learning project, we cannot afford the complex nature of trying to configure the USB.  
 
 
 In the case of Qemu, the console output and the keyboard use the same UART device. This is because the transmit_out channel is connected to the console output AND the receive channel is connected to the keyboard.
 
+![the UART system layout of components](./images/UART/UART_system_components_layout.png)
 ![the UART system](./images/UART/UART_ecosystem.png)
+
+#### Theory of parallel to serial conversion
+Before we discuss the actual registers, let's discuss the theory of parallel-to-serial conversion.  
+1. On the Sender's side
+The serializer gets configured by the host system. The baud rate is set, the size of a data frame is set and interrupt handling is configured.
+The serializer hardware receives parallel input... let's say 8 bits.  
+The serializer sequentially pushes each bit of that parallel input into a shift register. Whether it begins from the Most Significant bit or the LSB is up to the specifications of the communication protocol being used.    
+The serializer packages the shift register bits as a data frame, with a startbit, a stop-bit and maybe a parity bit for error checking.   
+The serializer sequentially pushes the bits out of the shift register and into the transmission channel.  
+The way it pushes the bits into the line can be either FIFO or FILO.  
+The rate at which it pushes the bits into the transmission line is called the Baud Rate. It is measured in bits per second. In this case, baud rate is the same as bit rate because each bit change equals a bit transmission.  
+
+2 On the receiver's end
+It is assumed that the receiver has the same configurations as the sender: same baud rate, same data_frame size.  
+The deserializer receives the serial data frame.   
+checks the parity bit for error detection  
+
+
+
 
 #### The UART Registers
 
 The UART emulated in Qemu is the NS16550A UART chipset. We control the UART using MMIO programming. The Base address of the UARTs begins at 0x1000_0000 and each UART device is given an offset of 0x100 (256 bytes)  
-The UART has 12 registers : Below is a diagramatic representation of the UART registers :    
+
+The UART has 8 physical registers that can be interpreted as 12 logical registers... this is because some of the physical registers can be used differently under different contexts. For example Register 000 can be used as an input register when the UART is idle, but when the UART is not idle, the same register will be treated as an output register.    
+
+
+Below is a diagramatic representation of the UART registers :    
 ![The UART Registers](./images/UART/UART%20registers%20official%20DOCS.png)  
+Notice that there are registers that share the same physical space. For exapmple.... see below   
+![](images/UART/UART_registers_expreted.png)
 
 From the image, there are only 8 bytes of spaces used to represent all the 12 registers. This is becuse there are registers that share byte space : 
-1. The Receive Buffer Register(RBR), The Transmitter Holding Register(THR) and the  Divisor Latch  Least Significant Byte (DLL) can occupy the same byte space.
+1. The Receive Buffer Register(RBR), The Transmitter Holding Register(THR) and the  Divisor Latch Least Significant Byte (DLL) can occupy the same byte space.
 2. The interrupt Status Register and the FIFO control Register occupy the same byte space.
 3. The Line Status Register and the Prescaler Division  can occupy the same byte space.
 4. The Interrupt Enable Register and the Divisor Latch Most significant Byte share the same byte space.
 
-But here is a relief : If we set the DLAB (Divisor Latch access bit) to zero, then :
-- The Prescaler Division Register becomes inaccessible. Meaning that the Line status register does not have to share the byte space.
-- The DLL register becomes inaccessible, meaning the RHR and THR don't have to share the byte space.
-- The DLM register becomes inaccessible, meaning that the Interrupt Enable Register does not have to share the byte space.
 
-That is the path we will take, we will set the DLAB bit to zero so that we aaccess the registers in a more simple manner. The reason that makes it okay to disregard setting the DLL, DLM and PDS registers is because we do not need them. These three registers are used to set the Baud Rate of the UART device.
 
-We are in Qemu, this is a virtual space. This means that we are not dealing with real physical devices. Because of this fact, it is not necessary to set the Baud Rate. The machine emulates the maximum baud rate available.
-
-The Baud Rate formular is as follows :  
-Divisor = UART_device_clock_frequency / ( Baud_rate x Prescaler_Division_value)     
-
-where :
-- Divisor is a 16 bit value whose first 8 bits get stored in the DLM register and last 8 bits get stored in the DLL register. If we do not set the DLL and DLM bit, the Divisor value is assumed to be  65,536 (2^16).
-- UART_device_clock_frequency is the clock speed of the particular UART implementation. eg 16MHz
-- The Baud_rate is the rate at which data transfers, this is what we are trying to calulate.
-- The Prescaler_Division_value is found in the Prescaler_Division register. It is represented using 4 bits, its value ranges from 1 - 16. If we do not set the prescaler division value, 16 is assumed to be the default. We are okay with 16
-
-We will use this registers to :     
-1. Initialize the communication between the 2 devices
-2. fetch and write data to the communication buffers
 
 All registers are 8 bits long. We will not discuss the DLL, DLM and PSD registers.  
 ##### 1. The Line Control Register
-The line control Register is used to configure the UART communications. 
+The line control Register is used to configure the UART communications.  
 Using this register, you can set the format of the data frames being transported.  
 Using this register, you can set the size of the data frame.  
-Using this register, you can determine whether we will be able to set the baud rate or not
+Using this register, you can determine whether we will be able to set a custom baud rate or use the default baud rate.  
    - Bits [1:0] are used to set the word_length ie. the length of the Data frame. The legal values are :
   ![](images/UART/word_lenth.png)
    - Bit [2] is used to set the number of stop bits to be included in the transmission frame : 0==one stop_bit and  1 == two stop bits
@@ -70,7 +83,7 @@ Using this register, you can determine whether we will be able to set the baud r
    - Bit[7] is the DLAB bit. Setting this to 1 means that we get to acces the DLL, DLM and PSD registers to set the baud rate
 
 ##### 2. The Line Status Register
-THis register contains the info about the communicatiuon line. If any error occur, they are also reflected in this register: 
+This register contains the info about the communicatiuon line. If any error occur, they are also reflected in this register: 
 
 undone (dexcribe the rest of the registers)
 
@@ -87,6 +100,30 @@ In Interrupt driven communication, the UART device sends interrupt signals to th
 In the Poll driven communication, the CPU will occasionally check if the buffer is ready to be read or written to.   
 4. Set the data transfer speed between the 2 devices - the baud rate. This is to avoid data loss.
 
+
+But here is a relief : If we set the DLAB (Divisor Latch access bit) to zero, then :
+- The Prescaler Division Register becomes inaccessible. Meaning that the Line status register does not have to share the byte space.
+- The DLL register becomes inaccessible, meaning the RHR and THR don't have to share the byte space.
+- The DLM register becomes inaccessible, meaning that the Interrupt Enable Register does not have to share the byte space.
+
+That is the path we will take, we will set the DLAB bit to zero so that we access the registers in a more simple manner. The reason that makes it okay to disregard setting the DLL, DLM and PDS registers is because we do not need them. These three registers are used to set the Baud Rate of the UART device.
+
+We are in Qemu, this is a virtual space. This means that we are not dealing with real physical devices. Because of this fact, it is not necessary to set the Baud Rate. The machine emulates the maximum baud rate available.
+
+The Baud Rate formula is as follows :  
+Divisor = UART_device_clock_frequency / ( Baud_rate x Prescaler_Division_value)     
+
+where :
+- Divisor is a 16 bit value whose first 8 bits get stored in the DLM register and last 8 bits get stored in the DLL register. If we do not set the DLL and DLM bit, the Divisor value is assumed to be  65,536 (2^16).
+- UART_device_clock_frequency is the clock speed of the particular UART implementation. eg 16MHz
+- The Baud_rate is the rate at which data transfers, this is what we are trying to calulate.
+- The Prescaler_Division_value is found in the Prescaler_Division register. It is represented using 4 bits, its value ranges from 1 to 16. If we do not set the prescaler division value, 16 is assumed to be the default. We are okay with 16
+
+We will use this registers to :     
+1. Initialize the communication between the 2 devices
+2. fetch and write data to the communication buffers
+
+
 ##### Pseudocode for initializing the UART communication
 input : the UART base address (hopefully from a struct abstract)
 output : No_output
@@ -95,7 +132,7 @@ output : No_output
    - access the lCR register
    - set bits [1:0] to [1:1]
 2. Enable FIFO reads and writes
-   - access the FIFO control Register
+   - access the FIcaler Division RegisFO control Register
    - turn the FIFO enable bit to 1
 3. Set the interrupt capability 
    - Access the Interupt enable Register
@@ -195,10 +232,7 @@ In this case, we need the struct order as static.
 When you write to the same memory address for a couple of times, the compiler might optimize the code and just consider the last write value. Meaning you will lose a couple of writes due to compiler optimization.
 
 When you read from the same memory a couple of times, the compiler might optimize the reads using a cache;
-Volatile reads are ugly, so we will use the [volatile_register](https://crates.io/crates/volatile_register) crate to make our code organization clean and consistent.  
-
-Later you can then implement a Rusty wrapper. around the struct.
-
+Volatile read the image, there are onl
 
 
 
@@ -218,3 +252,13 @@ We can implement the 3rd and 4th [Principles](#principles-when-abstracting-hardw
 
 
 
+# I2C
+   - packet-wise, has start and stop bits. Not streaming
+   - 
+# SPI
+   - continuous, not packet-wise. data does not have  start and stop bits
+   - data can be transferred without interruption. Any number of bits can be sent or received in a continuous stream.... NOT packetwise
+   - 
+# UART
+   - packet-wise, has start and stop bits. Not streaming
+   - 

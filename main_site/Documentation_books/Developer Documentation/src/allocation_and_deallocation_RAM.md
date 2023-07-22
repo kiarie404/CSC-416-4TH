@@ -9,9 +9,10 @@ For this project, I chose Page-wise allocation, Byte-wise allocations will be im
 A page in our system is 4096 bytes long. ie 4 KiB  
 
 #### The allocation method
-algorithm : alloc
-inputs to alloc algorithm : the number of free pages required (required_pages)
-Outputs to alloc algorithm : the address of the first page of a contiguous block of free pages (starter)
+
+**Algorithm name :** alloc 
+**Inputs to alloc algorithm :** the number of free pages required (required_pages)   
+**Outputs of alloc algorithm :** the address of the first page of a contiguous block of free pages (starter)
 main goal : return an address to the first page of a free contiguous set of pages  : A RESULT VALUE (pointer/ error)
 
 Steps:

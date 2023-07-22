@@ -156,11 +156,5 @@ We will grab three open descriptors from the virtio queue, populate it with the 
 
 
 
-I will import the block driver... this bock driver has too much detail
+I will import the block driver... this block driver has too much detail
 
-
-
-
--------  
-- "step by" in Rust
-- volatiles in Rust

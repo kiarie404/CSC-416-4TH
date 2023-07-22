@@ -5,17 +5,40 @@ References :
 As earlier mentioned, the Rust compiler comes with an inbuilt linker. 
 Each target comes with its own configured linker  
 
-So by default we do not need a linker script. But as for our case, we are going to do define the memory addresses various sections of the elf file will point to. We are going to manipulate virtual memory addresses in our assembly code. So instead of letting the linker execute its default memory assignation, we define it ourselves.  
-I mean...instead of letting the linker define the addresses of variables, we will do it ourselves. Handling addresses is a delicate matter, we need no guessing. The best way to avoid guessing an address is assigning that address yourself.
+So by default we do not need a linker script. But as for our case, we need a linker script.  
 
-We would not wish to work with a blackbox.
+**Why?**	
+
+Reason 1:	
+The default compiler does not know the name of your entry_point function. Normally, the linker deals with rust crates that depend on the std libraries, and the entry_point of these crates is "_start"-->"start"-->"main" by default. In our case the linker has no clue. We need to tell it using a linker script.	
+
+Reason 2:
+Here is the thing, the elf file has many sections. the global_data section, the heap, the stack, the bss, the text section...	
+
+To write kernel code, you need to know the memory addresses of different elf sections.	
+For example....	 
+When programming how the kernel heap will get allocated and deallocated, you will need to know the exact memory address of the heap and you will reference it in your allocating function using a pointer. Or when you want the bootloader to point to the text section of the kernel, you will need to give the bootloader the exact memory address of the start of the text section.	 
+Point is, to write kernel code, you need to know the memory addresses of the different sections.  
+
+The linker script lets you tell the linker the exact memory addresses where you want it to place the different elf sections. This way, you can make the linker point to the same memory addresses used in your code. You can be assured that the pointers in your code are pointing to some place that you KNOW.  
+And the good thing is that the linker lets you label this known memory points using variables.	
+
+If you let the linker decide the memory addresses,you would have to constantly change your code to point to the addresses the linker chose for you. And the linker is not that deterministic. Today it places the heap here, tomorrow there.  
+
+There is a problem with this explanation, the linker only deals with virtual memory. Not Physical memory. It is the job of the BIOS to load the kernel in physical addresses that mao to the virtual addresses.  
+
+Reason 3:	
+You may want to make sure the different elf sections are aligned to a certain multiple. For example, if you plan to divide the heap into 4KB blocks, you may prefer to make the heap_start memory address a multiple of 4096
+
+End of reasons...	
+
 
 So how do we write a Linker Script? And to which linker are we scripting for?
 
 ####  Which linker are we scripting for?
 The rust gives you an option to choose whichever linker you want to use.  
 Rust uses the LLVM Linker by default. So we are currently scripting for the LLVM Linker.   
-You may want to use other linkers based on your usecase. For example the LLVM linker is known for its advanced optimizations. The gold linker is optimized for elf files only, so it is lightweight and faster than the GNU linker. Meaning that you will not prefer the gold linker when creating non_elf fies.  
+You may want to use other linkers based on your usecase. For example the LLVM linker is known for its advanced optimizations. The gold linker is optimized for elf files only, so it is lightweight and faster than the GNU linker. Meaning that you will not prefer the gold linker when creating non_elf files.  
 
 To know which linker you are currently using, you can enter the command below :
 ```bash
@@ -43,7 +66,7 @@ rustc  -Z unstable-options --target=riscv64gc-unknown-none-elf --print target-sp
 
 
 
-You can optionall specify your linker choice in the build manifest file (configuration file) - cargo.toml as follows :
+You can optionaly specify your linker choice in the build manifest file (configuration file) - cargo.toml as follows :
 ```toml
 [target.'cfg(target_os = "linux")'.llvm]
 linker = "/usr/bin/ld.gold"                   //this specifies the path to the gold linker

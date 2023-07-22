@@ -1,20 +1,23 @@
 # Setting Up processes
 
-What are processes in this context? - a process is a program in action. It is program code and data that has been copied from the hard disk and put in the RAM in a format that the CPU can interact with.
+What are processes in this context? - a process is a program in action. It is program code and data that has been copied from the hard disk and put in the RAM in a format that the CPU can interact with.  
 
 we have 2 kinds of processes that we need to set up :
 1. Kernel processes  --> kernel functions that get packaged and summoned as a process
 2. User Processes    --> non_kernel code that gets loaded into RAM from the Hard disk
 
+### Why do we need to wrap some kernel functions as processes?
+
 ### A program in memory, A program in Action
 
-So how does a program in memory look like?   Well, it depends on the implementation of the particular OS. In our case, all the memory associated with a process include :   
+So how does a program in memory look like?   
+Well... it depends on the implementation of the particular OS. In our case, all the memory associated with a process include :   
 
 
 A. **The Process Structure** - The process structure contains the metadata about the process.    
-B. **The process stack** - The process stack is where local variables and function addresses get temporarily stored at rutime.It is like an ordered buffer of instructions for the CPU to fetch.     
-C. **The process *loadable* elf sections** - This is where the code and data of the program are defined. The stack gets its data from here.  
-D. **The process trap_frame** - when the CPU performs a ontext switch, the context of the interrupted process gets stored in the Trap Frame
+B. **The process stack** - The process stack is where local variables and function addresses get temporarily stored at runtime. It is like an ordered buffer of instructions for the CPU to fetch.     
+C. **The process' *loadable* elf sections** - This is where the code and data of the program are defined. The stack gets its data from here.  
+D. **The process trap_frame** - when the CPU performs a context switch, the context of the interrupted process gets stored in the Trap Frame
 
 
 
@@ -29,10 +32,10 @@ The process structure is used by the operating system code to manage and control
 Under the process structure, we have the following pieces of information :
 1. The process ID
 2. The process state
-3. The program counter
-4. The address to the process stack
-5. The TrapFrame
-6. The process data section
+3. The program counter (keeps track of current instruction step)
+4. The address to the process' stack
+5. The TrapFrame associated with that process
+6. The process data section -- this is completely optional, I really do not know why we need this. maybe I will know in the future
 
 here is a rust presentation of the Process structure :
 ```rust
@@ -86,7 +89,7 @@ Each process has its own trapframe. This is so because there is a static queue o
 
 
 #### Initializing a process
-Creating a process is all about imprinting a program in the RAM. So our fisrt objectie would be to allocate free memory in the RAM in order to store the : Process Structure, Process Trap frame, Process Stack and Process elf sections. 
+Creating a process is all about imprinting a program in the RAM. So our fisrt objective would be to allocate free memory in the RAM in order to store the : Process Structure, Process Trap frame, Process Stack and Process elf sections. 
 
 But there is already space for the Process structure in the Process_List Queue... so we just update one of the empty slots in this queue with the new proces information.  
 
@@ -96,8 +99,12 @@ Since we are wrapping up a kernel process, we don't have elf sections, instead w
 
 We allocate 2 pages for the process stack. We only store the pointer to the stack in the Process structure.
 
-We are dealing with virtual addresses. And as you recall, each process is given a unique ID. And each ID is associated with a 
+We are dealing with virtual addresses. And as you recall, each process is given a unique ID. And each ID is associated with a unique virtual address space. Or rather, each process has a unique record of which pages it has used.  
 
+This table is stored as part of the Process Block Structure [undone]
+
+
+Here is the process of starting a kernel process: [undone]
 1. Pass a kernel function address to Process_constructor, let's call this address k_func
 2. create an empty process structure
 3. Fill the process structure with the following default values :

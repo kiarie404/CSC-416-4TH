@@ -4,7 +4,7 @@ Kinit messes around with physical memory in Machine mode while kmain messes with
 Kinit gets us to kmain.
 under kinit we do not accept any interrupts : This allows us to setup our machine without any disturbance from other cores or the PLIC 
 - we make mepc point to kinit
-- we make the return address of kinit point to the asm funtiod that will transition us to kamin ; kinit returns ()
+- we make the return address of kinit point to the asm funtion that will transition us to kmain ; kinit returns ()
 - we call mret and jump into kinit rust
 
 And what are we doing under kinit? [here](#kinit)
@@ -14,7 +14,7 @@ And what are we doing under kinit? [here](#kinit)
   - set MPP to 01 (supervisor)
   - set Previous machine interrupt-enable bit is 1 (MPIE=1 [Enabled])
   - wet Previous interrupt-enable bit is 1 (SPIE=1 [Enabled]).
-- set mtvec to mtrap_vector
+- setnputs : No inpu mtvec to mtrap_vector
 - set mepc to kmain
 - set which specific interrupts are allowed by setting the MIE register
   - 1 << 1    : Supervisor software interrupt enable (SSIE=1 [Enabled])
