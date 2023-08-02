@@ -56,11 +56,12 @@ Here is the actual structure of the MIE register :
 ![Both the MIE and MIP registers](images/RISCV/MIE%20register%20and%20MIP%20register.png)
 
 #### The MTVEC register (MTVEC--> Machine Trap Vector)
-A vector is a function's memory address.    
+The word 'vector' is a fancy name for a 'pointer_to_a_function'.    
 This register stores the address of the exception/interrupt handling function. When the CPU receives an exception or an interrupt, it starts executing the code found in this address.
 
 #### THe MEPC register  
-This is where the CPU usually stores the Address of the instruction that caused the exception. So if you want the to know the instruction that caused an exception for the sake of debugging
+This is where the CPU usually stores the Address of the instruction that caused the exception. So if you want the to know the instruction that caused an exception for the sake of debugging    
+One usecase example is that, after sorting out the exception or interrupt, you can make the CPU's program counter point to the address that comes after the value contained in the mepc. That way, you get to skip the address that caused the exception.   
 
 #### The mcause Register
 The Mcause register stores the ID of the exception or Interrupt.    
@@ -71,21 +72,21 @@ Here are the RISCV recognized IDs
 You can use this info to identify which interrupt needs to get handled...
 
 #### THe mtval register
-This register stores the trap value. This is the additional info about the interrupt/exception. 
+This register stores the trap value. This is the additional info about the interrupt/exception. I currently do not understand its importance. [undone]
 
 #### The mscratch register
 This is a throw-away register to help you store temporary values. The mscratch register is attached to a buffer in memory. So you can use the mscratch register to store the context of the CPU before handling the exception/interrupt. This is to avoid data loss
 
 #### mip
-Machine Interrupt pending. Shows which interrupt are waiting to be processed
+Machine Interrupt pending. Shows which interrupt are waiting to be processed. THe interrupts are arranged in order of their priority by the PLIC
 
 
 ## The whole process
 
-When an exception occurs...
+When an exception OR interrupt occurs...
 1. The CPU stores the current PC to the mepc. But for interrupts, the next PC is the one that gets stored in the mepc
 2. the PC is set to mtvec. 
-3. msattus and mtval are updated accordingly
+3. mstatus and mtval are updated accordingly
 4. the CPU disallows further acceptance of interrupts by setting the MIE segment in the mstatus register to 0 and storing the previous MIE value to the MPIE.
 5. The pre-exception privilege mode is preserved in mstatus’ MPP field, and the privilege mode is changed to M.
 
@@ -98,4 +99,6 @@ The mret function does the following actions :
 3. restores the CPU to the Protection mode specified in the mstatus' MPP field.
 
 
-All Interrupts and Exceptions are handled in Machine mode by default. But you can make the Supervisor Mode handle some exceptions and interrupts by using the medeleg and mideleg registers
+All Interrupts and Exceptions are handled in Machine mode by default. But you can make the Supervisor Mode handle some exceptions and interrupts by using the medeleg and mideleg registers  
+
+Mideleg register delegates interrupts. Medeleg delegates exceptions.

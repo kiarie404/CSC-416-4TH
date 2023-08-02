@@ -93,14 +93,18 @@ fn trash_function(){
 }
 
 ```
+## How to print test results
+- define custom assert
+- use procedural macros to print function name/ For now just write custom messages as demonsstrated in the RustConcepts place   
 
+## How to run tests module-wise
 
-
+## How to filter tests
 The thing is, this setup runs every #[test_case] function in the Crate. Now we want to make it do things in a filtered way. Perhaps module wise. 
 
 To do this you have to create a function that creates an instance of &[&dyn Fn()]s that you want, and then pass it to a handler (ie a function ) [undone]
 
-
+r
 define a function that handles asserts  
 define a function that handles 
 

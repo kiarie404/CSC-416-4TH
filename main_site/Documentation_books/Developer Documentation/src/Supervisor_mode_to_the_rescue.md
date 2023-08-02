@@ -39,3 +39,4 @@ Here is the sstatus register
 ![](images/RISCV/sstatus_register.png)
 
 ## Using the Virtual Paging system
+This section has been covered [here](./setting_up_memory_management.md)

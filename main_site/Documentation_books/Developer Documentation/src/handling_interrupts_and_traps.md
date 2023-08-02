@@ -1,8 +1,6 @@
-An **event trigger** in this case means the action of an instruction causing the CPU to stop executing the current process and start executing the interrupt handler.    
+# Interrupts and Exceptions
 
-An **Interrupt** is an *event trigger* caused by an external device. This trigger is asynchronous (random).   
-A **Trap** is a *deliberate* event trigger that is found in the program getting executed by the CPU. For example, a deliberate system call to access the file system.  
-An **exception** is a *random* event trigger caused by the program that was being executed by the kernel. For example, a division by zero.  
+It would be awesome if you first read [this](./error_handling_in_machine_mode.md)   
 
 Some event triggers are **synchronous**, meaning that the currently executing instruction is the one that caused the event trigger... whether is was done deliberately or randomly we don't care. 
 

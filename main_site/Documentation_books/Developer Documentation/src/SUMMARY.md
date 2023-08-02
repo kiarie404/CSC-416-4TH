@@ -69,6 +69,13 @@
   - [error_handling_in_machine_mode](error_handling_in_machine_mode.md)
   - [seperating_user_mode_from_machine_mode](./seperating_user_mode_from_machine_mode.md)
   - [Supervisor_mode_to_the_rescue](./Supervisor_mode_to_the_rescue.md)
+  - [Learning_magic](./learning_magic.md)
+    - [resources](./resources.md)
+    - [random_notes](./random_notes.md)
 - [References](./references.md)
+- [Problem_statement](./problem_statement.md)
+- [Implementations](./implementations.md)
+- [Debugging in Rust](./debugging_in_rust.md)
+- [Qemu Configurations](./qemu_configurations.md)
 
 
