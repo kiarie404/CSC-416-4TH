@@ -135,3 +135,29 @@ Especially the command : "info registers" --- I LOVE YOUUU. HA HA HA .
 
 As for tutorial :
 See this chatgpt talk :  https://chat.openai.com/share/feda48a4-27ce-4563-b0d4-73047257256f
+
+
+more commands:
+1. info breakpoints --get info about the set breakpoints
+2. break file:line_number
+
+If you have the address of an instruction, you can get info about the source code of that specific instruction  using the list command: For example
+```bash
+(gdb) list *0x8000035e
+0x8000035e is in hobo_os::interrupt_and_exception_handling::rust_trap (src/interrupt_and_exception_handling/mod.rs:65).
+(gdb) list 0x8000035e
+Function "0x8000035e" not defined.
+
+```
+
+
+To print the symbols that are in the current context (i.e., the current scope) while debugging with GDB, you can use the info locals and info args commands. These commands show local variables and function arguments, respectively,
+
+
+
+If you call a function in assembly. Make sure the source code of that funtion has a return function  
+In hindsight, if you are trying to modify the return address in rust code, it is better to use jump instruction instead of a call instruction.
+
+## printing registers
+- To print all non-priviledge registers : "info registers"
+- To print a specific register (both priviledge and unpriviledged) : "print $mstatus", "print $ra" 

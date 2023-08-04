@@ -1,50 +1,108 @@
-# Handling Interrupts and Traps
-
-#### Terms
-
-An **event trigger** in this case means the action of an instruction causing the CPU to stop executing the current process and start executing the interrupt handler.    
-
-An **Interrupt** is an *event trigger* caused by an external device. This trigger is asynchronous (random).   
-A **Trap** is a *deliberate* event trigger that is found in the program getting executed by the CPU. For example, a deliberate system call to access the file system.  
-An **exception** is a *random* event trigger caused by the program that was being executed by the kernel. For example, a division by zero.  
-
-Some event triggers are **synchronous**, meaning that the currently executing instruction is the one that caused the event trigger... whether is was done deliberately or randomly we don't care. 
-
-Other event triggers are **asynchronous**, meaning that the event trigger was not caused by the currently executing instruction. It was caused by something other tan the currently executing instruction
-
-Here are the asynchronous triggers :
-![](./images/mcause_asynchronous_interrupts.png)
-
-Here are the synchronous triggers :
-![](./images/mcause_synchronous_interrupts.png)
+# Program flow
+The general flow is this :
+1. There are initial assembly functions that initialize the environment for kinit to run in machine mode
+2. Kinit loads the physical memory and identity maps the entire memory. Such that it is accessible by the kernel in 
 
 
-
-In RiscV, if the CPU receives an interrupt or trap or exception, the CPU switches to MACHINE MODE. After switching to machine mode, it starts executing the function pointed to by the MTVEC. This function being pointed to is the interrupt handler.
-
-The MTVEC stores a physical address. Not a virtual address. In Machine mode, memory accesses are through physical memory addresses.  
-
-Here is the layout of the MTVEC :   
-![MTVEC register](images/RISCV/MTVEC_register.png)
-
-![MTVEC mode field values](images/RISCV/MTVEC_mode_field_values.png)
-
-As you can see the mtvec has two fields : The Base and the Mode. The Base stores the physical address of a handler function. The Mode specifies whether the interrupt handling mechanosm is direct or vectored.
-
-**Direct Mode** 
-Direct mode means that the address found in the Base is the root handler function. And that if the CPU receives any interrupt it will always point to that address only. The address points to one error handling function that stipulates how each interrupt is handled.   
-
-**Vectored Mode**   
-Under this method, the CPU first determines the cause of the interrupt and then calls a specific error handling function. It achieves this by calling the funtion at address : (Base_address + 4 x Cause_code)
-
-A direct mode mtvec means that all traps will go to the exact same function, whereas a vectored mode mtvec will go to different functions based on what caused the trap. 
-For simplicity, we will use the Direct Mode, It is not nice to mess around with physical addresses when its unnecessary.    
-
-Considering the mode field uses 2 bits, we have to make the BASE address have two dispensable zeroes at the end. Meaning the BASE address needs to be aligned to 4.
+THe return Handler Bug :
+    - solution 1 : 
+>by writing the context saving using assembly code I will succeed to perform a read_and_store operation on all regular registers without changing them. But if I write that using Rust Code, the register value changes will become unpredictable. Even if you write inline assembly. That inline assembly 
+>
 
 
+Why use a new stack for the trap handler?
+
+If you use the "j" instruction on a function, you better define its return sequence.  
+The J instruction is short form of the "jal rd symbol instructio" written as  "jal x0, offset".     
+So you see, the return address is zero/crap.    
+
+Use call always. if you want the return address to be figured out automatically in cases where the code is procedural
 
 
-1. 
+Exceptions are too hard to recorver from. The mepc does not point to the instruction address of the function in kmain, it points to the address of the inner function. So adding +4 or +8 to the mepc only adds to the address of the inner function.  Meaning you have to add arbitrary numbers to the mepc that is equal to jumping over an entire inner function.
+
+A good example :
+    in kmain() I do a illegal_instruction_exeption by trying to access mstatus register while in supervisor mode.   
+    You expect that the mepc should point to this exact line of code.... But Noooo... you know what it points to?  
+      to the definition of the mstatus_read() function... 
+      (gdb) list *$mepc  
+       0x80000ffe is in hobo_os::riscv::mstatus_read (src/riscv/mod.rs:12)
+
+As a result of this, It is better to end all exceptions with process termination. And ofcourse, we add a helpful error message.  
+When our OS advances, we will handle exceptions gracefully. For now we just terminate things all of a sudden. Quite ungraceful  
+With the project deadlines, I cannot afford to solve this gracefully.  
+Life is worthless.  
+
+So we will deal with interrupts ONLY for the moment.    
+
+Wait, I found an unstable solution for dealing with exceptions.  
+The problem was that the mepc did not point to a main_function_address but an inner function.   
+The silver lining is that the Return address still points at the main_function_address, not the inner_funtion_address.  
+So our solution is to make the mepc point to the (ra + 4) instruction.  
+After we do that, we can unsafely call mret.  
+
+If we do this, we skip the faulty instruction.  
 
 
+The problem is that :
+1. The program stack of the main function will have garbage containing the locals of the skipped instruction. Garbage that will evetually be popped and cause undefined behavior.  
+2. The CPU non_priviledged registers will also contain garbage values... values that were only suitable to run the inner-function code. With this point it means that context saving the trap was useless.
+
+Half solution:  
+1. Clear the garbage from the stack.    
+2. Clear the register values 
+I will figure 
+
+
+Handling the Interrupt in a different stack is painful.  
+I will stick to running the kernel as one procedural process. No more interliking return addresses between multiple stacks
+
+One of the problems all this time was linking between different stacks. Cost me a whole week!! It was one exciting ride.    
+Understanding how the stack works.  
+
+
+# MTVAL
+The mcause register stores the ID of the interrupt_type.    
+THe mtval register dtores the 
+
+
+
+The dream is to be eventually be one with the metal.  
+All these expectations from other people are just irritating noises.   
+Life feels worthless.   
+Life IS worthless.  
+
+It's like I am in the ocean.    
+The water is cold, but not freezing cold.   
+I am swimming inefficiently, I have no good swimming techniques. I am using too much energy to do so little.    
+It is pitch-black. I cannot see any lights in the horizon. There are no islands anywhere.  
+No birds to at least assure me that land is nearby.  
+I do not know if I am swimming straight or in circles.  
+I have lost direction. 
+I have no choice but to swim. 
+Hopefully it is in the right direction... or am I going further into sea? I cannot start thinking that way.      
+My pride is broken. My ego keeps me company. I have me.     
+I am so tired.  
+Sometimes I stop swimming, and let myself sink a little.   
+Fortunately... or unfortunately,   
+Survival instinct kicks in, and I am forced to spend so much energy to vertically swim back to the surface.   
+Do you know how exhausting it is to swim vertically upwards with fatigue while half drowned?    
+It is such an unrhythmical swim. Full of directionless hand wafting. utter panic. vertigo. despair. slow progress.  
+
+Life is a curse. Anyone who believes otherwise is delusional.   
+What else will keep me alive if not my dreams.  
+What else will keep me company if not my pride.  
+
+I have spent months on this project. I have learnt a lot, But I have nothing sustancial to show for it.    
+I am still a novice.    
+I am still in my parents house. 
+I have no cash to freely move out.  
+
+I still have my pride.  
+It has grown silent, it has slowly become still,   
+It has grown to be self-forgiving.  
+I have my pride.      
+I have my pride.    
+
+I still have my pride.  
+If I lose my pride, I lose everything

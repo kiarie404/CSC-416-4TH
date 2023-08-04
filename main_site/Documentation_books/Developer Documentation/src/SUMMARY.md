@@ -23,6 +23,8 @@
     - [Actual_implementation](./actual_implementation.md)
 - [Handling interrupts and Traps](handling_interrupts_and_traps.md)
 - [Handling interrupts and Traps 2](handling_interrupts_and_traps_2.md)
+  - [Exceptions](./how_each_exceptions_were_handled.md)
+  - [Timer_interrupt](./timer_interrupt.md)
 - [Handling External Interrupts](handling_external_interrupts.md)
 - [Setting up Processes](setting_up_processes.md)
 - [The Block Driver](the_block_driver.md)
@@ -54,6 +56,7 @@
     - [VIRTIO devices](./virtio_devices.io)
   - [Global Allocator](./global_allocator.md)
   - [Testing](./testing.md)
+  - [Falling_to_fly](./falling_to_fly.md)
 - [AfterMath]()
   - [buffer_overflow_attacks](buffer_overflow_attacks.md)
   - [fork_bomb]()
@@ -77,5 +80,10 @@
 - [Implementations](./implementations.md)
 - [Debugging in Rust](./debugging_in_rust.md)
 - [Qemu Configurations](./qemu_configurations.md)
+- [Link Scripts](./link_scripts.md)
+- [Documentation](./documentation.md)\
+  - [mermaid](./mermaid.js.md)
+- [Testing](./testing_guide.md)
+- [Debugging](./Debugging.md)
 
 

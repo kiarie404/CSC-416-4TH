@@ -72,7 +72,33 @@ Here are the RISCV recognized IDs
 You can use this info to identify which interrupt needs to get handled...
 
 #### THe mtval register
-This register stores the trap value. This is the additional info about the interrupt/exception. I currently do not understand its importance. [undone]
+This register stores the a value that offers more detail about the interrupt or exception. For example, if an illegal_instruction exception occured, the address of the specific illegal instruction will get stored in the mtval by the CPU.   
+Some exceptions and interrupts do not have any information to store in the mtval. So the CPU stores a zero in the mtval.  
+
+For all memory exceptions, the mtval stores the faulty address.  
+For all instruction based exceptions, the mtval stores the address of the subject instruction.  
+All interrupts store zero in the mtval
+
+Here is a breakdown of the mtval values corresponding to each exception :
+| Exception                          | Mtval Value            |
+|------------------------------------|------------------------|
+| InstructionAddressMisaligned, // 0 | The misaligned address |
+| InstructionAccessFault, // 1       |                        |
+| IllegalInstruction, // 2           |                        |
+| Breakpoint, // 3                   |                        |
+| LoadAddressMisaligned, // 4        |                        |
+| LoadAccessFault, // 5              |                        |
+| StoreAddressMisaligned, // 6       |                        |
+| StoreAccessFault, // 7             |                        |
+| UserEnvironmentCall, // 8          |                        |
+| SupervisorEnvironmentCall, // 9    |                        |
+| MachineEnvironmentCall, // 11      |                        |
+| InstructionPageFault, // 12        |                        |
+| LoadPageFault, // 13               |                        |
+| StorePageFault, // 15              |                        |
+|                                    |                        |
+
+
 
 #### The mscratch register
 This is a throw-away register to help you store temporary values. The mscratch register is attached to a buffer in memory. So you can use the mscratch register to store the context of the CPU before handling the exception/interrupt. This is to avoid data loss
@@ -102,3 +128,18 @@ The mret function does the following actions :
 All Interrupts and Exceptions are handled in Machine mode by default. But you can make the Supervisor Mode handle some exceptions and interrupts by using the medeleg and mideleg registers  
 
 Mideleg register delegates interrupts. Medeleg delegates exceptions.
+
+
+
+
+Fun and Curiosity First.  
+Above Money, Family, Fame, Education. Anything.  
+
+University is a place where grades matter. 
+You read what is expected, under an expected timeline.  
+You do not read in the depth you want.  
+You read subjects because they are considered important. Not because you find them important.   
+
+University is not a place to learn.  
+It is a place to get certified.  
+If you manage to learn what you want, consider that a coincidence.   
