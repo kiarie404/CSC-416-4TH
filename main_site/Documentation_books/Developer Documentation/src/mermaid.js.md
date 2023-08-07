@@ -114,3 +114,43 @@ Find instructions on drawing state diagrams [on this page](https://mermaid.js.or
         D --> E[return the read byte];
         C --> |No| E[return None type]
 ```
+
+
+
+
+```mermaid
+stateDiagram
+
+    [*] --> Program
+    state Program{
+        [*] --> KeyBoard : Someone presses keyboard Keys
+        KeyBoard --> Uart_upper_interface : [stream of bytes]
+        Uart_upper_interface --> Uart
+
+        state Uart {
+            state if_state <<choice>>
+            [*] --> FIFO_Buffer : store byte stream into
+            FIFO_Buffer --> if_state : Does FIFO have new Data?
+            if_state --> send_interrupt : Yes
+            if_state --> [*] : No
+
+            state if_state_2 <<choice>>
+            FIFO_Buffer --> if_state_2 : Is all data in FIFO read?
+            if_state_2 --> set_uart_as_read_ready : No
+            if_state_2 --> set_uart_as_write_ready : yes
+            if_state_2 --> stop_sending_read_interrupt : yes
+        }
+
+        Uart --> Plic : send interrupt to Plic
+        Plic --> CPU  : Plic sends interrupt to CPU
+        CPU  --> Trap_Handler : CPU jumps to
+
+        Trap_Handler --> Uart : read the Uart Buffer
+        
+         
+
+
+        
+    }
+
+```

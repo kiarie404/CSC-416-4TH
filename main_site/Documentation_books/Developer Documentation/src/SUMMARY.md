@@ -9,7 +9,11 @@
 - [The Bootloader](the_bootloader.md)
 - [The Bootloader_2](the_bootloader_2.md)
 - [Setting Up Communications](./setting_up_comunications.md)
-  - [communications_theory](./communications_theory.md)
+  - [Designs and layouts](./designs_and_layouts.md)
+  - [General Theory on communication](./general_theory_on_communication.md)
+  - [The UART ](./the_uart_theory.md)
+  - [More About the UART](./more_about_the_UART.md)
+  - [Programming_the_UART](./programming_the_UART.md)
 - [Theory on Paging](./theory_on_paging.md)
   - [segmentation](./segmentation.md)
   - [paging](./paging.md)
@@ -25,6 +29,7 @@
 - [Handling interrupts and Traps 2](handling_interrupts_and_traps_2.md)
   - [Exceptions](./how_each_exceptions_were_handled.md)
   - [Timer_interrupt](./timer_interrupt.md)
+  - [External Interrupt](./external_interrupt.md)
 - [Handling External Interrupts](handling_external_interrupts.md)
 - [Setting up Processes](setting_up_processes.md)
 - [The Block Driver](the_block_driver.md)
@@ -55,7 +60,6 @@
     - [PCIe express devices](./pcie_express_devices.md)
     - [VIRTIO devices](./virtio_devices.io)
   - [Global Allocator](./global_allocator.md)
-  - [Testing](./testing.md)
   - [Falling_to_fly](./falling_to_fly.md)
 - [AfterMath]()
   - [buffer_overflow_attacks](buffer_overflow_attacks.md)
@@ -84,6 +88,9 @@
 - [Documentation](./documentation.md)\
   - [mermaid](./mermaid.js.md)
 - [Testing](./testing_guide.md)
+  - [No-Std Testing](./no_std_testing.md) 
+  - [Unit Tests](./unit_tests.md)
+  - [Integration Tests](./integration_tests.md)
 - [Debugging](./Debugging.md)
 
 

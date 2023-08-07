@@ -161,3 +161,20 @@ In hindsight, if you are trying to modify the return address in rust code, it is
 ## printing registers
 - To print all non-priviledge registers : "info registers"
 - To print a specific register (both priviledge and unpriviledged) : "print $mstatus", "print $ra" 
+
+## Printing Memory values
+To print the value stored at a specific memory address while using GDB (GNU Debugger), you can use the x (examine) command. The syntax for the x command is as follows:
+
+
+x/[n][fu] address
+
+Where:
+
+    n is an optional count representing the number of units to display. If omitted, it defaults to 1.
+    f is an optional format specifier to control the display format of the data.
+    u is an optional unit size specifier (b for bytes, h for halfwords, w for words, g for giant words).
+
+For example : 
+x/2h 0x12345678
+
+This will print two consecutive halfwords (16 bits each) starting from the memory address 0x12345678.
