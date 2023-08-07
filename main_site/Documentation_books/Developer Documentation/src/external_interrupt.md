@@ -133,7 +133,6 @@ If you write the wrong Interrupt ID, nothing will happen. Bugs will haunt you. B
 
 
 
-
 Just do what you want, everything else is irrelevant.  
 So what if you end up homeless? so what if you fail at things you don't care about? What is so awful about falling short of societal standards? So what if you end up poor?  
 Life is pointless, it is depressing to not do what you want. It is depressing to do things out of fear or obligation.  

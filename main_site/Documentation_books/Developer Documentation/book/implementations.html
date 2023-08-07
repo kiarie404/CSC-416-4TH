@@ -237,7 +237,8 @@ pub struct TrapFrame {
 	pub hartid:     usize,       // 528       - 8 bytes
 }
 <span class="boring">}</span></code></pre></pre>
-<p>We store the base address of the mut static Trapframe in the mscratch register.</p>
+<p>We store the base address of the mut static Trapframe in the mscratch register.<br />
+When a process is loaded into the CPU, the address of its trapframe gets loaded into the mscratch register.</p>
 <h5 id="the-use-of-macros"><a class="header" href="#the-use-of-macros">THe use of macros</a></h5>
 <p>In the trap.s assembly, we have used the assembly macros .<br />
 Here is a snippet :</p>

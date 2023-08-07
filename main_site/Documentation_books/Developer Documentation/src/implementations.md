@@ -82,6 +82,7 @@ pub struct TrapFrame {
 ```
 
 We store the base address of the mut static Trapframe in the mscratch register.  
+When a process is loaded into the CPU, the address of its trapframe gets loaded into the mscratch register.  
 
 
 ##### THe use of macros

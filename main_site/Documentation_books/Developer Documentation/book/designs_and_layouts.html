@@ -148,33 +148,39 @@
 <p><img src="images/UART/design/keyboard_input_lvl_0.svg" alt="" /></p>
 <h2 id="keyboard-input---level-1"><a class="header" href="#keyboard-input---level-1">Keyboard Input - Level 1</a></h2>
 <pre class="mermaid">flowchart TD
-
+    START --&gt; KeyBoard
     KeyBoard --&gt;|stream of bytes| Uart_upper_interface
     Uart_upper_interface --&gt;|Store bytes into| FIFO_Buffer
     
-    subgraph Uart
+    subgraph UART
         FIFO_Buffer --&gt;|check if buffer has new data| if_state{Does It?}
         if_state --&gt;|Yes| update_interrupt_status
-        if_state --&gt;|Do Nothing| End
+        if_state --&gt;|No| Do_Nothing
 
         FIFO_Buffer --&gt;|check if all Buffer data has been read| if_state_2{Has It?}
-        if_state_2 --&gt;|Yes| set_UART_as_read_ready
+        if_state_2 --&gt;|Yes| set_UART_as_write_ready
         if_state_2 --&gt;|Yes| stop_read_interrupt
-        if_state_2 --&gt;|No| set_UART_as_write_ready
+        if_state_2 --&gt;|No| set_UART_as_read_ready
         if_state_2 --&gt;|No| update_RHR_register
         update_RHR_register --&gt; RHR_register
     end
 
-    update_interrupt_status --&gt;|Send read interrupt to| Plic
-    Plic --&gt;|send interrupt to| CPU
+    update_interrupt_status --&gt;|Send read interrupt to PLIC| Plic
+    Plic --&gt;|send interrupt to CPU| CPU
     CPU --&gt;|Summon trap handler| Trap_Handler
 
     subgraph Trap_handling
-        Trap_Handler --&gt;|read RHR register| RHR_register
-        Trap_Handler --&gt;|Store word in stdin buffer| stdin_buffer
-        Trap_Handler --&gt;|Has reading been successful?| if_state_3{Has it?}
-        if_state_3 --&gt;|Yes| Notify_plic
+        Trap_Handler --&gt;|Is the UART still read-ready?| if_state_4{Is it?}
+        if_state_4 ----&gt;|Yes| Read_from_RHR_register
+        Read_from_RHR_register &lt;--&gt; RHR_register
+        if_state_4 --&gt;|No| Then
+        Then --&gt;|Tell Plic that interrupt has been sorted| Plic
+
+        Trap_Handler --&gt;|Has reading from RHR been successful?| if_state_3{Has it?}
+        if_state_3 --&gt;|Yes| store_word_into_stdin_buffer
+        store_word_into_stdin_buffer --&gt; stdin_buffer
         if_state_3 --&gt;|No| Throw_exception
+        
     end
 
 

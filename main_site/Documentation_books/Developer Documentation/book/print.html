@@ -1029,33 +1029,39 @@ The connection between the microcontroller and both of these peripherals is a se
 <p><img src="images/UART/design/keyboard_input_lvl_0.svg" alt="" /></p>
 <h2 id="keyboard-input---level-1"><a class="header" href="#keyboard-input---level-1">Keyboard Input - Level 1</a></h2>
 <pre class="mermaid">flowchart TD
-
+    START --&gt; KeyBoard
     KeyBoard --&gt;|stream of bytes| Uart_upper_interface
     Uart_upper_interface --&gt;|Store bytes into| FIFO_Buffer
     
-    subgraph Uart
+    subgraph UART
         FIFO_Buffer --&gt;|check if buffer has new data| if_state{Does It?}
         if_state --&gt;|Yes| update_interrupt_status
-        if_state --&gt;|Do Nothing| End
+        if_state --&gt;|No| Do_Nothing
 
         FIFO_Buffer --&gt;|check if all Buffer data has been read| if_state_2{Has It?}
-        if_state_2 --&gt;|Yes| set_UART_as_read_ready
+        if_state_2 --&gt;|Yes| set_UART_as_write_ready
         if_state_2 --&gt;|Yes| stop_read_interrupt
-        if_state_2 --&gt;|No| set_UART_as_write_ready
+        if_state_2 --&gt;|No| set_UART_as_read_ready
         if_state_2 --&gt;|No| update_RHR_register
         update_RHR_register --&gt; RHR_register
     end
 
-    update_interrupt_status --&gt;|Send read interrupt to| Plic
-    Plic --&gt;|send interrupt to| CPU
+    update_interrupt_status --&gt;|Send read interrupt to PLIC| Plic
+    Plic --&gt;|send interrupt to CPU| CPU
     CPU --&gt;|Summon trap handler| Trap_Handler
 
     subgraph Trap_handling
-        Trap_Handler --&gt;|read RHR register| RHR_register
-        Trap_Handler --&gt;|Store word in stdin buffer| stdin_buffer
-        Trap_Handler --&gt;|Has reading been successful?| if_state_3{Has it?}
-        if_state_3 --&gt;|Yes| Notify_plic
+        Trap_Handler --&gt;|Is the UART still read-ready?| if_state_4{Is it?}
+        if_state_4 ----&gt;|Yes| Read_from_RHR_register
+        Read_from_RHR_register &lt;--&gt; RHR_register
+        if_state_4 --&gt;|No| Then
+        Then --&gt;|Tell Plic that interrupt has been sorted| Plic
+
+        Trap_Handler --&gt;|Has reading from RHR been successful?| if_state_3{Has it?}
+        if_state_3 --&gt;|Yes| store_word_into_stdin_buffer
+        store_word_into_stdin_buffer --&gt; stdin_buffer
         if_state_3 --&gt;|No| Throw_exception
+        
     end
 
 
@@ -1165,8 +1171,11 @@ It is good practice to confirm that the data is read-worthy before reading it, y
 <p>This register stores data that is to be transmitted across the line.<br />
 It is good practice to write to this Register ONLY when the buffer is empty. To check if the buffer is empty, check if the &quot;THR Empty&quot; bit in the Linestatus Register is set to 1.</p>
 <h3 id="the-interrupt-enable-register"><a class="header" href="#the-interrupt-enable-register">The Interrupt Enable Register</a></h3>
-<p>[undone] Explain the Interrup Enable Register<br />
-[undone] (describe the rest of the registers when you get the time)</p>
+<p>[undone] Explain the Interrup Enable Register</p>
+<h3 id="the-interrupt-status-register"><a class="header" href="#the-interrupt-status-register">The Interrupt Status Register</a></h3>
+<p>This register shows the following info :
+<img src="images/UART/Interrupt_status_register.png" alt="" /></p>
+<p>[undone] (describe the rest of the registers when you get the time)</p>
 <ul>
 <li>Added and Important</li>
 </ul>
@@ -5385,7 +5394,8 @@ pub struct TrapFrame {
 	pub hartid:     usize,       // 528       - 8 bytes
 }
 <span class="boring">}</span></code></pre></pre>
-<p>We store the base address of the mut static Trapframe in the mscratch register.</p>
+<p>We store the base address of the mut static Trapframe in the mscratch register.<br />
+When a process is loaded into the CPU, the address of its trapframe gets loaded into the mscratch register.</p>
 <h5 id="the-use-of-macros"><a class="header" href="#the-use-of-macros">THe use of macros</a></h5>
 <p>In the trap.s assembly, we have used the assembly macros .<br />
 Here is a snippet :</p>

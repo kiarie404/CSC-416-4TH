@@ -67,6 +67,12 @@ When you write to this buffer, it is treated as The Transmitter Holding Register
 
 ### The Interrupt Enable Register
 [undone] Explain the Interrup Enable Register  
+
+### The Interrupt Status Register
+This register shows the following info :
+![](images/UART/Interrupt_status_register.png)
+
+
 [undone] (describe the rest of the registers when you get the time)  
 
 
