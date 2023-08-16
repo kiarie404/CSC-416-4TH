@@ -130,37 +130,3 @@ All Interrupts and Exceptions are handled in Machine mode by default. But you ca
 Mideleg register delegates interrupts. Medeleg delegates exceptions.
 
 
-
-
-Fun and Curiosity First.  
-Above Money, Family, Fame, Education. Anything.  
-
-University is a place where grades matter. 
-You read what is expected, under an expected timeline.  
-You do not read in the depth you want.  
-You read subjects because they are considered important. Not because you find them important.   
-Not because you immediately need them.  
-
-University is not a place to learn.  
-It is a place to get certified.  
-If you manage to learn what you want, consider that a coincidence.   
-
-( Finishing this project != Finishing Degree). (Finishing this project > Finishing Degree)  
-With Time, you will find developers and makers with whom you will be willing to fight alongside.    
-For now, you fight alone.  
-For now, you test your own mettle to proof a point to your subconcious.     
-
-Getting external validation from a university acts as a good safety net.    
-You know that is why that degree has some prestige attached to it.  
-But is it a safety net that I would be proud of having?  
-Or Do I see a university paper as a symbol of fear?  
-I mean, with a degree, you have an easier time getting jobs.    
-With a degree, you get some prestige.   
-With a degree, you have some form of external validation that you are a good engineer.  
-
-Why can't I be a good engineer and not need a title to prove it?    
-Why do I have to prove myself?  
-
-Rejecting a university paper is a good resolve for ensuring that only your skill gets you through the doors you want to go through.  
-
-Or will I be fighting with one hand tied to my back?

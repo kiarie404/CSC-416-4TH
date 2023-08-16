@@ -145,3 +145,16 @@ wrapped the Riscv Instructions in wrappers to make it easy to update the the CSR
 
 
 
+### Wrong Turns
+1. Considering the user processes will NOT run in user-mode, there is no need to abstract kernel functions as processes whose start addresses point to Rust functions that are inaccessible to user functions. [design]
+2. There is also no need to implement syscall call conventions. This is because user programs execute at kernel level. [design]
+3. Now what bugs me is : "How will I make user programs loadable without forcing the kernel to restart?"[design]
+   1. pre-define a linked list of program metadatas that the init function parses through.  
+   2. When you download a program from the net, it gets stored in the file system but its metadata gets stored in the linked list of metadatas
+   3. program_run now puts the metadata in the list and activates it to "waiting_for_CPU" state
+   4. And there you have it.... no restarts
+4. Build an installer?[design]
+5. Which WASI syscalls should I use?[design]
+6. 
+
+

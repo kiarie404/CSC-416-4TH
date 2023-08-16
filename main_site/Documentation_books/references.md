@@ -4,6 +4,17 @@
 # Paper
 
 - [1]: MIT's Center for Bits and Atoms About Page : http://cba.mit.edu/about/index.html
+- [2]: https://helda.helsinki.fi Isomorphic Internet of Things Architectures With Web Technologies By Mikkonen, Tomm
+- [4]: Wasmachine: Bring IoT up to Speed with A WebAssembly OS By Elliott Wen and Gerald Weber
+- [5]: Github List of Runtimes
+- [6]: https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/
+- [7]: Official WASi website : https://wasi.dev/
+- [8]: WASI document Guide : https://github.com/bytecodealliance/wasmtime/blob/main/docs/WASI-documents.md
+- [9]: Official Tock Website
+- [10]: Tock Paper
+- [11]: Own Docs 
+- [12]: https://github.com/riscv-collab/riscv-gnu-toolchain
+- [13]: Stephen Marz block driver
 - 
 
 
