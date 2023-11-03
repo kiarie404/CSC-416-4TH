@@ -4,6 +4,6 @@ A proof of concept that Rust+wasm integration in embedded Oses and IoT deploymen
 
 Here is the Roadmap : [RoadMap](https://github.com/kiarie404/CSC-416-4TH/blob/main/Roadmap.md)
 
-Here is the [Project's website](https://kiarie404.github.io/CSC-416-4TH/main_site/index.html), it contains the documentation
+Here is the [Project's website](https://kiarie404.github.io/CSC-416-4TH/main_site/index.html), it contains the documentation.  
 Here is the [code repository](https://github.com/kiarie404/Hobo-OS).
 
